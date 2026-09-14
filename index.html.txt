@@ -12,51 +12,25 @@
       padding: 0;
     }
 
-    body {
-      background: #000;
-      color: white;
-      font-family: Arial, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    html, body {
+      width: 100%;
+      height: 100%;
       overflow: hidden;
-    }
-
-    #inicio {
-      text-align: center;
-      z-index: 10;
-    }
-
-    #inicio h1 {
-      margin-bottom: 25px;
-      font-size: 28px;
-    }
-
-    #startButton {
-      border: none;
-      border-radius: 15px;
-      padding: 18px 30px;
-      font-size: 20px;
-      font-weight: bold;
-      background: #ff1744;
-      color: white;
-      cursor: pointer;
+      background: #000;
+      font-family: Arial, sans-serif;
     }
 
     #susto {
-      display: none;
       position: fixed;
       inset: 0;
-      background: #000;
+      display: flex;
       justify-content: center;
       align-items: center;
+      background: #000;
+      color: white;
       text-align: center;
-      overflow: hidden;
-      z-index: 9999;
     }
 
-    /* Fondo repetido */
     #fondo {
       position: absolute;
       inset: -100px;
@@ -66,14 +40,13 @@
       justify-content: center;
       gap: 25px;
       transform: rotate(-15deg) scale(1.3);
-      opacity: 0.25;
-      pointer-events: none;
+      opacity: 0.3;
     }
 
     #fondo span {
+      color: #ff1744;
       font-size: 35px;
       font-weight: 900;
-      color: #ff1744;
       white-space: nowrap;
     }
 
@@ -83,7 +56,6 @@
       padding: 25px;
       font-size: clamp(35px, 10vw, 80px);
       font-weight: 900;
-      color: white;
       text-shadow:
         0 0 10px red,
         0 0 25px red,
@@ -91,12 +63,12 @@
       animation: temblar 0.08s infinite;
     }
 
-    #contador {
+    #aviso {
       position: absolute;
       bottom: 25px;
-      z-index: 6;
-      font-size: 20px;
-      color: #fff;
+      z-index: 10;
+      font-size: 18px;
+      opacity: 0.8;
     }
 
     @keyframes temblar {
@@ -111,11 +83,6 @@
 
 <body>
 
-  <div id="inicio">
-    <h1>😈 Pulsa para continuar</h1>
-    <button id="startButton">TOCAR AQUÍ</button>
-  </div>
-
   <div id="susto">
 
     <div id="fondo"></div>
@@ -125,100 +92,90 @@
       Y LUIS LO AGARRÓ 💀
     </div>
 
-    <div id="contador">
-      Sorpresa... 60 segundos 😈
+    <div id="aviso">
+      🔊 Toca la pantalla
     </div>
 
   </div>
 
   <script>
-    const boton = document.getElementById("startButton");
-    const inicio = document.getElementById("inicio");
-    const susto = document.getElementById("susto");
     const fondo = document.getElementById("fondo");
-    const contador = document.getElementById("contador");
 
-    // Crear el fondo repetido
-    for (let i = 0; i < 45; i++) {
+    // Fondo repetido
+    for (let i = 0; i < 50; i++) {
       const texto = document.createElement("span");
       texto.textContent = "DIEGO ES GAY";
       fondo.appendChild(texto);
     }
 
-    boton.addEventListener("click", async () => {
+    let sonidoIniciado = false;
 
-      inicio.style.display = "none";
-      susto.style.display = "flex";
+    document.body.addEventListener("click", iniciarSonido);
+    document.body.addEventListener("touchstart", iniciarSonido, {
+      passive: true
+    });
 
-      // Intentar pantalla completa
+    async function iniciarSonido() {
+
+      if (sonidoIniciado) return;
+      sonidoIniciado = true;
+
+      // Pantalla completa si el navegador lo permite
       try {
         if (document.documentElement.requestFullscreen) {
           await document.documentElement.requestFullscreen();
         }
-      } catch (e) {
-        console.log("Pantalla completa no disponible");
-      }
+      } catch (e) {}
 
-      // Vibración si el celular la permite
+      // Vibración
       if (navigator.vibrate) {
         navigator.vibrate([500, 200, 500, 200, 1000]);
       }
 
-      // Crear sonido tipo bocina usando Web Audio
+      // Sonido tipo bocina
       const AudioContext =
         window.AudioContext || window.webkitAudioContext;
 
-      if (AudioContext) {
-        const audio = new AudioContext();
+      if (!AudioContext) return;
 
-        const oscillator = audio.createOscillator();
-        const gain = audio.createGain();
+      const audio = new AudioContext();
 
-        oscillator.type = "sawtooth";
-        oscillator.frequency.value = 120;
+      const oscillator = audio.createOscillator();
+      const gain = audio.createGain();
 
-        gain.gain.value = 0.12;
+      oscillator.type = "sawtooth";
+      oscillator.frequency.value = 120;
 
-        oscillator.connect(gain);
-        gain.connect(audio.destination);
+      gain.gain.value = 0.12;
 
-        oscillator.start();
+      oscillator.connect(gain);
+      gain.connect(audio.destination);
 
-        // Cambiar ligeramente el tono para hacerlo más molesto
-        const intervalo = setInterval(() => {
-          oscillator.frequency.value =
-            100 + Math.random() * 80;
-        }, 150);
+      oscillator.start();
 
-        setTimeout(() => {
-          clearInterval(intervalo);
+      const cambio = setInterval(() => {
+        oscillator.frequency.value =
+          100 + Math.random() * 80;
+      }, 150);
+
+      // 60 segundos
+      setTimeout(() => {
+        clearInterval(cambio);
+
+        try {
           oscillator.stop();
-          audio.close();
-        }, 60000);
-      }
+        } catch (e) {}
 
-      // Contador de 60 segundos
-      let segundos = 60;
+        audio.close();
 
-      const cuenta = setInterval(() => {
-        segundos--;
-
-        contador.textContent =
-          "Sorpresa... " + segundos + " segundos 😈";
-
-        if (segundos <= 0) {
-          clearInterval(cuenta);
-
-          susto.style.display = "none";
-          inicio.style.display = "block";
-
-          // Salir de pantalla completa
-          if (document.fullscreenElement) {
-            document.exitFullscreen().catch(() => {});
-          }
+        if (document.fullscreenElement) {
+          document.exitFullscreen().catch(() => {});
         }
-      }, 1000);
-    });
+
+        document.getElementById("aviso").textContent =
+          "😈 Fin de la broma";
+      }, 60000);
+    }
   </script>
 
 </body>
