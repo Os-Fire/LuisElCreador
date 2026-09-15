@@ -10,7 +10,7 @@
 <style>
 
 /* =========================================================
-   CONFIGURACIÓN GENERAL
+   GENERAL
 ========================================================= */
 
 *{
@@ -25,6 +25,7 @@ html,body{
 }
 
 body{
+
     font-family:
         Georgia,
         "Times New Roman",
@@ -37,22 +38,17 @@ body{
     background:
         linear-gradient(
             135deg,
-            #16213e,
-            #274b74,
-            #172a46,
-            #111827
+            #101a32,
+            #244b72,
+            #162a48,
+            #0d1424
         );
 
     background-size:400% 400%;
 
-    animation:
-        fondo 18s ease infinite;
+    animation:fondo 18s ease infinite;
 }
 
-
-/* =========================================================
-   FONDO ANIMADO
-========================================================= */
 
 @keyframes fondo{
 
@@ -67,23 +63,30 @@ body{
     100%{
         background-position:0% 50%;
     }
+
 }
 
 
+/* =========================================================
+   PARTÍCULAS
+========================================================= */
+
 #particulas{
+
     position:fixed;
 
     inset:0;
 
-    pointer-events:none;
-
     overflow:hidden;
+
+    pointer-events:none;
 
     z-index:0;
 }
 
 
 .particula{
+
     position:absolute;
 
     width:5px;
@@ -91,10 +94,12 @@ body{
 
     border-radius:50%;
 
-    background:rgba(255,255,255,.45);
+    background:
+        rgba(255,255,255,.45);
 
     box-shadow:
-        0 0 10px rgba(255,255,255,.35);
+        0 0 10px
+        rgba(255,255,255,.35);
 
     animation:
         flotar linear infinite;
@@ -104,11 +109,13 @@ body{
 @keyframes flotar{
 
     from{
+
         transform:
             translateY(110vh)
             scale(.5);
 
         opacity:0;
+
     }
 
     15%{
@@ -120,20 +127,24 @@ body{
     }
 
     to{
+
         transform:
             translateY(-10vh)
             scale(1.3);
 
         opacity:0;
+
     }
+
 }
 
 
 /* =========================================================
-   PANTALLA DE CONTRASEÑA
+   LOGIN
 ========================================================= */
 
 #login{
+
     position:fixed;
 
     inset:0;
@@ -149,7 +160,7 @@ body{
     padding:20px;
 
     background:
-        rgba(5,10,20,.72);
+        rgba(5,10,20,.75);
 
     backdrop-filter:
         blur(10px);
@@ -171,16 +182,17 @@ body{
     background:
         linear-gradient(
             145deg,
-            rgba(255,255,255,.96),
-            rgba(245,235,210,.96)
+            rgba(255,255,255,.97),
+            rgba(245,235,210,.97)
         );
 
     box-shadow:
-        0 25px 80px rgba(0,0,0,.45),
-        0 0 40px rgba(255,215,120,.15);
+        0 25px 80px
+        rgba(0,0,0,.45);
 
     border:
-        2px solid rgba(255,255,255,.8);
+        2px solid
+        rgba(255,255,255,.8);
 
     animation:
         aparecer .7s ease;
@@ -188,38 +200,46 @@ body{
 
 
 .loginIcon{
+
     font-size:65px;
 
     margin-bottom:10px;
+
 }
 
 
 .loginBox h1{
+
     font-size:32px;
 
     color:#60451f;
 
     margin-bottom:8px;
+
 }
 
 
 .loginBox p{
+
     color:#76674f;
 
     margin-bottom:25px;
 
     font-family:Arial,sans-serif;
+
 }
 
 
 #password{
+
     width:100%;
 
     padding:16px;
 
     border-radius:12px;
 
-    border:2px solid #d5c29b;
+    border:
+        2px solid #d5c29b;
 
     outline:none;
 
@@ -230,18 +250,23 @@ body{
     background:#fffdf7;
 
     color:#332818;
+
 }
 
 
 #password:focus{
+
     border-color:#b88a3b;
 
     box-shadow:
-        0 0 15px rgba(184,138,59,.25);
+        0 0 15px
+        rgba(184,138,59,.25);
+
 }
 
 
 #entrar{
+
     width:100%;
 
     margin-top:15px;
@@ -267,22 +292,21 @@ body{
             #c69b4a
         );
 
-    box-shadow:
-        0 8px 20px rgba(120,80,20,.25);
-
     transition:.2s;
+
 }
 
 
 #entrar:hover{
-    transform:translateY(-2px);
 
-    box-shadow:
-        0 12px 25px rgba(120,80,20,.35);
+    transform:
+        translateY(-2px);
+
 }
 
 
 #error{
+
     display:none;
 
     margin-top:14px;
@@ -292,14 +316,16 @@ body{
     font-family:Arial,sans-serif;
 
     font-weight:bold;
+
 }
 
 
 /* =========================================================
-   CONTENIDO
+   APP
 ========================================================= */
 
 #pagina{
+
     position:relative;
 
     z-index:2;
@@ -324,13 +350,14 @@ body{
 
     width:100%;
 
-    max-width:850px;
+    max-width:900px;
 
     position:relative;
 
     filter:
         drop-shadow(
-            0 25px 35px rgba(0,0,0,.35)
+            0 25px 35px
+            rgba(0,0,0,.35)
         );
 }
 
@@ -349,7 +376,8 @@ body{
 
     width:18px;
 
-    border-radius:8px 0 0 8px;
+    border-radius:
+        8px 0 0 8px;
 
     background:
         linear-gradient(
@@ -359,18 +387,17 @@ body{
             #65471f
         );
 
-    box-shadow:
-        inset -4px 0 5px rgba(0,0,0,.25);
 }
 
 
 .hoja{
 
-    min-height:620px;
-
     position:relative;
 
-    padding:55px 65px 75px;
+    min-height:700px;
+
+    padding:
+        50px 60px 90px;
 
     border-radius:
         5px 18px 18px 5px;
@@ -387,7 +414,8 @@ body{
         1px solid #d5bf91;
 
     box-shadow:
-        inset 10px 0 20px rgba(80,50,10,.08);
+        inset 10px 0 20px
+        rgba(80,50,10,.08);
 
     overflow:hidden;
 }
@@ -431,27 +459,98 @@ body{
 
 
 .paginaLibro.activa{
+
     display:block;
+
 }
 
 
 @keyframes pasar{
 
     from{
+
         opacity:0;
 
         transform:
-            rotateY(-10deg)
+            rotateY(-8deg)
             translateX(20px);
+
     }
 
     to{
+
         opacity:1;
 
         transform:
             rotateY(0)
             translateX(0);
+
     }
+
+}
+
+
+/* =========================================================
+   CONTENIDO LARGO
+========================================================= */
+
+/*
+   ESTA ES LA PARTE IMPORTANTE:
+
+   Las páginas de preguntas tienen
+   una zona que permite hacer scroll.
+*/
+
+.textoScroll{
+
+    height:480px;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    padding-right:18px;
+
+    scroll-behavior:smooth;
+}
+
+
+/* Scroll bonito */
+
+.textoScroll::-webkit-scrollbar{
+
+    width:9px;
+
+}
+
+
+.textoScroll::-webkit-scrollbar-track{
+
+    background:
+        rgba(120,90,45,.12);
+
+    border-radius:10px;
+
+}
+
+
+.textoScroll::-webkit-scrollbar-thumb{
+
+    background:
+        linear-gradient(
+            #b88a3b,
+            #76531f
+        );
+
+    border-radius:10px;
+
+}
+
+
+.textoScroll::-webkit-scrollbar-thumb:hover{
+
+    background:#6d4d1e;
+
 }
 
 
@@ -461,7 +560,7 @@ body{
 
 .portada{
 
-    min-height:490px;
+    min-height:550px;
 
     display:flex;
 
@@ -472,13 +571,16 @@ body{
     align-items:center;
 
     text-align:center;
+
 }
 
 
 .portada .icono{
+
     font-size:80px;
 
     margin-bottom:15px;
+
 }
 
 
@@ -491,7 +593,6 @@ body{
 
     line-height:1.05;
 
-    margin-bottom:15px;
 }
 
 
@@ -502,6 +603,7 @@ body{
     color:#8a6b37;
 
     font-weight:normal;
+
 }
 
 
@@ -520,18 +622,20 @@ body{
             #b88a3b,
             transparent
         );
+
 }
 
 
 .portada p{
 
-    max-width:500px;
+    max-width:550px;
 
     color:#756448;
 
     font-family:Arial,sans-serif;
 
-    line-height:1.6;
+    line-height:1.7;
+
 }
 
 
@@ -543,10 +647,12 @@ body{
 
     display:inline-flex;
 
-    width:45px;
-    height:45px;
+    width:48px;
+
+    height:48px;
 
     align-items:center;
+
     justify-content:center;
 
     border-radius:50%;
@@ -562,7 +668,7 @@ body{
 
     font-family:Arial,sans-serif;
 
-    font-size:20px;
+    font-size:21px;
 
     font-weight:bold;
 
@@ -575,17 +681,17 @@ body{
     font-size:
         clamp(24px,4vw,34px);
 
-    line-height:1.2;
+    line-height:1.25;
 
     color:#533b1b;
 
-    margin-bottom:25px;
+    margin-bottom:22px;
 }
 
 
 .respuesta{
 
-    padding:22px;
+    padding:25px;
 
     border-left:
         5px solid #b88a3b;
@@ -594,18 +700,35 @@ body{
         0 12px 12px 0;
 
     background:
-        rgba(255,255,255,.55);
+        rgba(255,255,255,.58);
 
     font-size:19px;
 
-    line-height:1.75;
+    line-height:1.85;
 
     color:#473a27;
+
+}
+
+
+.respuesta p{
+
+    margin-bottom:22px;
+
+}
+
+
+.respuesta p:last-child{
+
+    margin-bottom:0;
+
 }
 
 
 .respuesta strong{
+
     color:#76551f;
+
 }
 
 
@@ -641,11 +764,10 @@ body{
 
     height:52px;
 
-    padding:0;
-
     border-radius:50%;
 
-    border:2px solid #a87b32;
+    border:
+        2px solid #a87b32;
 
     color:#60451f;
 
@@ -656,9 +778,11 @@ body{
     cursor:pointer;
 
     box-shadow:
-        0 5px 15px rgba(80,50,10,.18);
+        0 5px 15px
+        rgba(80,50,10,.18);
 
     transition:.2s;
+
 }
 
 
@@ -668,6 +792,7 @@ body{
         scale(1.1);
 
     background:#f1dfb8;
+
 }
 
 
@@ -678,6 +803,7 @@ body{
     cursor:not-allowed;
 
     transform:none;
+
 }
 
 
@@ -692,6 +818,7 @@ body{
     font-family:Arial,sans-serif;
 
     font-weight:bold;
+
 }
 
 
@@ -713,11 +840,11 @@ body{
 
     height:45px;
 
-    padding:0;
-
     border-radius:50%;
 
-    border:1px solid rgba(255,255,255,.5);
+    border:
+        1px solid
+        rgba(255,255,255,.5);
 
     color:white;
 
@@ -734,7 +861,7 @@ body{
 
 
 /* =========================================================
-   EMBLEMA LECTOR
+   EMBLEMA
 ========================================================= */
 
 #emblema{
@@ -754,7 +881,7 @@ body{
     padding:20px;
 
     background:
-        rgba(5,8,15,.8);
+        rgba(5,8,15,.82);
 
     backdrop-filter:
         blur(12px);
@@ -786,7 +913,8 @@ body{
         2px solid #d6ad5b;
 
     box-shadow:
-        0 0 50px rgba(214,173,91,.25);
+        0 0 50px
+        rgba(214,173,91,.25);
 
     animation:
         desbloquear .8s ease;
@@ -796,20 +924,25 @@ body{
 @keyframes desbloquear{
 
     from{
+
         opacity:0;
 
         transform:
             scale(.5)
             rotate(-8deg);
+
     }
 
     to{
+
         opacity:1;
 
         transform:
             scale(1)
             rotate(0);
+
     }
+
 }
 
 
@@ -819,7 +952,8 @@ body{
 
     height:130px;
 
-    margin:0 auto 20px;
+    margin:
+        0 auto 20px;
 
     display:flex;
 
@@ -843,7 +977,9 @@ body{
         6px solid #fff0b5;
 
     box-shadow:
-        0 0 30px rgba(255,215,100,.5);
+        0 0 30px
+        rgba(255,215,100,.5);
+
 }
 
 
@@ -854,6 +990,7 @@ body{
     color:#ffe7a0;
 
     margin-bottom:10px;
+
 }
 
 
@@ -866,6 +1003,7 @@ body{
     line-height:1.5;
 
     margin-bottom:25px;
+
 }
 
 
@@ -884,6 +1022,7 @@ body{
     font-weight:bold;
 
     cursor:pointer;
+
 }
 
 
@@ -893,7 +1032,7 @@ body{
 
 .creditos{
 
-    min-height:490px;
+    min-height:550px;
 
     display:flex;
 
@@ -904,6 +1043,16 @@ body{
     flex-direction:column;
 
     text-align:center;
+
+}
+
+
+.creditos .icono{
+
+    font-size:70px;
+
+    margin-bottom:15px;
+
 }
 
 
@@ -914,6 +1063,7 @@ body{
     color:#61451f;
 
     margin-bottom:25px;
+
 }
 
 
@@ -921,11 +1071,12 @@ body{
 
     font-family:Arial,sans-serif;
 
-    font-size:20px;
+    font-size:22px;
 
     line-height:2;
 
     color:#66543a;
+
 }
 
 
@@ -936,28 +1087,36 @@ body{
     font-size:17px;
 
     color:#96783e;
+
 }
 
 
 /* =========================================================
-   ANIMACIONES
+   ANIMACIÓN
 ========================================================= */
 
 @keyframes aparecer{
 
     from{
+
         opacity:0;
+
         transform:
             translateY(25px)
             scale(.97);
+
     }
 
     to{
+
         opacity:1;
+
         transform:
             translateY(0)
             scale(1);
+
     }
+
 }
 
 
@@ -968,38 +1127,71 @@ body{
 @media(max-width:650px){
 
     #pagina{
-        padding:15px 10px;
+
+        padding:
+            15px 10px;
+
+        align-items:
+            flex-start;
     }
+
 
     .hoja{
 
-        min-height:650px;
+        min-height:
+            720px;
 
         padding:
-            35px 28px 85px;
+            35px 25px 90px;
     }
+
+
+    .textoScroll{
+
+        height:500px;
+
+        padding-right:12px;
+    }
+
 
     .portada{
 
-        min-height:500px;
+        min-height:
+            550px;
     }
 
+
     .portada .icono{
+
         font-size:60px;
     }
 
+
     .pregunta{
+
         font-size:25px;
     }
 
+
     .respuesta{
+
         font-size:17px;
-        line-height:1.6;
+
+        line-height:1.75;
+
         padding:18px;
     }
 
+
     .creditos h1{
+
         font-size:40px;
+    }
+
+
+    .controles{
+
+        bottom:18px;
     }
 
 }
@@ -1011,15 +1203,15 @@ body{
 <body>
 
 
-<!-- ========================================================
-     PARTÍCULAS DEL FONDO
+<!-- =========================================================
+     PARTÍCULAS
 ========================================================= -->
 
 <div id="particulas"></div>
 
 
-<!-- ========================================================
-     PANTALLA DE CONTRASEÑA
+<!-- =========================================================
+     LOGIN
 ========================================================= -->
 
 <div id="login">
@@ -1058,16 +1250,19 @@ body{
 </div>
 
 
-<!-- ========================================================
-     BOTÓN DE SONIDO
+<!-- =========================================================
+     SONIDO
 ========================================================= -->
 
-<button id="sonido" title="Activar o desactivar sonido">
+<button
+    id="sonido"
+    title="Activar o desactivar sonido"
+>
     🔇
 </button>
 
 
-<!-- ========================================================
+<!-- =========================================================
      LIBRO
 ========================================================= -->
 
@@ -1095,23 +1290,37 @@ body{
                     </h1>
 
                     <h2>
-                        Historia, independencia y Antillanismo
+                        Independencia y Antillanismo
                     </h2>
 
                     <div class="decoracion"></div>
 
                     <p>
-                        Un pequeño recorrido por algunos
-                        conceptos importantes de la historia
-                        colonial y los movimientos de unión
-                        de los pueblos del Caribe.
+
+                        Bienvenido a este libro digital
+                        dedicado al estudio de la historia
+                        colonial del Caribe, los procesos de
+                        independencia y las ideas de unión
+                        que surgieron entre los pueblos
+                        antillanos.
+
+                    </p>
+
+                    <br>
+
+                    <p>
+
+                        En las siguientes páginas encontrarás
+                        explicaciones detalladas y desarrolladas
+                        de cada pregunta.
+
                     </p>
 
                     <br>
 
                     <p>
                         <strong>
-                            Pulsa ➡️ para comenzar.
+                            Usa la flecha ➡️ para comenzar.
                         </strong>
                     </p>
 
@@ -1131,24 +1340,139 @@ body{
                 </div>
 
                 <h1 class="pregunta">
+
                     ¿Qué significa que un territorio
                     sea colonial?
+
                 </h1>
 
-                <div class="respuesta">
 
-                    Significa que un territorio está bajo
-                    el <strong>dominio político, económico
-                    y administrativo de otro país</strong>,
-                    llamado metrópoli.
+                <div class="textoScroll">
 
-                    <br><br>
+                    <div class="respuesta">
 
-                    La potencia dominante controla aspectos
-                    importantes del territorio y puede
-                    aprovechar sus recursos. Por eso, la
-                    población de la colonia no tiene plena
-                    autonomía para gobernarse.
+                        <p>
+
+                            Cuando decimos que un territorio
+                            es <strong>colonial</strong>, significa
+                            que ese territorio se encuentra
+                            bajo el control y la autoridad de
+                            otra nación. El país que ejerce
+                            ese dominio suele ser llamado
+                            <strong>metrópoli</strong>, mientras que
+                            el territorio controlado recibe
+                            el nombre de colonia.
+
+                        </p>
+
+
+                        <p>
+
+                            En una situación colonial, la
+                            población del territorio no posee
+                            una independencia completa para
+                            tomar sus propias decisiones.
+                            La metrópoli puede intervenir en
+                            asuntos políticos, económicos,
+                            comerciales y administrativos.
+                            Esto significa que muchas de las
+                            decisiones más importantes no son
+                            tomadas libremente por los habitantes
+                            de la colonia, sino por las
+                            autoridades de la potencia que
+                            la controla.
+
+                        </p>
+
+
+                        <p>
+
+                            El dominio colonial también puede
+                            estar relacionado con el
+                            <strong>aprovechamiento de los recursos
+                            naturales y económicos</strong> del
+                            territorio. Una potencia podía
+                            establecer reglas sobre qué productos
+                            podían venderse, con quién se podía
+                            comerciar y cuáles actividades
+                            económicas estaban permitidas.
+
+                        </p>
+
+
+                        <p>
+
+                            Además del control económico,
+                            podía existir un control político.
+                            Las autoridades de la metrópoli
+                            podían nombrar funcionarios,
+                            establecer leyes y organizar la
+                            administración del territorio.
+                            Por esta razón, la población local
+                            podía tener una participación
+                            limitada en las decisiones que
+                            afectaban directamente su vida.
+
+                        </p>
+
+
+                        <p>
+
+                            La situación colonial también podía
+                            generar desigualdades entre distintos
+                            grupos de la sociedad. Dependiendo
+                            del lugar y de la época, las personas
+                            podían tener diferentes oportunidades
+                            políticas, económicas y sociales.
+                            Estas diferencias podían provocar
+                            descontento entre los habitantes.
+
+                        </p>
+
+
+                        <p>
+
+                            Por lo tanto, decir que un territorio
+                            es colonial no significa solamente
+                            que pertenece geográficamente a otro
+                            país. Significa principalmente que
+                            existe una relación de
+                            <strong>dependencia y dominio</strong>
+                            en la que una potencia extranjera
+                            controla aspectos importantes del
+                            territorio.
+
+                        </p>
+
+
+                        <p>
+
+                            Con el paso del tiempo, estas
+                            situaciones llevaron a muchos pueblos
+                            a cuestionar el dominio colonial y a
+                            desarrollar movimientos que buscaban
+                            obtener mayores derechos, autonomía
+                            o directamente la independencia.
+
+                        </p>
+
+
+                        <p>
+
+                            En resumen, un territorio colonial
+                            es aquel que no posee plena libertad
+                            para gobernarse por sí mismo porque
+                            está sometido al poder de una
+                            metrópoli. La población puede tener
+                            costumbres, cultura e identidad
+                            propias, pero las decisiones
+                            fundamentales pueden estar
+                            condicionadas por la potencia
+                            dominante.
+
+                        </p>
+
+                    </div>
 
                 </div>
 
@@ -1167,35 +1491,185 @@ body{
 
                 <h1 class="pregunta">
 
-                    ¿Por qué un pueblo desea
-                    independizarse y qué situaciones
-                    debilitan a una metrópoli?
+                    ¿Por qué un pueblo desea independizarse
+                    y qué situaciones debilitan a una
+                    metrópoli?
 
                 </h1>
 
-                <div class="respuesta">
 
-                    Un pueblo puede querer independizarse
-                    porque desea <strong>gobernarse por sí mismo</strong>,
-                    tener mayor libertad política y económica
-                    y dejar de estar sometido a las decisiones
-                    de una potencia extranjera.
+                <div class="textoScroll">
 
-                    <br><br>
+                    <div class="respuesta">
 
-                    Los impuestos, las restricciones
-                    comerciales, la desigualdad y la falta
-                    de participación política pueden aumentar
-                    el descontento.
+                        <p>
 
-                    <br><br>
+                            Un pueblo puede desear
+                            <strong>independizarse</strong> cuando
+                            considera que tiene derecho a
+                            gobernarse por sí mismo y a tomar
+                            decisiones sobre su propio futuro.
+                            La búsqueda de independencia suele
+                            estar relacionada con el deseo de
+                            obtener libertad política, económica
+                            y social.
 
-                    Una metrópoli puede debilitarse por
-                    <strong>guerras, crisis económicas y
-                    políticas, conflictos internos o
-                    invasiones</strong>, especialmente cuando
-                    pierde capacidad para controlar sus
-                    territorios coloniales.
+                        </p>
+
+
+                        <p>
+
+                            Cuando una población se encuentra
+                            bajo el dominio de una potencia
+                            extranjera, puede sentir que sus
+                            intereses no son representados
+                            adecuadamente. Si las principales
+                            decisiones son tomadas por personas
+                            que viven fuera del territorio,
+                            puede surgir la idea de que los
+                            habitantes deberían tener una mayor
+                            participación en su propio gobierno.
+
+                        </p>
+
+
+                        <p>
+
+                            Otro factor importante puede ser
+                            la <strong>carga de los impuestos</strong>.
+                            Si la población considera que debe
+                            pagar cantidades elevadas sin recibir
+                            una participación política equivalente,
+                            puede aumentar el descontento.
+
+                        </p>
+
+
+                        <p>
+
+                            Las restricciones comerciales también
+                            pueden causar conflictos. Una metrópoli
+                            podía establecer reglas que obligaran
+                            a una colonia a comerciar bajo
+                            determinadas condiciones. Esto podía
+                            limitar las posibilidades económicas
+                            de los habitantes y beneficiar
+                            principalmente a la potencia dominante.
+
+                        </p>
+
+
+                        <p>
+
+                            También podían existir diferencias
+                            sociales y políticas. Algunos grupos
+                            podían tener mayores privilegios que
+                            otros, mientras que determinados
+                            habitantes podían tener poca
+                            participación en el gobierno.
+                            Estas desigualdades podían fortalecer
+                            las ideas de cambio.
+
+                        </p>
+
+
+                        <p>
+
+                            Sin embargo, para que un movimiento
+                            independentista tuviera posibilidades
+                            de éxito, también era importante que
+                            la metrópoli estuviera atravesando
+                            algún tipo de debilidad. Una potencia
+                            puede perder capacidad para controlar
+                            sus territorios cuando se encuentra
+                            involucrada en <strong>guerras</strong>
+                            importantes.
+
+                        </p>
+
+
+                        <p>
+
+                            Las guerras pueden consumir grandes
+                            cantidades de dinero, soldados y
+                            recursos. Si una metrópoli tiene que
+                            defender diferentes territorios al
+                            mismo tiempo, puede resultar más
+                            difícil mantener un control efectivo
+                            sobre cada una de sus colonias.
+
+                        </p>
+
+
+                        <p>
+
+                            Las <strong>crisis económicas</strong>
+                            también pueden debilitar a una
+                            potencia. Una economía con problemas
+                            puede dificultar el mantenimiento de
+                            ejércitos, administraciones y sistemas
+                            de control en territorios alejados.
+
+                        </p>
+
+
+                        <p>
+
+                            Los conflictos internos representan
+                            otro problema. Las divisiones políticas,
+                            las luchas por el poder y las
+                            dificultades sociales pueden hacer que
+                            un gobierno pierda estabilidad y tenga
+                            menos capacidad para controlar sus
+                            colonias.
+
+                        </p>
+
+
+                        <p>
+
+                            Las invasiones o amenazas externas
+                            también pueden obligar a una metrópoli
+                            a concentrar sus recursos en su propio
+                            territorio. Cuando esto ocurre, las
+                            colonias pueden encontrar una
+                            oportunidad para organizar movimientos
+                            políticos y militares.
+
+                        </p>
+
+
+                        <p>
+
+                            Por eso, la independencia de un pueblo
+                            no depende solamente de que sus
+                            habitantes quieran ser libres. También
+                            influyen las circunstancias políticas,
+                            económicas y militares del momento.
+                            Cuando existe un fuerte deseo de
+                            independencia y, al mismo tiempo,
+                            la metrópoli atraviesa una etapa de
+                            debilidad, el movimiento puede tener
+                            mayores posibilidades de avanzar.
+
+                        </p>
+
+
+                        <p>
+
+                            En conclusión, los pueblos buscan
+                            independizarse principalmente para
+                            obtener la capacidad de gobernarse,
+                            defender sus intereses y decidir su
+                            propio futuro. Las guerras, las crisis
+                            económicas, los conflictos internos y
+                            otros problemas pueden debilitar a la
+                            metrópoli y facilitar los procesos de
+                            independencia.
+
+                        </p>
+
+                    </div>
 
                 </div>
 
@@ -1221,21 +1695,164 @@ body{
 
                 </h1>
 
-                <div class="respuesta">
 
-                    <strong>Sí.</strong> La unión de los pueblos
-                    del Caribe podía fortalecerlos porque les
-                    permitía colaborar y defenderse de manera
-                    conjunta frente a las potencias extranjeras.
+                <div class="textoScroll">
 
-                    <br><br>
+                    <div class="respuesta">
 
-                    El <strong>antillanismo</strong> promovía una
-                    mayor integración entre los pueblos del
-                    Caribe y planteaba la unión de las Antillas
-                    para proteger sus independencias y apoyar
-                    la liberación de territorios que todavía
-                    eran colonias.
+                        <p>
+
+                            <strong>Sí.</strong> La voluntad de
+                            integración y unión de los pueblos
+                            del Caribe podía representar una
+                            importante forma de enfrentar las
+                            amenazas externas. La idea principal
+                            era que los pueblos que compartían
+                            problemas similares podían obtener
+                            mayor fuerza si cooperaban entre sí
+                            en lugar de permanecer aislados.
+
+                        </p>
+
+
+                        <p>
+
+                            El <strong>antillanismo</strong> fue una
+                            corriente de pensamiento que defendió
+                            la unión y cooperación entre los
+                            pueblos de las Antillas. Sus ideas
+                            estuvieron relacionadas con la
+                            búsqueda de libertad, independencia
+                            y defensa de los intereses de los
+                            pueblos caribeños.
+
+                        </p>
+
+
+                        <p>
+
+                            La unión podía ser importante porque
+                            los territorios caribeños se
+                            encontraban cerca unos de otros y
+                            compartían diferentes elementos
+                            históricos y culturales. Además,
+                            algunos enfrentaban situaciones de
+                            dominio colonial o amenazas de
+                            potencias extranjeras.
+
+                        </p>
+
+
+                        <p>
+
+                            Si los pueblos actuaban de manera
+                            coordinada, podían intercambiar
+                            información, apoyar movimientos
+                            políticos y defender con mayor
+                            facilidad sus intereses. La
+                            cooperación también podía permitir
+                            que un territorio ayudara a otro
+                            cuando este se encontraba en una
+                            situación difícil.
+
+                        </p>
+
+
+                        <p>
+
+                            Una de las ideas relacionadas con el
+                            antillanismo fue la posibilidad de
+                            construir una mayor unión entre las
+                            Antillas. Esta visión buscaba que los
+                            pueblos del Caribe pudieran apoyarse
+                            mutuamente y fortalecer su capacidad
+                            para defender su independencia.
+
+                        </p>
+
+
+                        <p>
+
+                            La unión también podía tener una
+                            dimensión política. Si varios pueblos
+                            compartían objetivos similares, podían
+                            presentar una posición más fuerte
+                            frente a las potencias extranjeras.
+                            Esto podía dificultar que cada
+                            territorio fuera tratado de manera
+                            completamente aislada.
+
+                        </p>
+
+
+                        <p>
+
+                            Además, la integración podía ayudar
+                            a fortalecer la identidad regional.
+                            Las personas podían comprender que,
+                            aunque cada territorio tuviera su
+                            propia historia y características,
+                            existían problemas comunes que podían
+                            enfrentarse mediante la cooperación.
+
+                        </p>
+
+
+                        <p>
+
+                            Sin embargo, conseguir una unión
+                            completa no era algo sencillo. Los
+                            territorios tenían diferentes
+                            gobiernos, intereses económicos,
+                            situaciones políticas y circunstancias
+                            históricas. También podían existir
+                            diferencias entre los líderes y las
+                            poblaciones.
+
+                        </p>
+
+
+                        <p>
+
+                            A pesar de estas dificultades, la
+                            idea de integración seguía siendo
+                            importante porque planteaba que la
+                            cooperación podía convertirse en una
+                            herramienta para proteger la libertad
+                            de los pueblos.
+
+                        </p>
+
+
+                        <p>
+
+                            Por esta razón, considero que el
+                            antillanismo sí podía ayudar a
+                            enfrentar las amenazas externas.
+                            Una región unida podía tener mayor
+                            capacidad para organizarse, defender
+                            sus intereses y apoyar a los pueblos
+                            que todavía luchaban por su libertad.
+
+                        </p>
+
+
+                        <p>
+
+                            En conclusión, la integración del
+                            Caribe podía representar una forma
+                            de aumentar la fuerza política y
+                            social de los pueblos antillanos.
+                            Aunque la unión completa enfrentaba
+                            muchas dificultades, el principio de
+                            cooperación podía ayudar a construir
+                            una región más capaz de defender su
+                            independencia y enfrentar las
+                            amenazas de las potencias coloniales.
+
+                        </p>
+
+                    </div>
 
                 </div>
 
@@ -1260,21 +1877,15 @@ body{
 
                     <p>
 
-                        <strong>
-                            OSCAR
-                        </strong>
+                        <strong>OSCAR</strong>
 
                         <br>
 
-                        <strong>
-                            JESÚS
-                        </strong>
+                        <strong>JESÚS</strong>
 
                         <br>
 
-                        <strong>
-                            Y EQUIPO
-                        </strong>
+                        <strong>LUIS🗣</strong>
 
                     </p>
 
@@ -1291,7 +1902,7 @@ body{
 
 
             <!-- =================================================
-                 FLECHAS
+                 CONTROLES
             ================================================== -->
 
             <div class="controles">
@@ -1299,7 +1910,6 @@ body{
                 <button
                     class="flecha"
                     id="anterior"
-                    aria-label="Página anterior"
                 >
                     ←
                 </button>
@@ -1314,7 +1924,6 @@ body{
                 <button
                     class="flecha"
                     id="siguiente"
-                    aria-label="Página siguiente"
                 >
                     →
                 </button>
@@ -1329,7 +1938,7 @@ body{
 </main>
 
 
-<!-- ========================================================
+<!-- =========================================================
      EMBLEMA
 ========================================================= -->
 
@@ -1346,9 +1955,14 @@ body{
         </h2>
 
         <p>
+
             ¡Has terminado de leer todo el libro!
+
             <br>
-            Emblema desbloqueado.
+
+            Has desbloqueado el emblema
+            especial de lector.
+
         </p>
 
         <button id="continuar">
@@ -1384,18 +1998,26 @@ const error =
 
 function comprobarPassword(){
 
-    if(password.value === CONTRASENA){
+    if(
+        password.value ===
+        CONTRASENA
+    ){
 
-        login.style.display = "none";
+        login.style.display =
+            "none";
 
-        document.getElementById("pagina")
-            .style.display = "flex";
+        document.getElementById(
+            "pagina"
+        ).style.display =
+            "flex";
 
         iniciarMusica();
 
-    }else{
+    }
+    else{
 
-        error.style.display = "block";
+        error.style.display =
+            "block";
 
         password.value = "";
 
@@ -1417,7 +2039,9 @@ password.addEventListener(
     function(event){
 
         if(event.key === "Enter"){
+
             comprobarPassword();
+
         }
 
     }
@@ -1434,7 +2058,11 @@ const particulas =
     );
 
 
-for(let i = 0; i < 35; i++){
+for(
+    let i = 0;
+    i < 35;
+    i++
+){
 
     const p =
         document.createElement("div");
@@ -1446,16 +2074,19 @@ for(let i = 0; i < 35; i++){
         Math.random() * 100 + "%";
 
     p.style.animationDuration =
-        (8 + Math.random() * 14) + "s";
+        (
+            8 +
+            Math.random() * 14
+        ) + "s";
 
     p.style.animationDelay =
-        (-Math.random() * 15) + "s";
-
-    p.style.opacity =
-        .2 + Math.random() * .6;
+        (
+            -Math.random() * 15
+        ) + "s";
 
     const size =
-        3 + Math.random() * 5;
+        3 +
+        Math.random() * 5;
 
     p.style.width =
         size + "px";
@@ -1477,25 +2108,30 @@ const paginas =
         ".paginaLibro"
     );
 
+
 const anterior =
     document.getElementById(
         "anterior"
     );
+
 
 const siguiente =
     document.getElementById(
         "siguiente"
     );
 
+
 const indicador =
     document.getElementById(
         "indicador"
     );
 
+
 const emblema =
     document.getElementById(
         "emblema"
     );
+
 
 const continuar =
     document.getElementById(
@@ -1509,7 +2145,7 @@ let paginaActual = 0;
 function actualizarPagina(){
 
     paginas.forEach(
-        function(pagina, index){
+        function(pagina,index){
 
             pagina.classList.toggle(
                 "activa",
@@ -1521,9 +2157,13 @@ function actualizarPagina(){
 
 
     indicador.textContent =
-        (paginaActual + 1)
-        + " / "
-        + paginas.length;
+        (
+            paginaActual + 1
+        )
+        +
+        " / "
+        +
+        paginas.length;
 
 
     anterior.disabled =
@@ -1531,7 +2171,8 @@ function actualizarPagina(){
 
 
     siguiente.disabled =
-        paginaActual === paginas.length - 1;
+        paginaActual ===
+        paginas.length - 1;
 
 }
 
@@ -1539,7 +2180,9 @@ function actualizarPagina(){
 actualizarPagina();
 
 
-/* SIGUIENTE */
+/* =========================================================
+   SIGUIENTE
+========================================================= */
 
 siguiente.addEventListener(
     "click",
@@ -1555,15 +2198,18 @@ siguiente.addEventListener(
             actualizarPagina();
 
 
-            /* Si llegó a la última página */
-
             if(
                 paginaActual ===
                 paginas.length - 1
             ){
 
                 setTimeout(
-                    mostrarEmblema,
+                    function(){
+
+                        emblema.style.display =
+                            "flex";
+
+                    },
                     700
                 );
 
@@ -1575,7 +2221,9 @@ siguiente.addEventListener(
 );
 
 
-/* ANTERIOR */
+/* =========================================================
+   ANTERIOR
+========================================================= */
 
 anterior.addEventListener(
     "click",
@@ -1594,16 +2242,8 @@ anterior.addEventListener(
 
 
 /* =========================================================
-   EMBLEMA LECTOR
+   CONTINUAR
 ========================================================= */
-
-function mostrarEmblema(){
-
-    emblema.style.display =
-        "flex";
-
-}
-
 
 continuar.addEventListener(
     "click",
@@ -1617,14 +2257,12 @@ continuar.addEventListener(
 
 
 /* =========================================================
-   MÚSICA AMBIENTAL SUAVE
+   MÚSICA
 ========================================================= */
 
 let audio = null;
 
 let musicaActiva = false;
-
-let osciladores = [];
 
 
 function iniciarMusica(){
@@ -1642,31 +2280,22 @@ function iniciarMusica(){
             )();
 
 
-        if(
-            audio.state ===
-            "suspended"
-        ){
-
-            audio.resume();
-
-        }
-
+        audio.resume();
 
         musicaActiva = true;
 
-
         crearMusicaSuave();
-
 
         document.getElementById(
             "sonido"
-        ).textContent = "🔊";
+        ).textContent =
+            "🔊";
 
     }
     catch(e){
 
         console.log(
-            "El audio no pudo iniciarse."
+            "Audio no disponible"
         );
 
     }
@@ -1674,26 +2303,27 @@ function iniciarMusica(){
 }
 
 
-/* =========================================================
-   MÚSICA GENERADA
-   MUY BAJO VOLUMEN
-========================================================= */
-
 function crearMusicaSuave(){
 
-    if(!audio)
+    if(
+        !audio ||
+        !musicaActiva
+    )
         return;
 
 
     const notas = [
+
         261.63,
         329.63,
         392.00,
         329.63,
+
         293.66,
         349.23,
         440.00,
         349.23
+
     ];
 
 
@@ -1711,6 +2341,7 @@ function crearMusicaSuave(){
 
         const osc =
             audio.createOscillator();
+
 
         const gain =
             audio.createGain();
@@ -1731,8 +2362,6 @@ function crearMusicaSuave(){
             audio.currentTime;
 
 
-        /* VOLUMEN MUY BAJO */
-
         gain.gain.setValueAtTime(
             0.0001,
             ahora
@@ -1741,7 +2370,7 @@ function crearMusicaSuave(){
 
         gain.gain.linearRampToValueAtTime(
             0.025,
-            ahora + 0.5
+            ahora + .5
         );
 
 
@@ -1763,9 +2392,6 @@ function crearMusicaSuave(){
         osc.stop(
             ahora + 3
         );
-
-
-        osciladores.push(osc);
 
 
         posicion++;
@@ -1814,7 +2440,8 @@ sonido.addEventListener(
             sonido.textContent =
                 "🔇";
 
-        }else{
+        }
+        else{
 
             musicaActiva = true;
 
