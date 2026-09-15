@@ -1,12 +1,18 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>TROYANOS EXE LUIS</title>
+<title>Libro de Sociales</title>
 
 <style>
+
+/* =========================================================
+   CONFIGURACIÓN GENERAL
+========================================================= */
+
 *{
     box-sizing:border-box;
     margin:0;
@@ -15,413 +21,1817 @@
 
 html,body{
     width:100%;
-    height:100%;
-    overflow:hidden;
-    background:#000;
-    font-family:Arial,sans-serif;
+    min-height:100%;
 }
 
-#pantalla{
-    position:fixed;
-    inset:0;
-    background:#000;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
+body{
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    color:#332818;
+
+    overflow-x:hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #16213e,
+            #274b74,
+            #172a46,
+            #111827
+        );
+
+    background-size:400% 400%;
+
+    animation:
+        fondo 18s ease infinite;
 }
 
-#fondo{
-    position:absolute;
-    inset:-100px;
-    display:flex;
-    flex-wrap:wrap;
-    align-content:center;
-    justify-content:center;
-    gap:25px;
-    transform:rotate(-15deg) scale(1.3);
-    opacity:.28;
-}
 
-#fondo span{
-    color:#ff1744;
-    font-size:35px;
-    font-weight:900;
-    white-space:nowrap;
-}
+/* =========================================================
+   FONDO ANIMADO
+========================================================= */
 
-#mensaje{
-    position:relative;
-    z-index:5;
-    color:white;
-    text-align:center;
-    font-size:clamp(38px,10vw,85px);
-    font-weight:900;
-    text-shadow:
-        0 0 10px red,
-        0 0 25px red,
-        0 0 50px red;
-    animation:temblar .08s infinite;
-    display:none;
-}
+@keyframes fondo{
 
-#boton{
-    position:relative;
-    z-index:20;
-    border:3px solid #ff1744;
-    border-radius:15px;
-    background:#111;
-    color:white;
-    padding:20px 35px;
-    font-size:22px;
-    font-weight:900;
-    box-shadow:
-        0 0 15px red,
-        0 0 35px red;
-    cursor:pointer;
-}
-
-#boton:active{
-    transform:scale(.92);
-}
-
-#aviso{
-    position:absolute;
-    bottom:20px;
-    color:white;
-    z-index:10;
-    font-size:15px;
-    opacity:.7;
-    display:none;
-}
-
-@keyframes temblar{
     0%{
-        transform:translate(2px,1px);
-    }
-
-    25%{
-        transform:translate(-2px,-1px);
+        background-position:0% 50%;
     }
 
     50%{
-        transform:translate(1px,-2px);
-    }
-
-    75%{
-        transform:translate(-1px,2px);
+        background-position:100% 50%;
     }
 
     100%{
-        transform:translate(2px,-1px);
+        background-position:0% 50%;
     }
 }
+
+
+#particulas{
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+    z-index:0;
+}
+
+
+.particula{
+    position:absolute;
+
+    width:5px;
+    height:5px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.45);
+
+    box-shadow:
+        0 0 10px rgba(255,255,255,.35);
+
+    animation:
+        flotar linear infinite;
+}
+
+
+@keyframes flotar{
+
+    from{
+        transform:
+            translateY(110vh)
+            scale(.5);
+
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    85%{
+        opacity:1;
+    }
+
+    to{
+        transform:
+            translateY(-10vh)
+            scale(1.3);
+
+        opacity:0;
+    }
+}
+
+
+/* =========================================================
+   PANTALLA DE CONTRASEÑA
+========================================================= */
+
+#login{
+    position:fixed;
+
+    inset:0;
+
+    z-index:100;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    background:
+        rgba(5,10,20,.72);
+
+    backdrop-filter:
+        blur(10px);
+}
+
+
+.loginBox{
+
+    width:100%;
+
+    max-width:430px;
+
+    padding:40px 30px;
+
+    text-align:center;
+
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.96),
+            rgba(245,235,210,.96)
+        );
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.45),
+        0 0 40px rgba(255,215,120,.15);
+
+    border:
+        2px solid rgba(255,255,255,.8);
+
+    animation:
+        aparecer .7s ease;
+}
+
+
+.loginIcon{
+    font-size:65px;
+
+    margin-bottom:10px;
+}
+
+
+.loginBox h1{
+    font-size:32px;
+
+    color:#60451f;
+
+    margin-bottom:8px;
+}
+
+
+.loginBox p{
+    color:#76674f;
+
+    margin-bottom:25px;
+
+    font-family:Arial,sans-serif;
+}
+
+
+#password{
+    width:100%;
+
+    padding:16px;
+
+    border-radius:12px;
+
+    border:2px solid #d5c29b;
+
+    outline:none;
+
+    font-size:18px;
+
+    text-align:center;
+
+    background:#fffdf7;
+
+    color:#332818;
+}
+
+
+#password:focus{
+    border-color:#b88a3b;
+
+    box-shadow:
+        0 0 15px rgba(184,138,59,.25);
+}
+
+
+#entrar{
+    width:100%;
+
+    margin-top:15px;
+
+    padding:15px;
+
+    border:0;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b641f,
+            #c69b4a
+        );
+
+    box-shadow:
+        0 8px 20px rgba(120,80,20,.25);
+
+    transition:.2s;
+}
+
+
+#entrar:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(120,80,20,.35);
+}
+
+
+#error{
+    display:none;
+
+    margin-top:14px;
+
+    color:#b3261e;
+
+    font-family:Arial,sans-serif;
+
+    font-weight:bold;
+}
+
+
+/* =========================================================
+   CONTENIDO
+========================================================= */
+
+#pagina{
+    position:relative;
+
+    z-index:2;
+
+    min-height:100vh;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:30px 15px;
+}
+
+
+/* =========================================================
+   LIBRO
+========================================================= */
+
+.libro{
+
+    width:100%;
+
+    max-width:850px;
+
+    position:relative;
+
+    filter:
+        drop-shadow(
+            0 25px 35px rgba(0,0,0,.35)
+        );
+}
+
+
+.libro::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-10px;
+
+    top:8px;
+
+    bottom:8px;
+
+    width:18px;
+
+    border-radius:8px 0 0 8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #583c19,
+            #a97c36,
+            #65471f
+        );
+
+    box-shadow:
+        inset -4px 0 5px rgba(0,0,0,.25);
+}
+
+
+.hoja{
+
+    min-height:620px;
+
+    position:relative;
+
+    padding:55px 65px 75px;
+
+    border-radius:
+        5px 18px 18px 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #e4d1a7 0,
+            #fffdf2 5%,
+            #fffaf0 100%
+        );
+
+    border:
+        1px solid #d5bf91;
+
+    box-shadow:
+        inset 10px 0 20px rgba(80,50,10,.08);
+
+    overflow:hidden;
+}
+
+
+.hoja::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent 0,
+            transparent 31px,
+            rgba(120,90,45,.035) 32px
+        );
+}
+
+
+/* =========================================================
+   PÁGINAS
+========================================================= */
+
+.paginaLibro{
+
+    display:none;
+
+    position:relative;
+
+    z-index:2;
+
+    animation:
+        pasar .45s ease;
+}
+
+
+.paginaLibro.activa{
+    display:block;
+}
+
+
+@keyframes pasar{
+
+    from{
+        opacity:0;
+
+        transform:
+            rotateY(-10deg)
+            translateX(20px);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+            rotateY(0)
+            translateX(0);
+    }
+}
+
+
+/* =========================================================
+   PORTADA
+========================================================= */
+
+.portada{
+
+    min-height:490px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+}
+
+
+.portada .icono{
+    font-size:80px;
+
+    margin-bottom:15px;
+}
+
+
+.portada h1{
+
+    font-size:
+        clamp(40px,8vw,70px);
+
+    color:#61451f;
+
+    line-height:1.05;
+
+    margin-bottom:15px;
+}
+
+
+.portada h2{
+
+    font-size:25px;
+
+    color:#8a6b37;
+
+    font-weight:normal;
+}
+
+
+.decoracion{
+
+    width:180px;
+
+    height:3px;
+
+    margin:25px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #b88a3b,
+            transparent
+        );
+}
+
+
+.portada p{
+
+    max-width:500px;
+
+    color:#756448;
+
+    font-family:Arial,sans-serif;
+
+    line-height:1.6;
+}
+
+
+/* =========================================================
+   PREGUNTAS
+========================================================= */
+
+.numero{
+
+    display:inline-flex;
+
+    width:45px;
+    height:45px;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b641f,
+            #c69b4a
+        );
+
+    font-family:Arial,sans-serif;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+}
+
+
+.pregunta{
+
+    font-size:
+        clamp(24px,4vw,34px);
+
+    line-height:1.2;
+
+    color:#533b1b;
+
+    margin-bottom:25px;
+}
+
+
+.respuesta{
+
+    padding:22px;
+
+    border-left:
+        5px solid #b88a3b;
+
+    border-radius:
+        0 12px 12px 0;
+
+    background:
+        rgba(255,255,255,.55);
+
+    font-size:19px;
+
+    line-height:1.75;
+
+    color:#473a27;
+}
+
+
+.respuesta strong{
+    color:#76551f;
+}
+
+
+/* =========================================================
+   CONTROLES
+========================================================= */
+
+.controles{
+
+    position:absolute;
+
+    bottom:20px;
+
+    left:0;
+
+    right:0;
+
+    z-index:10;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+}
+
+
+.flecha{
+
+    width:52px;
+
+    height:52px;
+
+    padding:0;
+
+    border-radius:50%;
+
+    border:2px solid #a87b32;
+
+    color:#60451f;
+
+    background:#fff8e8;
+
+    font-size:25px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 5px 15px rgba(80,50,10,.18);
+
+    transition:.2s;
+}
+
+
+.flecha:hover{
+
+    transform:
+        scale(1.1);
+
+    background:#f1dfb8;
+}
+
+
+.flecha:disabled{
+
+    opacity:.3;
+
+    cursor:not-allowed;
+
+    transform:none;
+}
+
+
+.indicador{
+
+    min-width:80px;
+
+    text-align:center;
+
+    color:#806638;
+
+    font-family:Arial,sans-serif;
+
+    font-weight:bold;
+}
+
+
+/* =========================================================
+   SONIDO
+========================================================= */
+
+#sonido{
+
+    position:fixed;
+
+    z-index:50;
+
+    top:18px;
+
+    right:18px;
+
+    width:45px;
+
+    height:45px;
+
+    padding:0;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.5);
+
+    color:white;
+
+    background:
+        rgba(20,25,40,.65);
+
+    backdrop-filter:
+        blur(8px);
+
+    cursor:pointer;
+
+    font-size:20px;
+}
+
+
+/* =========================================================
+   EMBLEMA LECTOR
+========================================================= */
+
+#emblema{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:200;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
+
+    background:
+        rgba(5,8,15,.8);
+
+    backdrop-filter:
+        blur(12px);
+}
+
+
+.emblemaBox{
+
+    width:100%;
+
+    max-width:500px;
+
+    padding:45px 30px;
+
+    text-align:center;
+
+    border-radius:28px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            145deg,
+            #17243d,
+            #283f63
+        );
+
+    border:
+        2px solid #d6ad5b;
+
+    box-shadow:
+        0 0 50px rgba(214,173,91,.25);
+
+    animation:
+        desbloquear .8s ease;
+}
+
+
+@keyframes desbloquear{
+
+    from{
+        opacity:0;
+
+        transform:
+            scale(.5)
+            rotate(-8deg);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+
+.medalla{
+
+    width:130px;
+
+    height:130px;
+
+    margin:0 auto 20px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    font-size:65px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #d6ad5b,
+            #fff0ae,
+            #a87525
+        );
+
+    border:
+        6px solid #fff0b5;
+
+    box-shadow:
+        0 0 30px rgba(255,215,100,.5);
+}
+
+
+.emblemaBox h2{
+
+    font-size:42px;
+
+    color:#ffe7a0;
+
+    margin-bottom:10px;
+}
+
+
+.emblemaBox p{
+
+    font-family:Arial,sans-serif;
+
+    color:#d9e0ed;
+
+    line-height:1.5;
+
+    margin-bottom:25px;
+}
+
+
+#continuar{
+
+    padding:13px 25px;
+
+    border:0;
+
+    border-radius:12px;
+
+    background:#d6ad5b;
+
+    color:#30220e;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   CRÉDITOS
+========================================================= */
+
+.creditos{
+
+    min-height:490px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
+
+    text-align:center;
+}
+
+
+.creditos h1{
+
+    font-size:50px;
+
+    color:#61451f;
+
+    margin-bottom:25px;
+}
+
+
+.creditos p{
+
+    font-family:Arial,sans-serif;
+
+    font-size:20px;
+
+    line-height:2;
+
+    color:#66543a;
+}
+
+
+.creditos .final{
+
+    margin-top:30px;
+
+    font-size:17px;
+
+    color:#96783e;
+}
+
+
+/* =========================================================
+   ANIMACIONES
+========================================================= */
+
+@keyframes aparecer{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(25px)
+            scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media(max-width:650px){
+
+    #pagina{
+        padding:15px 10px;
+    }
+
+    .hoja{
+
+        min-height:650px;
+
+        padding:
+            35px 28px 85px;
+    }
+
+    .portada{
+
+        min-height:500px;
+    }
+
+    .portada .icono{
+        font-size:60px;
+    }
+
+    .pregunta{
+        font-size:25px;
+    }
+
+    .respuesta{
+        font-size:17px;
+        line-height:1.6;
+        padding:18px;
+    }
+
+    .creditos h1{
+        font-size:40px;
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
 
-<div id="pantalla">
 
-    <div id="fondo"></div>
+<!-- ========================================================
+     PARTÍCULAS DEL FONDO
+========================================================= -->
 
-    <div id="mensaje">
-        LUIS TE AGARRO<br>
-        CORRE 💀
-    </div>
+<div id="particulas"></div>
 
-    <button id="boton">
-        🔊 VISTA PREVIA
-    </button>
 
-    <div id="aviso">
-        😈 ESPERA...
+<!-- ========================================================
+     PANTALLA DE CONTRASEÑA
+========================================================= -->
+
+<div id="login">
+
+    <div class="loginBox">
+
+        <div class="loginIcon">
+            🔐
+        </div>
+
+        <h1>
+            Acceso al libro
+        </h1>
+
+        <p>
+            Introduce la contraseña para comenzar
+        </p>
+
+        <input
+            id="password"
+            type="password"
+            placeholder="Contraseña"
+            autocomplete="off"
+        >
+
+        <button id="entrar">
+            ENTRAR
+        </button>
+
+        <div id="error">
+            ❌ Contraseña incorrecta
+        </div>
+
     </div>
 
 </div>
 
+
+<!-- ========================================================
+     BOTÓN DE SONIDO
+========================================================= -->
+
+<button id="sonido" title="Activar o desactivar sonido">
+    🔇
+</button>
+
+
+<!-- ========================================================
+     LIBRO
+========================================================= -->
+
+<main id="pagina">
+
+    <div class="libro">
+
+        <div class="hoja">
+
+
+            <!-- =================================================
+                 PORTADA
+            ================================================== -->
+
+            <section class="paginaLibro activa">
+
+                <div class="portada">
+
+                    <div class="icono">
+                        📖
+                    </div>
+
+                    <h1>
+                        Sociales
+                    </h1>
+
+                    <h2>
+                        Historia, independencia y Antillanismo
+                    </h2>
+
+                    <div class="decoracion"></div>
+
+                    <p>
+                        Un pequeño recorrido por algunos
+                        conceptos importantes de la historia
+                        colonial y los movimientos de unión
+                        de los pueblos del Caribe.
+                    </p>
+
+                    <br>
+
+                    <p>
+                        <strong>
+                            Pulsa ➡️ para comenzar.
+                        </strong>
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 PREGUNTA 1
+            ================================================== -->
+
+            <section class="paginaLibro">
+
+                <div class="numero">
+                    1
+                </div>
+
+                <h1 class="pregunta">
+                    ¿Qué significa que un territorio
+                    sea colonial?
+                </h1>
+
+                <div class="respuesta">
+
+                    Significa que un territorio está bajo
+                    el <strong>dominio político, económico
+                    y administrativo de otro país</strong>,
+                    llamado metrópoli.
+
+                    <br><br>
+
+                    La potencia dominante controla aspectos
+                    importantes del territorio y puede
+                    aprovechar sus recursos. Por eso, la
+                    población de la colonia no tiene plena
+                    autonomía para gobernarse.
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 PREGUNTA 2
+            ================================================== -->
+
+            <section class="paginaLibro">
+
+                <div class="numero">
+                    2
+                </div>
+
+                <h1 class="pregunta">
+
+                    ¿Por qué un pueblo desea
+                    independizarse y qué situaciones
+                    debilitan a una metrópoli?
+
+                </h1>
+
+                <div class="respuesta">
+
+                    Un pueblo puede querer independizarse
+                    porque desea <strong>gobernarse por sí mismo</strong>,
+                    tener mayor libertad política y económica
+                    y dejar de estar sometido a las decisiones
+                    de una potencia extranjera.
+
+                    <br><br>
+
+                    Los impuestos, las restricciones
+                    comerciales, la desigualdad y la falta
+                    de participación política pueden aumentar
+                    el descontento.
+
+                    <br><br>
+
+                    Una metrópoli puede debilitarse por
+                    <strong>guerras, crisis económicas y
+                    políticas, conflictos internos o
+                    invasiones</strong>, especialmente cuando
+                    pierde capacidad para controlar sus
+                    territorios coloniales.
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 PREGUNTA 3
+            ================================================== -->
+
+            <section class="paginaLibro">
+
+                <div class="numero">
+                    3
+                </div>
+
+                <h1 class="pregunta">
+
+                    ¿Piensas que la voluntad de integración
+                    y unión del Caribe que promovía el
+                    antillanismo podía hacer frente a las
+                    amenazas constantes de las colonias?
+
+                </h1>
+
+                <div class="respuesta">
+
+                    <strong>Sí.</strong> La unión de los pueblos
+                    del Caribe podía fortalecerlos porque les
+                    permitía colaborar y defenderse de manera
+                    conjunta frente a las potencias extranjeras.
+
+                    <br><br>
+
+                    El <strong>antillanismo</strong> promovía una
+                    mayor integración entre los pueblos del
+                    Caribe y planteaba la unión de las Antillas
+                    para proteger sus independencias y apoyar
+                    la liberación de territorios que todavía
+                    eran colonias.
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 CRÉDITOS
+            ================================================== -->
+
+            <section class="paginaLibro">
+
+                <div class="creditos">
+
+                    <div class="icono">
+                        👥
+                    </div>
+
+                    <h1>
+                        CRÉDITOS
+                    </h1>
+
+                    <p>
+
+                        <strong>
+                            OSCAR
+                        </strong>
+
+                        <br>
+
+                        <strong>
+                            JESÚS
+                        </strong>
+
+                        <br>
+
+                        <strong>
+                            Y EQUIPO
+                        </strong>
+
+                    </p>
+
+                    <div class="final">
+
+                        Gracias por leer nuestro
+                        trabajo de Sociales. 📖
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 FLECHAS
+            ================================================== -->
+
+            <div class="controles">
+
+                <button
+                    class="flecha"
+                    id="anterior"
+                    aria-label="Página anterior"
+                >
+                    ←
+                </button>
+
+                <div
+                    class="indicador"
+                    id="indicador"
+                >
+                    1 / 5
+                </div>
+
+                <button
+                    class="flecha"
+                    id="siguiente"
+                    aria-label="Página siguiente"
+                >
+                    →
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- ========================================================
+     EMBLEMA
+========================================================= -->
+
+<div id="emblema">
+
+    <div class="emblemaBox">
+
+        <div class="medalla">
+            📖
+        </div>
+
+        <h2>
+            LECTOR
+        </h2>
+
+        <p>
+            ¡Has terminado de leer todo el libro!
+            <br>
+            Emblema desbloqueado.
+        </p>
+
+        <button id="continuar">
+            VER CRÉDITOS
+        </button>
+
+    </div>
+
+</div>
+
+
 <script>
 
-const fondo = document.getElementById("fondo");
-const boton = document.getElementById("boton");
-const mensaje = document.getElementById("mensaje");
-const aviso = document.getElementById("aviso");
+/* =========================================================
+   CONTRASEÑA
+========================================================= */
 
-let audioContext = null;
-let intervaloBocina = null;
-let intervaloVoz = null;
-let iniciado = false;
+const CONTRASENA = "luis22";
 
 
-/* ==========================================
-   TEXTO DEL FONDO
-========================================== */
+const login =
+    document.getElementById("login");
 
-for(let i = 0; i < 60; i++){
+const password =
+    document.getElementById("password");
 
-    const texto = document.createElement("span");
+const entrar =
+    document.getElementById("entrar");
 
-    texto.textContent = "FRAILYN NO SE SALVO";
+const error =
+    document.getElementById("error");
 
-    fondo.appendChild(texto);
+
+function comprobarPassword(){
+
+    if(password.value === CONTRASENA){
+
+        login.style.display = "none";
+
+        document.getElementById("pagina")
+            .style.display = "flex";
+
+        iniciarMusica();
+
+    }else{
+
+        error.style.display = "block";
+
+        password.value = "";
+
+        password.focus();
+
+    }
+
 }
 
 
-/* ==========================================
-   BOTÓN DE VISTA PREVIA
-========================================== */
-
-boton.addEventListener("click", iniciar);
-
-
-/* ==========================================
-   INICIAR
-========================================== */
-
-function iniciar(){
-
-    if(iniciado) return;
-
-    iniciado = true;
-
-    boton.style.display = "none";
-
-    mensaje.style.display = "block";
-
-    aviso.style.display = "block";
-
-    aviso.textContent = "💀 JAJAJA";
+entrar.addEventListener(
+    "click",
+    comprobarPassword
+);
 
 
-    /* Pantalla completa */
+password.addEventListener(
+    "keydown",
+    function(event){
 
-    try{
-
-        if(document.documentElement.requestFullscreen){
-
-            document.documentElement.requestFullscreen();
-
+        if(event.key === "Enter"){
+            comprobarPassword();
         }
 
-    }catch(e){}
-
-
-    /* Vibración */
-
-    try{
-
-        if(navigator.vibrate){
-
-            navigator.vibrate([
-                250,
-                80,
-                250,
-                80,
-                500
-            ]);
-
-        }
-
-    }catch(e){}
-
-
-    /* ======================================
-       AUDIO
-    ====================================== */
-
-    const AudioContext =
-        window.AudioContext ||
-        window.webkitAudioContext;
-
-    if(AudioContext){
-
-        audioContext = new AudioContext();
-
-        if(audioContext.state === "suspended"){
-
-            audioContext.resume();
-
-        }
-
-        /* Bocina inmediata */
-
-        bocina();
-
-        /* Bocina muy rápida */
-
-        intervaloBocina = setInterval(
-            bocina,
-            500
-        );
     }
+);
 
 
-    /* ======================================
-       VOZ
-    ====================================== */
+/* =========================================================
+   PARTÍCULAS
+========================================================= */
 
-    decirDiego();
-
-    intervaloVoz = setInterval(
-        decirDiego,
-        1300
+const particulas =
+    document.getElementById(
+        "particulas"
     );
 
 
-    /* ======================================
-       60 SEGUNDOS
-    ====================================== */
+for(let i = 0; i < 35; i++){
 
-    setTimeout(() => {
+    const p =
+        document.createElement("div");
 
-        clearInterval(intervaloBocina);
-        clearInterval(intervaloVoz);
+    p.className =
+        "particula";
 
-        if("speechSynthesis" in window){
+    p.style.left =
+        Math.random() * 100 + "%";
 
-            speechSynthesis.cancel();
+    p.style.animationDuration =
+        (8 + Math.random() * 14) + "s";
+
+    p.style.animationDelay =
+        (-Math.random() * 15) + "s";
+
+    p.style.opacity =
+        .2 + Math.random() * .6;
+
+    const size =
+        3 + Math.random() * 5;
+
+    p.style.width =
+        size + "px";
+
+    p.style.height =
+        size + "px";
+
+    particulas.appendChild(p);
+
+}
+
+
+/* =========================================================
+   PÁGINAS
+========================================================= */
+
+const paginas =
+    document.querySelectorAll(
+        ".paginaLibro"
+    );
+
+const anterior =
+    document.getElementById(
+        "anterior"
+    );
+
+const siguiente =
+    document.getElementById(
+        "siguiente"
+    );
+
+const indicador =
+    document.getElementById(
+        "indicador"
+    );
+
+const emblema =
+    document.getElementById(
+        "emblema"
+    );
+
+const continuar =
+    document.getElementById(
+        "continuar"
+    );
+
+
+let paginaActual = 0;
+
+
+function actualizarPagina(){
+
+    paginas.forEach(
+        function(pagina, index){
+
+            pagina.classList.toggle(
+                "activa",
+                index === paginaActual
+            );
 
         }
+    );
 
-        if(audioContext){
 
-            try{
+    indicador.textContent =
+        (paginaActual + 1)
+        + " / "
+        + paginas.length;
 
-                audioContext.close();
 
-            }catch(e){}
+    anterior.disabled =
+        paginaActual === 0;
 
-        }
 
-        aviso.textContent = "😈 FIN DE LA BROMA";
+    siguiente.disabled =
+        paginaActual === paginas.length - 1;
 
-        try{
+}
 
-            if(document.fullscreenElement){
 
-                document.exitFullscreen();
+actualizarPagina();
+
+
+/* SIGUIENTE */
+
+siguiente.addEventListener(
+    "click",
+    function(){
+
+        if(
+            paginaActual <
+            paginas.length - 1
+        ){
+
+            paginaActual++;
+
+            actualizarPagina();
+
+
+            /* Si llegó a la última página */
+
+            if(
+                paginaActual ===
+                paginas.length - 1
+            ){
+
+                setTimeout(
+                    mostrarEmblema,
+                    700
+                );
 
             }
 
-        }catch(e){}
+        }
 
-    },60000);
-
-}
-
-
-/* ==========================================
-   BOCINA RÁPIDA
-========================================== */
-
-function bocina(){
-
-    if(!audioContext) return;
-
-    const ahora = audioContext.currentTime;
-
-    /* 3 bocinazos rápidos */
-
-    for(let i = 0; i < 3; i++){
-
-        const inicio =
-            ahora + (i * 0.13);
-
-        const osc1 =
-            audioContext.createOscillator();
-
-        const osc2 =
-            audioContext.createOscillator();
-
-        const gain =
-            audioContext.createGain();
-
-
-        osc1.type = "sawtooth";
-        osc2.type = "square";
-
-
-        /* Frecuencia de bocina */
-
-        osc1.frequency.setValueAtTime(
-            190,
-            inicio
-        );
-
-        osc2.frequency.setValueAtTime(
-            380,
-            inicio
-        );
-
-
-        /* Golpe rápido */
-
-        gain.gain.setValueAtTime(
-            0.001,
-            inicio
-        );
-
-        gain.gain.exponentialRampToValueAtTime(
-            0.55,
-            inicio + 0.015
-        );
-
-        gain.gain.exponentialRampToValueAtTime(
-            0.001,
-            inicio + 0.11
-        );
-
-
-        osc1.connect(gain);
-        osc2.connect(gain);
-
-        gain.connect(
-            audioContext.destination
-        );
-
-
-        osc1.start(inicio);
-        osc2.start(inicio);
-
-        osc1.stop(inicio + 0.12);
-        osc2.stop(inicio + 0.12);
     }
+);
+
+
+/* ANTERIOR */
+
+anterior.addEventListener(
+    "click",
+    function(){
+
+        if(paginaActual > 0){
+
+            paginaActual--;
+
+            actualizarPagina();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   EMBLEMA LECTOR
+========================================================= */
+
+function mostrarEmblema(){
+
+    emblema.style.display =
+        "flex";
 
 }
 
 
-/* ==========================================
-   VOZ
-========================================== */
+continuar.addEventListener(
+    "click",
+    function(){
 
-function decirDiego(){
+        emblema.style.display =
+            "none";
 
-    if(!("speechSynthesis" in window)){
+    }
+);
 
+
+/* =========================================================
+   MÚSICA AMBIENTAL SUAVE
+========================================================= */
+
+let audio = null;
+
+let musicaActiva = false;
+
+let osciladores = [];
+
+
+function iniciarMusica(){
+
+    if(musicaActiva)
         return;
 
+
+    try{
+
+        audio =
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
+
+        if(
+            audio.state ===
+            "suspended"
+        ){
+
+            audio.resume();
+
+        }
+
+
+        musicaActiva = true;
+
+
+        crearMusicaSuave();
+
+
+        document.getElementById(
+            "sonido"
+        ).textContent = "🔊";
+
     }
+    catch(e){
 
-    speechSynthesis.cancel();
-
-    const voz =
-        new SpeechSynthesisUtterance(
-            "DIEGO ES GAY"
+        console.log(
+            "El audio no pudo iniciarse."
         );
 
-    voz.lang = "es-ES";
-
-    voz.rate = 2.2;
-
-    voz.pitch = 1.15;
-
-    voz.volume = 1;
-
-    speechSynthesis.speak(voz);
+    }
 
 }
+
+
+/* =========================================================
+   MÚSICA GENERADA
+   MUY BAJO VOLUMEN
+========================================================= */
+
+function crearMusicaSuave(){
+
+    if(!audio)
+        return;
+
+
+    const notas = [
+        261.63,
+        329.63,
+        392.00,
+        329.63,
+        293.66,
+        349.23,
+        440.00,
+        349.23
+    ];
+
+
+    let posicion = 0;
+
+
+    function nota(){
+
+        if(
+            !musicaActiva ||
+            !audio
+        )
+            return;
+
+
+        const osc =
+            audio.createOscillator();
+
+        const gain =
+            audio.createGain();
+
+
+        osc.type =
+            "sine";
+
+
+        osc.frequency.value =
+            notas[
+                posicion %
+                notas.length
+            ];
+
+
+        const ahora =
+            audio.currentTime;
+
+
+        /* VOLUMEN MUY BAJO */
+
+        gain.gain.setValueAtTime(
+            0.0001,
+            ahora
+        );
+
+
+        gain.gain.linearRampToValueAtTime(
+            0.025,
+            ahora + 0.5
+        );
+
+
+        gain.gain.linearRampToValueAtTime(
+            0.0001,
+            ahora + 2.8
+        );
+
+
+        osc.connect(gain);
+
+        gain.connect(
+            audio.destination
+        );
+
+
+        osc.start(ahora);
+
+        osc.stop(
+            ahora + 3
+        );
+
+
+        osciladores.push(osc);
+
+
+        posicion++;
+
+
+        setTimeout(
+            nota,
+            900
+        );
+
+    }
+
+
+    nota();
+
+}
+
+
+/* =========================================================
+   BOTÓN DE SONIDO
+========================================================= */
+
+const sonido =
+    document.getElementById(
+        "sonido"
+    );
+
+
+sonido.addEventListener(
+    "click",
+    function(){
+
+        if(!audio){
+
+            iniciarMusica();
+
+            return;
+
+        }
+
+
+        if(musicaActiva){
+
+            musicaActiva = false;
+
+            sonido.textContent =
+                "🔇";
+
+        }else{
+
+            musicaActiva = true;
+
+            audio.resume();
+
+            crearMusicaSuave();
+
+            sonido.textContent =
+                "🔊";
+
+        }
+
+    }
+);
 
 </script>
 
 </body>
 </html>
+```
