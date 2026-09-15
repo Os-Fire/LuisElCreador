@@ -2,851 +2,671 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Crónicas del Caribe</title>
-
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:Georgia,serif}
-body{
- color:#332416;
- background:
- radial-gradient(circle at 20% 20%,#6ec8d055,transparent 30%),
- radial-gradient(circle at 80% 70%,#ffd16655,transparent 30%),
- linear-gradient(135deg,#075e69,#0b3740 45%,#133f36);
- overflow-x:hidden
-}
-button{font-family:inherit;cursor:pointer}
-#particulas{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
-.part{position:absolute;width:5px;height:5px;border-radius:50%;background:#ffe7a3;opacity:.5;animation:flotar linear infinite}
-@keyframes flotar{from{transform:translateY(110vh) translateX(0)}to{transform:translateY(-10vh) translateX(80px)}}
-
-#login{
- position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;
- background:linear-gradient(135deg,#052f35,#0a6872,#123c34)
-}
-.loginBox{
- width:min(430px,90%);padding:38px 28px;text-align:center;color:white;
- background:#082d31dd;border:2px solid #e7c46a;border-radius:25px;
- box-shadow:0 25px 80px #000b,0 0 35px #ffd16633
-}
-.loginBox h1{font-size:38px;margin:5px 0;color:#ffe19a}
-.loginBox p{opacity:.8}
-#password{
- width:100%;padding:14px;border-radius:12px;border:1px solid #d6ad55;
- background:#102b2ddd;color:white;text-align:center;font-size:18px;outline:none
-}
-#entrar{
- margin-top:15px;padding:13px 30px;border:0;border-radius:12px;
- background:linear-gradient(135deg,#ffd166,#c89525);font-weight:bold;font-size:17px
-}
-#error{color:#ff8e8e;min-height:22px}
-
-#app{display:none;position:relative;z-index:2;min-height:100vh;padding:18px}
-#hud{
- max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;
- color:white;font-family:Arial,sans-serif;padding:8px 14px
-}
-.hudBox{background:#062c31cc;border:1px solid #e3bf62;border-radius:12px;padding:8px 14px}
-
-#audioBox{position:fixed;right:12px;top:12px;z-index:30;font-family:Arial}
-#audioToggle{
- border:1px solid #e4bd58;background:#092e34dd;color:white;border-radius:12px;padding:9px 12px
-}
-#audioPanel{
- display:none;background:#092e34f5;color:white;padding:12px;border-radius:14px;
- border:1px solid #dcb657;margin-top:5px;width:210px
-}
-.sound{padding:7px;border-radius:8px;margin:3px 0;background:#ffffff12}
-.sound:hover{background:#ffffff25}
-#volume{width:100%}
-
-.libro{
- max-width:1100px;margin:5px auto 0;position:relative;padding:18px;
- background:#4b2818;border-radius:13px;
- box-shadow:0 30px 70px #000b,0 0 0 5px #8b542b,0 0 0 8px #2b170e
-}
-.libro:before{
- content:"";position:absolute;left:0;top:0;bottom:0;width:25px;
- background:linear-gradient(90deg,#1d0e09,#744323,#27130d);border-radius:10px 0 0 10px
-}
-.hoja{
- position:relative;min-height:620px;padding:48px 65px 55px 75px;border-radius:5px;
- background:
- repeating-linear-gradient(0deg,#00000005 0,#00000005 1px,transparent 1px,transparent 4px),
- linear-gradient(100deg,#f8e9bd,#fff8dc 45%,#ead39d);
- box-shadow:inset 0 0 35px #7b4b2033,0 8px 20px #0008;
- overflow:hidden
-}
-.hoja:after{
- content:"";position:absolute;left:36px;top:0;bottom:0;width:2px;background:#b77a5555
-}
-.paginaLibro{display:none;min-height:510px;animation:pasar .45s ease}
-.paginaLibro.activa{display:block}
-@keyframes pasar{
- 0%{opacity:0;transform:rotateY(-12deg) translateX(25px)}
- 100%{opacity:1;transform:rotateY(0) translateX(0)}
-}
-h1,h2{color:#623b19}
-h1{font-size:46px}
-h2{font-size:32px;border-bottom:2px solid #c99e5a;padding-bottom:8px}
-h3{color:#78501f}
+body{margin:0;font-family:Georgia,serif;color:#352313;background:linear-gradient(135deg,#075b65,#123d37);min-height:100vh}
+button,input{font-family:inherit}
+#login{position:fixed;inset:0;z-index:99;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#062f35,#0b6971,#173e32)}
+.login{width:90%;max-width:430px;text-align:center;padding:35px;background:#062c31ee;border:2px solid #e5c56b;border-radius:25px;color:white;box-shadow:0 20px 70px #000}
+.login h1{color:#ffe19a;font-size:38px}.login input{width:100%;padding:14px;border-radius:10px;border:1px solid #d7ae54;background:#112e31;color:white;text-align:center;font-size:18px}
+.login button{margin-top:14px;padding:13px 25px;border:0;border-radius:10px;background:#e9bd55;font-weight:bold;font-size:17px}
+#error{color:#ff9999;min-height:25px}
+#app{display:none;padding:15px;min-height:100vh}
+#hud{max-width:1100px;margin:auto;display:flex;justify-content:space-between;color:white;font-family:Arial;padding:7px}
+.hud{background:#062c31dd;border:1px solid #dcb85d;padding:8px 14px;border-radius:12px}
+#topBtn{position:fixed;left:12px;bottom:12px;z-index:50;background:#092e34;color:white;border:1px solid #e2bd59;border-radius:12px;padding:11px 16px;font-weight:bold}
+.libro{max-width:1100px;margin:auto;padding:18px;background:#4b2918;border-radius:12px;box-shadow:0 25px 70px #000,0 0 0 5px #895127}
+.hoja{min-height:620px;padding:50px 65px 50px 75px;background:linear-gradient(100deg,#f5e3ad,#fff8db 48%,#e6cc94);position:relative;box-shadow:inset 0 0 35px #633d2228}
+.hoja:after{content:"";position:absolute;left:35px;top:0;bottom:0;width:2px;background:#a96f5044}
+.page{display:none;min-height:510px;animation:turn .4s}
+.page.active{display:block}
+@keyframes turn{from{opacity:0;transform:translateX(25px) rotateY(-8deg)}to{opacity:1;transform:none}}
+.cover{text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:510px}
+.cover .icon{font-size:75px}.cover h1{font-size:44px;color:#643c18}
+h2{font-size:32px;color:#633b18;border-bottom:2px solid #bd9150;padding-bottom:8px}
 p{font-size:19px;line-height:1.8}
-.texto{max-height:380px;overflow-y:auto;padding-right:15px}
-.texto::-webkit-scrollbar{width:8px}
-.texto::-webkit-scrollbar-thumb{background:#a7783e;border-radius:10px}
-.portada{text-align:center;display:flex;flex-direction:column;justify-content:center;min-height:510px}
-.portada .icon{font-size:80px}
-.portada h1{margin:8px 0}
-.sello{
- display:inline-block;margin:20px auto;padding:10px 25px;border:2px solid #9b6b29;
- border-radius:50%;transform:rotate(-5deg);font-weight:bold
-}
-.pregunta{
- margin:35px auto;max-width:700px;padding:28px;border-radius:18px;
- background:#fff8dd;border:2px solid #c79c57;box-shadow:0 8px 20px #633e1e22
-}
-.respuesta{
- display:block;width:100%;margin:10px 0;padding:13px;border:1px solid #bb8b4b;
- border-radius:10px;background:#f5e3b6;text-align:left;font-size:16px
-}
-.respuesta:hover{background:#e9c982}
-.respuesta.correcta{background:#91d49b}
-.respuesta.incorrecta{background:#e99b9b}
-.testResultado{font-weight:bold;min-height:25px}
-
-.controles{
- max-width:1100px;margin:13px auto;display:flex;align-items:center;justify-content:center;gap:18px
-}
-.controles button{
- padding:12px 22px;border:0;border-radius:12px;background:#f1ca70;color:#3d2510;font-weight:bold
-}
-#indicador{color:white;font-family:Arial;font-weight:bold}
-#barraProgreso{
- max-width:1100px;margin:0 auto;height:8px;border-radius:10px;background:#ffffff33;overflow:hidden
-}
-#barraProgreso div{height:100%;width:0;background:linear-gradient(90deg,#ffe08a,#63e5d1);transition:.4s}
-
-#quizFinal,#certificado,#emblema,#ranking{
- display:none;position:fixed;inset:0;z-index:80;align-items:center;justify-content:center;
- background:#031f24dd;padding:15px
-}
-.quizBox,.certificadoHoja,.emblemaBox,.rankingBox{
- width:min(760px,95%);max-height:90vh;overflow:auto;padding:30px;text-align:center;
- background:linear-gradient(135deg,#fff3c9,#e6c982);border:5px solid #71431d;
- border-radius:22px;box-shadow:0 30px 100px #000d
-}
-#quizTexto{font-size:23px;font-weight:bold}
-.quizOpt{
- width:100%;margin:7px 0;padding:13px;border:1px solid #a77735;border-radius:10px;
- background:#fff7df;text-align:left
-}
-.quizOpt:hover{background:#efd18d}
-#quizFeedback{min-height:28px;font-weight:bold}
-#quizSiguiente,.cerrar{
- margin-top:15px;padding:12px 24px;border:0;border-radius:10px;background:#7d4c1f;color:white;font-weight:bold
-}
-#quizBarra{height:9px;background:#d1b273;border-radius:10px;margin:15px 0;overflow:hidden}
-#quizBarra div{height:100%;width:0;background:#247d6b}
-.certTitulo{font-size:42px;color:#7d4c1f}
-.certTexto{font-size:28px;font-weight:bold}
-#emblema .emblema{
- width:210px;height:210px;margin:20px auto;border-radius:50%;display:flex;align-items:center;
- justify-content:center;text-align:center;color:#fff5bb;font-weight:bold;font-size:28px;
- background:radial-gradient(circle,#e9c95d,#986d19 60%,#3c250d);
- border:8px solid #f3d879;box-shadow:0 0 45px #ffd83d;animation:brillar 1.5s infinite alternate
-}
-@keyframes brillar{to{transform:scale(1.06) rotate(3deg);box-shadow:0 0 75px #ffe86b}}
-#ranking{z-index:90}
-.rankingBox h2{text-align:center}
-.topItem{
- display:flex;align-items:center;justify-content:space-between;margin:8px 0;padding:12px 15px;
- border-radius:12px;background:#fff4d4;border:1px solid #c9a35e;font-family:Arial
-}
-.topItem:nth-child(2){background:#ffe4a0}
-.topName{font-weight:bold}
-.topXP{font-weight:bold;color:#704411}
-#nombreJugador{
- padding:13px;width:100%;max-width:400px;border:1px solid #a77838;border-radius:10px;
- font-size:17px;text-align:center;background:#fff8e5
-}
-#verRanking{
- position:fixed;left:12px;bottom:12px;z-index:40;border:1px solid #e3bf62;
- background:#082e34ee;color:white;border-radius:12px;padding:10px 14px;font-weight:bold
-}
-.finalBoton{
- display:block;margin:20px auto;padding:14px 25px;border:0;border-radius:12px;
- background:#2e7867;color:white;font-weight:bold
-}
-
+.text{max-height:400px;overflow:auto;padding-right:15px}
+.text::-webkit-scrollbar{width:8px}.text::-webkit-scrollbar-thumb{background:#a87940;border-radius:8px}
+.question{max-width:750px;margin:40px auto;padding:30px;background:#fff5d6;border:2px solid #c69b55;border-radius:18px}
+.answer{display:block;width:100%;margin:10px 0;padding:13px;background:#f2dfad;border:1px solid #b88a4a;border-radius:10px;text-align:left;font-size:16px}
+.answer:hover{background:#e8c978}
+.good{background:#91d29a!important}.bad{background:#e89a9a!important}
+.result{font-weight:bold;min-height:25px}
+.controls{max-width:1100px;margin:12px auto;display:flex;justify-content:center;align-items:center;gap:15px}
+.controls button{padding:12px 20px;border:0;border-radius:10px;background:#efc966;font-weight:bold}
+#indicator{color:white;font-family:Arial;font-weight:bold}
+#progress{height:8px;max-width:1100px;margin:auto;background:#ffffff33;border-radius:10px;overflow:hidden}
+#progress div{height:100%;width:0;background:linear-gradient(90deg,#ffe08a,#63e5d1)}
+.final{display:block;margin:20px auto;padding:14px 25px;border:0;border-radius:10px;background:#287463;color:white;font-weight:bold}
+.modal{display:none;position:fixed;inset:0;z-index:80;background:#021e24dd;align-items:center;justify-content:center;padding:15px}
+.box{width:min(760px,95%);max-height:92vh;overflow:auto;padding:30px;text-align:center;background:linear-gradient(135deg,#fff3c9,#e5c77d);border:5px solid #71431d;border-radius:20px;box-shadow:0 25px 80px #000}
+.quizOption{width:100%;padding:13px;margin:7px 0;text-align:left;background:#fff5d9;border:1px solid #b88a4a;border-radius:10px}
+#quizText{font-size:22px;font-weight:bold}
+#quizNext,.close{padding:12px 22px;background:#75471e;color:white;border:0;border-radius:10px;font-weight:bold;margin-top:12px}
+#quizBar{height:8px;background:#c9ac70;border-radius:10px;overflow:hidden}
+#quizBar div{height:100%;background:#267765;width:0}
+#definition{display:none;width:100%;min-height:120px;padding:12px;border-radius:10px;border:1px solid #aa7d3d;background:#fff9e7;font-size:17px}
+#rankingList{text-align:left}
+.rank{display:flex;justify-content:space-between;padding:13px;margin:7px 0;border-radius:11px;background:#fff2cf;border:1px solid #c7a15d;font-family:Arial}
+.rank:nth-child(1){background:#ffe09a}.rank:nth-child(2){background:#e6e6e6}.rank:nth-child(3){background:#e6bd91}
+#certificate h1{font-size:42px;color:#71451d}
+#badge{font-size:28px;width:190px;height:190px;border-radius:50%;margin:20px auto;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,#efd266,#8b6119);border:8px solid #f6da78;color:white;font-weight:bold;animation:shine 1.4s infinite alternate}
+@keyframes shine{to{transform:scale(1.07);box-shadow:0 0 60px #ffe55e}}
 @media(max-width:700px){
- #app{padding:7px}
- .libro{padding:10px}
- .hoja{padding:35px 25px 40px 38px;min-height:590px}
- .hoja:after{left:19px}
- h1{font-size:34px}
- h2{font-size:26px}
- p{font-size:17px}
- .texto{max-height:410px}
- #hud{font-size:12px;padding-right:70px}
- .controles{gap:7px}
- .controles button{padding:10px 13px}
+#app{padding:6px}.libro{padding:10px}.hoja{padding:35px 25px 40px 40px}.hoja:after{left:20px}
+h2{font-size:26px}p{font-size:17px}.cover h1{font-size:34px}.text{max-height:420px}
+#hud{padding-right:10px;font-size:12px}.controls button{padding:10px 12px}
 }
 </style>
 </head>
 
 <body>
 
-<div id="particulas"></div>
-
 <div id="login">
- <div class="loginBox">
-  <div style="font-size:65px">📖</div>
-  <h1>Crónicas del Caribe</h1>
-  <p>Una aventura por la historia, la independencia y el antillanismo.</p>
-  <input id="password" type="password" placeholder="Contraseña">
-  <button id="entrar">ENTRAR AL LIBRO</button>
-  <div id="error"></div>
- </div>
+<div class="login">
+<div style="font-size:65px">📖</div>
+<h1>Crónicas del Caribe</h1>
+<p>Historia · Independencia · Antillanismo</p>
+<input id="password" type="password" placeholder="Contraseña">
+<button id="enter">ENTRAR AL LIBRO</button>
+<div id="error"></div>
+</div>
 </div>
 
 <div id="app">
 
- <div id="hud">
-  <div class="hudBox">⭐ <span id="xpTexto">0 XP</span></div>
-  <div class="hudBox"><span id="rangoTexto">🥉 Explorador</span></div>
- </div>
-
- <div id="audioBox">
-  <button id="audioToggle">🎵 SONIDO</button>
-  <div id="audioPanel">
-   <b>🎧 Ambiente</b>
-   <div class="sound" data-sound="mar">🌊 Mar tranquilo</div>
-   <div class="sound" data-sound="lluvia">🌧️ Lluvia suave</div>
-   <div class="sound" data-sound="caribe">🌴 Caribe nocturno</div>
-   <div class="sound" data-sound="fuego">🔥 Fogata tranquila</div>
-   <div class="sound" data-sound="noche">🌌 Noche tranquila</div>
-   <button id="muteBtn" style="width:100%;margin-top:8px">🔇 Silenciar</button>
-   <input id="volume" type="range" min="0" max=".025" step=".001" value=".006">
-  </div>
- </div>
-
- <button id="verRanking">🏆 TOP 10</button>
-
- <div class="libro">
-  <div class="hoja" id="pagina">
-
-   <section class="paginaLibro activa">
-    <div class="portada">
-     <div class="icon">🌴</div>
-     <h1>CRÓNICAS<br>DEL CARIBE</h1>
-     <div class="sello">HISTORIA</div>
-     <p>Territorios coloniales · Independencia · Antillanismo</p>
-     <p><small>Libro interactivo educativo</small></p>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <h2>📜 Territorios coloniales</h2>
-    <div class="texto">
-     <p>Durante distintos períodos de la historia, algunas regiones del mundo estuvieron organizadas como territorios coloniales. Esto significaba que una potencia extranjera ejercía una influencia importante sobre el territorio y sobre las decisiones que se tomaban en él.</p>
-     <p>La relación colonial no se limitaba solamente a ocupar un espacio. También podía afectar la política, la economía, el comercio y la organización social. Las autoridades coloniales podían establecer normas y administrar recursos según los intereses de la metrópoli.</p>
-     <p>En el Caribe, estas relaciones tuvieron consecuencias profundas. Las sociedades desarrollaron nuevas formas culturales, económicas y políticas, pero también aparecieron desigualdades y conflictos que con el tiempo alimentaron distintas ideas de cambio.</p>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <h2>🏛️ ¿Quién toma las decisiones?</h2>
-    <div class="texto">
-     <p>Uno de los aspectos fundamentales de una situación colonial era el poder político. Las decisiones importantes podían estar condicionadas por autoridades relacionadas con la potencia extranjera.</p>
-     <p>Esto podía significar que los habitantes locales tuvieran una participación limitada en las decisiones que afectaban directamente a su comunidad. La administración, las leyes y otros asuntos públicos podían responder a intereses establecidos fuera del territorio.</p>
-     <p>Con el paso del tiempo, esta situación podía generar preguntas sobre quién debía gobernar y quién tenía derecho a participar en la organización política. Esas preguntas fueron importantes para el desarrollo de ideas autonomistas e independentistas.</p>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <h2>💰 Control económico</h2>
-    <div class="texto">
-     <p>La economía también era una parte esencial del sistema colonial. La potencia dominante podía establecer reglas sobre el comercio, los productos que podían venderse y comprarse y los lugares con los que se podía comerciar.</p>
-     <p>Los impuestos y las restricciones económicas podían afectar a comerciantes, trabajadores y productores. Cuando las personas consideraban que las reglas eran injustas, podía crecer el descontento.</p>
-     <p>La economía colonial, por tanto, no era solamente una cuestión de dinero. Estaba relacionada con el poder y con la capacidad de las comunidades para decidir sobre sus propios recursos.</p>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <h2>⚖️ Desigualdad y descontento</h2>
-    <div class="texto">
-     <p>Las diferencias sociales y políticas podían aumentar el descontento dentro de una sociedad colonial. Algunas personas tenían más oportunidades de participar en el gobierno, comerciar o acceder a determinados beneficios.</p>
-     <p>Cuando estas diferencias se combinaban con impuestos, restricciones y poca participación política, podían surgir movimientos que exigieran cambios.</p>
-     <p>El descontento no siempre producía inmediatamente una revolución. En muchos casos primero aparecieron discusiones, peticiones, protestas y organizaciones que buscaban modificar la situación existente.</p>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <h2>📚 Resumen del tema</h2>
-    <div class="texto">
-     <p>Un territorio colonial se encontraba bajo una relación de dependencia con una potencia extranjera. Esa relación podía influir en la política, la economía y la sociedad.</p>
-     <p>Las restricciones económicas, los impuestos, la desigualdad y la poca participación política podían provocar descontento. Con el tiempo, esas experiencias ayudaron a que diferentes grupos comenzaran a pensar en formas de autonomía o independencia.</p>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <div class="pregunta">
-     <h2>🧠 Mini prueba 1</h2>
-     <p>¿Qué significa principalmente que un territorio sea colonial?</p>
-     <button class="respuesta" data-correct="1">Que está bajo el control de una potencia extranjera.</button>
-     <button class="respuesta">Que no tiene habitantes.</button>
-     <button class="respuesta">Que solamente se dedica a la agricultura.</button>
-     <div class="testResultado"></div>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <h2>🕊️ La búsqueda de independencia</h2>
-    <div class="texto">
-     <p>La independencia puede entenderse como el proceso mediante el cual un territorio busca gobernarse a sí mismo y tomar sus propias decisiones. En distintos lugares, estos procesos tuvieron causas y características diferentes.</p>
-     <p>Una causa frecuente del descontento era la falta de participación política. Las personas podían considerar que las decisiones importantes eran tomadas por autoridades alejadas de sus necesidades.</p>
-     <p>La idea de independencia también podía estar relacionada con la defensa de la economía local, la identidad colectiva y el deseo de construir instituciones propias.</p>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <h2>💸 Impuestos y restricciones</h2>
-    <div class="texto">
-     <p>Los impuestos podían convertirse en una fuente importante de tensión. Cuando una población consideraba que pagaba demasiado y recibía pocas oportunidades de participar en las decisiones, podía aumentar la oposición.</p>
-     <p>Las restricciones comerciales también podían perjudicar a determinados sectores. Comerciantes y productores podían sentirse limitados por reglas que favorecían los intereses de la metrópoli.</p>
-     <p>Estas situaciones no actuaban de manera aislada. La combinación de problemas políticos y económicos podía fortalecer el deseo de cambio.</p>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <h2>🌎 Cuando una metrópoli se debilita</h2>
-    <div class="texto">
-     <p>Una potencia colonial podía enfrentar guerras, crisis económicas o conflictos internos. Cuando esto ocurría, su capacidad para controlar territorios lejanos podía disminuir.</p>
-     <p>Los grupos que buscaban mayor autonomía podían aprovechar esos momentos para organizarse y plantear nuevas alternativas políticas.</p>
-     <p>Sin embargo, la debilidad de una metrópoli no garantizaba automáticamente la independencia. También era necesario contar con organización, liderazgo y apoyo suficiente.</p>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <h2>🤝 Organización de los pueblos</h2>
-    <div class="texto">
-     <p>La organización fue fundamental para muchos movimientos históricos. Las personas podían reunirse, intercambiar ideas, crear grupos y elaborar propuestas.</p>
-     <p>La organización permitía convertir problemas individuales en demandas colectivas. Una comunidad podía comenzar a discutir qué cambios quería y cómo podía conseguirlos.</p>
-     <p>Las ideas también circulaban mediante escritos, reuniones y conversaciones. De esta forma, conceptos como libertad, soberanía e independencia podían llegar a más personas.</p>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <h2>📖 Resumen de independencia</h2>
-    <div class="texto">
-     <p>Los movimientos de independencia podían surgir por diferentes razones: restricciones económicas, impuestos, falta de participación política y deseo de autogobierno.</p>
-     <p>Las guerras y crisis de una metrópoli podían crear oportunidades para que los movimientos independentistas crecieran. La organización colectiva era importante para transformar el descontento en un proyecto político.</p>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <div class="pregunta">
-     <h2>🧠 Mini prueba 2</h2>
-     <p>¿Cuál de estas situaciones podía debilitar a una metrópoli?</p>
-     <button class="respuesta">Una cosecha excelente.</button>
-     <button class="respuesta" data-correct="1">Guerras, crisis económicas y conflictos internos.</button>
-     <button class="respuesta">La ausencia de problemas.</button>
-     <div class="testResultado"></div>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <h2>🌴 El antillanismo</h2>
-    <div class="texto">
-     <p>El antillanismo fue una corriente de pensamiento relacionada con la idea de unión y cooperación entre los pueblos de las Antillas. Sus defensores podían considerar que la colaboración regional ayudaba a proteger la libertad y la independencia.</p>
-     <p>El Caribe estaba formado por sociedades con historias, culturas y situaciones políticas diferentes. A pesar de esas diferencias, existían problemas comunes y vínculos históricos que podían servir como base para la cooperación.</p>
-     <p>El antillanismo representaba una visión regional: los pueblos podían apoyarse entre sí en lugar de permanecer completamente aislados.</p>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <h2>🤝 Una unión caribeña</h2>
-    <div class="texto">
-     <p>La idea de una unión antillana buscaba fortalecer los vínculos entre diferentes pueblos del Caribe. La cooperación podía expresarse mediante el intercambio de ideas, apoyo político y defensa de intereses comunes.</p>
-     <p>Una región más conectada podía tener mayores posibilidades de enfrentar amenazas externas y defender sus proyectos políticos.</p>
-     <p>La unión no significaba necesariamente que todas las sociedades fueran idénticas. La cooperación podía existir respetando las características propias de cada pueblo.</p>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <h2>🕊️ Defensa de la independencia</h2>
-    <div class="texto">
-     <p>Para muchos pensadores antillanistas, la independencia era un elemento fundamental. La libertad política podía verse como una condición necesaria para que los pueblos decidieran su propio futuro.</p>
-     <p>La solidaridad entre pueblos podía ayudar a defender esos procesos. Si una comunidad enfrentaba dificultades, las demás podían ofrecer apoyo político o moral.</p>
-     <p>Esta visión conectaba la independencia local con una idea más amplia de cooperación regional.</p>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <h2>⚓ Dificultades de integración</h2>
-    <div class="texto">
-     <p>Construir una unión entre distintos pueblos no era sencillo. Las sociedades podían tener diferentes sistemas políticos, intereses económicos, idiomas, tradiciones y situaciones sociales.</p>
-     <p>También podían existir desacuerdos sobre cómo organizar una unión y cuáles deberían ser sus objetivos.</p>
-     <p>Por eso, el antillanismo debe entenderse también como una aspiración política e intelectual que enfrentó importantes dificultades para convertirse en una integración completa.</p>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <h2>🌊 Resumen del antillanismo</h2>
-    <div class="texto">
-     <p>El antillanismo promovía la unión, cooperación y solidaridad entre los pueblos antillanos. Sus ideas estaban relacionadas con la defensa de la independencia y con la búsqueda de intereses comunes.</p>
-     <p>Aunque existían dificultades para integrar sociedades diferentes, la idea dejó una importante visión de solidaridad caribeña.</p>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <div class="pregunta">
-     <h2>🧠 Mini prueba 3</h2>
-     <p>¿Qué buscaba promover principalmente el antillanismo?</p>
-     <button class="respuesta">La separación completa entre los pueblos.</button>
-     <button class="respuesta" data-correct="1">La unión y cooperación de los pueblos antillanos.</button>
-     <button class="respuesta">Eliminar toda cultura caribeña.</button>
-     <div class="testResultado"></div>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <div class="portada">
-     <div class="icon">🏆</div>
-     <h1>HAS LLEGADO<br>AL FINAL</h1>
-     <p>Has recorrido los tres temas.</p>
-     <p>Ahora demuestra cuánto aprendiste.</p>
-     <button class="finalBoton" id="abrirQuiz">📝 LLENAR PREGUNTAS FINALES</button>
-     <p>También puedes consultar el 🏆 TOP 10.</p>
-    </div>
-   </section>
-
-   <section class="paginaLibro">
-    <div class="portada">
-     <div class="icon">📜</div>
-     <h1>FIN</h1>
-     <p>OSCAR</p>
-     <p>JESÚS</p>
-     <p>Y EQUIPO</p>
-     <button class="finalBoton" id="abrirQuiz2">📝 LLENAR PREGUNTAS FINALES</button>
-    </div>
-   </section>
-
-  </div>
- </div>
-
- <div id="barraProgreso"><div></div></div>
-
- <div class="controles">
-  <button id="anterior">◀ ANTERIOR</button>
-  <span id="indicador">1 / 20</span>
-  <button id="siguiente">SIGUIENTE ▶</button>
- </div>
+<div id="hud">
+<div class="hud">⭐ <span id="xp">0 XP</span></div>
+<div class="hud" id="rank">🥉 Explorador</div>
 </div>
 
-<div id="quizFinal">
- <div class="quizBox">
-  <h2>📝 PREGUNTAS FINALES</h2>
-  <div id="quizNumero"></div>
-  <div id="quizBarra"><div></div></div>
-  <p id="quizTexto"></p>
-  <div id="quizOpciones"></div>
-  <div id="quizFeedback"></div>
-  <button id="quizSiguiente">SIGUIENTE</button>
- </div>
+<button id="topBtn">🏆 TOP 10</button>
+
+<div class="libro">
+<div class="hoja">
+
+<section class="page active">
+<div class="cover">
+<div class="icon">🌴</div>
+<h1>CRÓNICAS<br>DEL CARIBE</h1>
+<p>Territorios coloniales · Independencia · Antillanismo</p>
+<div style="font-size:35px">📜 🌊 🕊️</div>
+<p><small>Libro interactivo educativo</small></p>
+</div>
+</section>
+
+<section class="page">
+<h2>📜 Territorios coloniales</h2>
+<div class="text">
+<p>Durante distintos períodos históricos, algunas regiones estuvieron organizadas como territorios coloniales. Esto significaba que una potencia extranjera ejercía una influencia importante sobre el territorio y sobre las decisiones que se tomaban en él.</p>
+<p>La relación colonial no consistía simplemente en ocupar un espacio. También podía afectar la política, la economía, el comercio y la organización social. Las autoridades coloniales podían establecer normas y administrar recursos de acuerdo con los intereses de la metrópoli.</p>
+<p>En el Caribe, estas relaciones tuvieron consecuencias profundas. Las sociedades desarrollaron nuevas formas culturales y económicas, pero también aparecieron desigualdades y conflictos que posteriormente alimentaron distintas ideas de cambio.</p>
+</div>
+</section>
+
+<section class="page">
+<h2>🏛️ Poder político</h2>
+<div class="text">
+<p>Uno de los aspectos fundamentales de una situación colonial era el poder político. Las decisiones importantes podían estar condicionadas por autoridades relacionadas con una potencia extranjera.</p>
+<p>Esto podía significar que los habitantes locales tuvieran una participación limitada en las decisiones que afectaban directamente a su comunidad.</p>
+<p>La administración, las leyes y otros asuntos públicos podían responder a intereses establecidos fuera del territorio. Con el tiempo, esta situación podía generar preguntas sobre quién debía gobernar y quién tenía derecho a participar.</p>
+</div>
+</section>
+
+<section class="page">
+<h2>💰 Control económico</h2>
+<div class="text">
+<p>La economía era una parte esencial del sistema colonial. La potencia dominante podía establecer reglas sobre el comercio, los productos que podían venderse y comprarse y los lugares con los que se podía comerciar.</p>
+<p>Los impuestos y las restricciones económicas podían afectar a comerciantes, trabajadores y productores. Cuando las personas consideraban que las reglas eran injustas, podía crecer el descontento.</p>
+<p>La economía colonial, por tanto, estaba relacionada con el poder y con la capacidad de las comunidades para decidir sobre sus propios recursos.</p>
+</div>
+</section>
+
+<section class="page">
+<h2>⚖️ Desigualdad y descontento</h2>
+<div class="text">
+<p>Las diferencias sociales y políticas podían aumentar el descontento dentro de una sociedad colonial.</p>
+<p>Cuando estas diferencias se combinaban con impuestos, restricciones y poca participación política, podían surgir movimientos que exigieran cambios.</p>
+<p>El descontento no siempre producía inmediatamente una revolución. Primero podían aparecer discusiones, peticiones, protestas y organizaciones que buscaban modificar la situación existente.</p>
+</div>
+</section>
+
+<section class="page">
+<h2>📚 Resumen</h2>
+<div class="text">
+<p>Un territorio colonial se encontraba bajo una relación de dependencia con una potencia extranjera. Esa relación podía influir en la política, economía y sociedad.</p>
+<p>Las restricciones económicas, los impuestos, la desigualdad y la poca participación política podían provocar descontento. Con el tiempo, esas experiencias ayudaron a que diferentes grupos comenzaran a pensar en formas de autonomía o independencia.</p>
+</div>
+</section>
+
+<section class="page">
+<div class="question">
+<h2>🧠 Mini prueba</h2>
+<p>¿Qué caracteriza mejor a un territorio colonial?</p>
+<button class="answer" data-ok>Que está sometido políticamente a una potencia extranjera.</button>
+<button class="answer">Que no posee ningún habitante.</button>
+<button class="answer">Que solamente produce alimentos.</button>
+<div class="result"></div>
+</div>
+</section>
+
+<section class="page">
+<h2>🕊️ La independencia</h2>
+<div class="text">
+<p>La independencia puede entenderse como el proceso mediante el cual un territorio busca gobernarse a sí mismo y tomar sus propias decisiones.</p>
+<p>Una causa frecuente del descontento era la falta de participación política. Las personas podían considerar que las decisiones importantes eran tomadas por autoridades alejadas de sus necesidades.</p>
+<p>La idea de independencia también podía relacionarse con la defensa de la economía local, la identidad colectiva y el deseo de construir instituciones propias.</p>
+</div>
+</section>
+
+<section class="page">
+<h2>💸 Impuestos y restricciones</h2>
+<div class="text">
+<p>Los impuestos podían convertirse en una fuente importante de tensión. Cuando una población consideraba que pagaba demasiado y tenía pocas oportunidades de participar en las decisiones, podía aumentar la oposición.</p>
+<p>Las restricciones comerciales también podían perjudicar a determinados sectores. Comerciantes y productores podían sentirse limitados por reglas que favorecían los intereses de la metrópoli.</p>
+<p>La combinación de problemas políticos y económicos podía fortalecer el deseo de cambio.</p>
+</div>
+</section>
+
+<section class="page">
+<h2>🌎 Debilidad de una metrópoli</h2>
+<div class="text">
+<p>Una potencia colonial podía enfrentar guerras, crisis económicas o conflictos internos. Cuando esto ocurría, su capacidad para controlar territorios lejanos podía disminuir.</p>
+<p>Los grupos que buscaban mayor autonomía podían aprovechar esos momentos para organizarse y plantear alternativas políticas.</p>
+<p>Sin embargo, la debilidad de una metrópoli no garantizaba automáticamente la independencia. También era necesaria organización y apoyo suficiente.</p>
+</div>
+</section>
+
+<section class="page">
+<h2>🤝 Organización</h2>
+<div class="text">
+<p>La organización fue fundamental para muchos movimientos históricos. Las personas podían reunirse, intercambiar ideas, crear grupos y elaborar propuestas.</p>
+<p>La organización permitía convertir problemas individuales en demandas colectivas.</p>
+<p>Las ideas circulaban mediante escritos, reuniones y conversaciones. Así, conceptos como libertad, soberanía e independencia podían llegar a más personas.</p>
+</div>
+</section>
+
+<section class="page">
+<h2>📖 Resumen de independencia</h2>
+<div class="text">
+<p>Los movimientos de independencia podían surgir por restricciones económicas, impuestos, falta de participación política y deseo de autogobierno.</p>
+<p>Las guerras y crisis de una metrópoli podían crear oportunidades para que los movimientos independentistas crecieran.</p>
+<p>La organización colectiva era importante para transformar el descontento en un proyecto político.</p>
+</div>
+</section>
+
+<section class="page">
+<div class="question">
+<h2>🧠 Mini prueba</h2>
+<p>¿Cuál situación podía favorecer el crecimiento de un movimiento independentista?</p>
+<button class="answer">Una metrópoli completamente estable.</button>
+<button class="answer" data-ok>Una combinación de crisis, descontento y organización política.</button>
+<button class="answer">La ausencia total de problemas.</button>
+<div class="result"></div>
+</div>
+</section>
+
+<section class="page">
+<h2>🌴 El antillanismo</h2>
+<div class="text">
+<p>El antillanismo fue una corriente de pensamiento relacionada con la idea de unión y cooperación entre los pueblos de las Antillas.</p>
+<p>Sus defensores podían considerar que la colaboración regional ayudaba a proteger la libertad y la independencia.</p>
+<p>El Caribe estaba formado por sociedades con historias, culturas y situaciones políticas diferentes. A pesar de esas diferencias, existían problemas comunes y vínculos históricos que podían servir como base para la cooperación.</p>
+</div>
+</section>
+
+<section class="page">
+<h2>🤝 Unión caribeña</h2>
+<div class="text">
+<p>La idea de una unión antillana buscaba fortalecer los vínculos entre diferentes pueblos del Caribe.</p>
+<p>La cooperación podía expresarse mediante el intercambio de ideas, apoyo político y defensa de intereses comunes.</p>
+<p>La unión no significaba necesariamente que todas las sociedades fueran idénticas. La cooperación podía existir respetando las características propias de cada pueblo.</p>
+</div>
+</section>
+
+<section class="page">
+<h2>🕊️ Independencia y solidaridad</h2>
+<div class="text">
+<p>Para muchos pensadores antillanistas, la independencia era un elemento fundamental. La libertad política podía verse como una condición necesaria para que los pueblos decidieran su propio futuro.</p>
+<p>La solidaridad entre pueblos podía ayudar a defender esos procesos. Si una comunidad enfrentaba dificultades, las demás podían ofrecer apoyo político o moral.</p>
+<p>Esta visión conectaba la independencia local con una idea más amplia de cooperación regional.</p>
+</div>
+</section>
+
+<section class="page">
+<h2>⚓ Dificultades</h2>
+<div class="text">
+<p>Construir una unión entre distintos pueblos no era sencillo. Las sociedades podían tener diferentes sistemas políticos, intereses económicos, idiomas, tradiciones y situaciones sociales.</p>
+<p>También podían existir desacuerdos sobre cómo organizar una unión y cuáles deberían ser sus objetivos.</p>
+<p>Por eso, el antillanismo debe entenderse también como una aspiración política e intelectual que enfrentó importantes dificultades.</p>
+</div>
+</section>
+
+<section class="page">
+<h2>🌊 Resumen del antillanismo</h2>
+<div class="text">
+<p>El antillanismo promovía la unión, cooperación y solidaridad entre los pueblos antillanos.</p>
+<p>Sus ideas estaban relacionadas con la defensa de la independencia y con la búsqueda de intereses comunes.</p>
+<p>Aunque existían dificultades para integrar sociedades diferentes, la idea dejó una importante visión de solidaridad caribeña.</p>
+</div>
+</section>
+
+<section class="page">
+<div class="question">
+<h2>🧠 Mini prueba</h2>
+<p>¿Cuál afirmación representa mejor el antillanismo?</p>
+<button class="answer">Cada isla debía aislarse completamente.</button>
+<button class="answer">Los pueblos debían renunciar a su identidad.</button>
+<button class="answer" data-ok>Los pueblos antillanos podían cooperar para defender intereses comunes e independencia.</button>
+<div class="result"></div>
+</div>
+</section>
+
+<section class="page">
+<div class="cover">
+<div class="icon">🏆</div>
+<h1>¡HAS LLEGADO<br>AL FINAL!</h1>
+<p>Ahora viene la prueba difícil.</p>
+<button class="final" id="startQuiz">📝 HACER EXAMEN FINAL</button>
+</div>
+</section>
+
+<section class="page">
+<div class="cover">
+<div class="icon">📜</div>
+<h1>CRÉDITOS</h1>
+<p>OSCAR</p>
+<p>JESÚS</p>
+<p>Y EQUIPO</p>
+<button class="final" id="startQuiz2">📝 HACER EXAMEN FINAL</button>
+</div>
+</section>
+
+</div>
 </div>
 
-<div id="certificado">
- <div class="certificadoHoja">
-  <div style="font-size:65px">🎓</div>
-  <div class="certTitulo">CERTIFICADO</div>
-  <p>Se reconoce al lector por completar la aventura histórica.</p>
-  <div class="certTexto" id="certResultado"></div>
-  <button class="cerrar" id="verCertificado">🏅 VER EMBLEMA</button>
-  <button class="cerrar" id="cerrarCertificado">CERRAR</button>
- </div>
+<div id="progress"><div></div></div>
+
+<div class="controls">
+<button id="prev">◀ ANTERIOR</button>
+<span id="indicator">1 / 20</span>
+<button id="next">SIGUIENTE ▶</button>
+</div>
 </div>
 
-<div id="emblema">
- <div class="emblemaBox">
-  <h2>🏅 EMBLEMA DESBLOQUEADO</h2>
-  <div class="emblema">📖<br>LECTOR</div>
-  <p>Has completado las Crónicas del Caribe.</p>
-  <button class="cerrar" id="cerrarEmblema">CERRAR</button>
- </div>
+<!-- EXAMEN -->
+<div class="modal" id="quizModal">
+<div class="box">
+<h2>📝 EXAMEN FINAL</h2>
+<p id="quizNumber"></p>
+<div id="quizBar"><div></div></div>
+<p id="quizText"></p>
+<div id="options"></div>
+<textarea id="definition" placeholder="Escribe tu respuesta aquí..."></textarea>
+<div id="feedback"></div>
+<button id="quizNext" style="display:none">SIGUIENTE</button>
+</div>
 </div>
 
-<div id="ranking">
- <div class="rankingBox">
-  <h2>🏆 TOP 10 LECTORES</h2>
-  <p>Los mejores resultados guardados en este dispositivo.</p>
-  <div id="rankingLista"></div>
-  <button class="cerrar" id="cerrarRanking">CERRAR</button>
- </div>
+<!-- NOMBRE / RESULTADO -->
+<div class="modal" id="nameModal">
+<div class="box">
+<h2>🏆 RESULTADO FINAL</h2>
+<div id="scoreText"></div>
+<p>Escribe tu nombre para entrar al TOP 10:</p>
+<input id="playerName" maxlength="25" placeholder="Tu nombre">
+<br>
+<button class="close" id="saveScore">GUARDAR EN EL TOP</button>
+</div>
+</div>
+
+<!-- TOP -->
+<div class="modal" id="topModal">
+<div class="box">
+<h2>🏆 TOP 10 LECTORES</h2>
+<p>Los mejores resultados guardados en este navegador.</p>
+<div id="rankingList"></div>
+<button class="close" id="closeTop">CERRAR</button>
+</div>
+</div>
+
+<!-- CERTIFICADO -->
+<div class="modal" id="certificate">
+<div class="box">
+<div style="font-size:60px">🎓</div>
+<h1>ESCAPASTE DE LUIS</h1>
+<h2>¡FELICIDADES!</h2>
+<div id="finalScore"></div>
+<button class="close" id="badgeBtn">🏅 VER EMBLEMA</button>
+<button class="close" id="closeCert">CERRAR</button>
+</div>
+</div>
+
+<div class="modal" id="badgeModal">
+<div class="box">
+<h2>🏅 EMBLEMA DESBLOQUEADO</h2>
+<div id="badge">📖<br>LECTOR</div>
+<p>Completaste las Crónicas del Caribe.</p>
+<button class="close" id="closeBadge">CERRAR</button>
+</div>
 </div>
 
 <script>
-/* =========================
-   PARTÍCULAS
-========================= */
-const particulas=document.getElementById("particulas");
-for(let i=0;i<35;i++){
- const p=document.createElement("div");
- p.className="part";
- p.style.left=Math.random()*100+"%";
- p.style.animationDuration=(7+Math.random()*12)+"s";
- p.style.animationDelay=(-Math.random()*15)+"s";
- p.style.opacity=.15+Math.random()*.5;
- particulas.appendChild(p);
-}
+/* =====================================================
+   REINICIO TOTAL DEL PROGRESO ANTERIOR
+===================================================== */
+localStorage.removeItem("cronicas_caribe_progreso");
+localStorage.removeItem("cronicas_caribe_nombre");
+localStorage.removeItem("cronicas_caribe_top10");
 
-/* =========================
-   PROGRESO
-========================= */
-let progreso=JSON.parse(localStorage.getItem("cronicas_caribe_progreso")||"null")||{
- pagina:0,xp:0,mejorPuntuacion:0,test1:false,test2:false,test3:false,
- certificado:false,emblema:false
+let data={
+ page:0,
+ xp:0,
+ tests:0
 };
 
-function guardar(){
- localStorage.setItem("cronicas_caribe_progreso",JSON.stringify(progreso));
+const pages=[...document.querySelectorAll(".page")];
+let current=0;
+
+const $=id=>document.getElementById(id);
+
+function save(){
+ localStorage.setItem("cronicas_caribe_nuevo",
+ JSON.stringify(data));
 }
 
-function rango(xp){
- if(xp>=500)return"👑 Maestro del Caribe";
- if(xp>=350)return"🏆 Historiador";
- if(xp>=200)return"🥇 Estudiante";
- return"🥉 Explorador";
-}
-
-function actualizarHUD(){
- document.getElementById("xpTexto").textContent=progreso.xp+" XP";
- document.getElementById("rangoTexto").textContent=rango(progreso.xp);
-}
-
-/* =========================
-   LOGIN
-========================= */
-const login=document.getElementById("login");
-const app=document.getElementById("app");
-
-function entrar(){
- if(document.getElementById("password").value==="luis22"){
-  login.style.display="none";
-  app.style.display="block";
-  actualizarHUD();
-  mostrarPagina(progreso.pagina||0);
-  iniciarAudio("mar");
- }else{
-  document.getElementById("error").textContent="❌ Contraseña incorrecta";
- }
-}
-document.getElementById("entrar").onclick=entrar;
-document.getElementById("password").addEventListener("keydown",e=>{
- if(e.key==="Enter")entrar();
-});
-
-/* =========================
-   LIBRO
-========================= */
-const paginas=[...document.querySelectorAll(".paginaLibro")];
-let paginaActual=progreso.pagina||0;
-
-function mostrarPagina(n){
- paginaActual=Math.max(0,Math.min(paginas.length-1,n));
- paginas.forEach((p,i)=>p.classList.toggle("activa",i===paginaActual));
- document.getElementById("indicador").textContent=(paginaActual+1)+" / "+paginas.length;
- document.querySelector("#barraProgreso div").style.width=((paginaActual+1)/paginas.length*100)+"%";
- progreso.pagina=paginaActual;
- guardar();
+function showPage(n){
+ current=Math.max(0,Math.min(pages.length-1,n));
+ pages.forEach((p,i)=>p.classList.toggle("active",i===current));
+ $("indicator").textContent=(current+1)+" / "+pages.length;
+ $("progress").firstElementChild.style.width=((current+1)/pages.length*100)+"%";
+ data.page=current;
+ save();
  window.scrollTo({top:0,behavior:"smooth"});
 }
 
-document.getElementById("anterior").onclick=()=>mostrarPagina(paginaActual-1);
-document.getElementById("siguiente").onclick=()=>mostrarPagina(paginaActual+1);
+function updateXP(){
+ $("xp").textContent=data.xp+" XP";
+ $("rank").textContent=
+ data.xp>=500?"👑 Maestro del Caribe":
+ data.xp>=350?"🏆 Historiador":
+ data.xp>=200?"🥇 Estudiante":"🥉 Explorador";
+}
 
-/* =========================
-   MINI TESTS
-========================= */
-document.querySelectorAll(".pregunta").forEach((box,i)=>{
- box.querySelectorAll(".respuesta").forEach(btn=>{
-  btn.onclick=()=>{
-   if(box.dataset.done)return;
-   box.dataset.done="1";
-   const ok=btn.dataset.correct==="1";
-   btn.classList.add(ok?"correcta":"incorrecta");
-   const result=box.querySelector(".testResultado");
+$("enter").onclick=()=>{
+ if($("password").value==="luis22"){
+  $("login").style.display="none";
+  $("app").style.display="block";
+  showPage(0);
+ }else $("error").textContent="❌ Contraseña incorrecta";
+};
 
-   if(ok){
-    result.textContent="✅ ¡Correcto! +50 XP";
-    progreso.xp+=50;
-    if(i===0)progreso.test1=true;
-    if(i===1)progreso.test2=true;
-    if(i===2)progreso.test3=true;
-   }else{
-    result.textContent="❌ Incorrecto. Lee nuevamente el tema.";
-   }
+$("password").onkeydown=e=>{
+ if(e.key==="Enter")$("enter").click();
+};
 
-   actualizarHUD();
-   guardar();
+$("prev").onclick=()=>showPage(current-1);
+$("next").onclick=()=>showPage(current+1);
+
+/* MINI TESTS */
+document.querySelectorAll(".question").forEach(q=>{
+ q.querySelectorAll(".answer").forEach(b=>{
+  b.onclick=()=>{
+   if(q.dataset.done)return;
+   q.dataset.done="1";
+   let ok=b.hasAttribute("data-ok");
+   b.classList.add(ok?"good":"bad");
+   q.querySelector(".result").textContent=ok?"✅ ¡Correcto! +50 XP":"❌ Incorrecto";
+   if(ok){data.xp+=50;data.tests++}
+   updateXP();save();
   };
  });
 });
 
-/* =========================
-   QUIZ FINAL
-========================= */
-const preguntas=[
- ["¿Qué caracteriza a un territorio colonial?",["Que está bajo control de una potencia extranjera.","Que no tiene habitantes.","Que solamente produce alimentos.","Que no tiene ninguna autoridad."],0],
- ["¿Qué podía controlar políticamente una metrópoli?",["Los juegos deportivos.","Aspectos políticos y administrativos.","El clima.","Los océanos."],1],
- ["¿Qué podía provocar descontento colonial?",["Impuestos y poca participación política.","Más libertad política.","Menos restricciones.","Mayor participación."],0],
- ["¿Qué podía buscar un movimiento de independencia?",["Autogobierno.","Eliminar toda organización.","Aumentar impuestos.","Perder autonomía."],0],
- ["¿Qué podía debilitar a una metrópoli?",["Guerras, crisis económicas y conflictos internos.","La paz absoluta.","La ausencia de conflictos.","Una buena cosecha."],0],
- ["¿Por qué era importante la organización?",["Permitía convertir el descontento en una causa colectiva.","Impedía que las personas hablaran.","Eliminaba las ideas.","Evitaba cualquier cambio."],0],
- ["¿Qué promovía el antillanismo?",["La unión y cooperación de los pueblos antillanos.","El aislamiento total.","La eliminación de culturas.","La separación de todas las islas."],0],
- ["¿Qué podía fortalecer una unión antillana?",["La cooperación entre pueblos.","La falta de comunicación.","El aislamiento.","Los conflictos."],0],
- ["¿Cuál era una dificultad para integrar las Antillas?",["Las diferentes realidades políticas y sociales.","Que todas fueran idénticas.","Que no existieran diferencias.","Que no hubiera historia."],0],
- ["¿Cuál era una idea importante del antillanismo?",["Solidaridad, unión y defensa de la independencia.","Aislamiento absoluto.","Dependencia permanente.","Eliminar la cooperación."],0]
+/* PREGUNTAS DIFÍCILES */
+const questions=[
+ {
+  type:"choice",
+  q:"¿Cuál opción explica mejor por qué el sistema colonial podía producir descontento político y económico al mismo tiempo?",
+  a:["Porque eliminaba toda actividad económica.","Porque concentraba decisiones políticas y podía imponer restricciones económicas que afectaban a la población.","Porque todas las personas tenían exactamente los mismos derechos.","Porque impedía cualquier tipo de comercio."],
+  c:1
+ },
+ {
+  type:"choice",
+  q:"Si una metrópoli entra en una guerra y pierde capacidad para controlar sus territorios, ¿por qué esto podría favorecer un movimiento independentista?",
+  a:["Porque automáticamente todos los habitantes reciben más dinero.","Porque desaparecen todas las diferencias sociales.","Porque los grupos organizados pueden encontrar una oportunidad para aumentar su autonomía.","Porque una guerra elimina la necesidad de organizarse."],
+  c:2
+ },
+ {
+  type:"choice",
+  q:"¿Cuál relación entre economía y política es MÁS adecuada según lo estudiado?",
+  a:["Los impuestos y restricciones económicas podían aumentar el descontento político.","La economía nunca influía en la política.","Las decisiones políticas no podían afectar al comercio.","Los problemas económicos siempre producían independencia inmediata."],
+  c:0
+ },
+ {
+  type:"choice",
+  q:"¿Por qué la organización colectiva era importante para los movimientos independentistas?",
+  a:["Porque permitía convertir reclamos individuales en objetivos políticos compartidos.","Porque evitaba que circularan ideas.","Porque hacía innecesaria cualquier propuesta política.","Porque eliminaba automáticamente el poder de la metrópoli."],
+  c:0
+ },
+ {
+  type:"choice",
+  q:"¿Cuál afirmación diferencia MEJOR independencia y antillanismo?",
+  a:["La independencia busca autogobierno, mientras el antillanismo también plantea cooperación y solidaridad entre pueblos antillanos.","Son exactamente el mismo concepto.","El antillanismo busca aumentar el control colonial.","La independencia consiste únicamente en comerciar."],
+  c:0
+ },
+ {
+  type:"choice",
+  q:"Una sociedad colonial tiene impuestos elevados, poca participación política y restricciones comerciales. ¿Qué conclusión histórica sería más razonable?",
+  a:["Es imposible que exista descontento.","Estos factores pueden combinarse y fortalecer demandas de cambio político.","La población necesariamente apoyará a la metrópoli.","Las restricciones económicas no tienen relación con las ideas políticas."],
+  c:1
+ },
+ {
+  type:"choice",
+  q:"¿Cuál era uno de los principales obstáculos para una integración antillana?",
+  a:["Que todos los territorios tenían exactamente la misma situación.","Las diferencias políticas, económicas, sociales y culturales entre los pueblos.","Que no existía ninguna relación histórica.","Que la cooperación era imposible en cualquier circunstancia."],
+  c:1
+ },
+ {
+  type:"choice",
+  q:"¿Qué idea resume mejor la relación entre antillanismo e independencia?",
+  a:["La independencia de cada pueblo podía relacionarse con la solidaridad y cooperación regional.","La independencia exigía aislar completamente a cada isla.","El antillanismo defendía la dependencia colonial.","No existía ninguna relación entre ambas ideas."],
+  c:0
+ },
+ {
+  type:"choice",
+  q:"¿Cuál de estas situaciones representa mejor una causa estructural de descontento colonial?",
+  a:["Un problema momentáneo sin relación con el gobierno.","Una combinación prolongada de desigualdad, restricciones y limitada participación política.","Una celebración cultural.","Una mejora en la participación política."],
+  c:1
+ },
+ {
+  type:"definition",
+  q:"✍️ DEFINE CON TUS PROPIAS PALABRAS: ¿Qué es el ANTILLANISMO? Explica qué buscaba y menciona al menos UNA idea relacionada con él.",
+  keywords:["unión","cooperación","antillas","independencia","solidaridad","pueblos"]
+ }
 ];
 
-let qi=0,aciertos=0,respondida=false;
+let qi=0,correct=0,answered=false;
 
-function abrirQuiz(){
- qi=0;aciertos=0;respondida=false;
- document.getElementById("quizFinal").style.display="flex";
- mostrarPregunta();
+function startQuiz(){
+ qi=0;
+ correct=0;
+ $("quizModal").style.display="flex";
+ showQuestion();
 }
 
-document.getElementById("abrirQuiz").onclick=abrirQuiz;
-document.getElementById("abrirQuiz2").onclick=abrirQuiz;
+$("startQuiz").onclick=startQuiz;
+$("startQuiz2").onclick=startQuiz;
 
-function mostrarPregunta(){
- const q=preguntas[qi];
- document.getElementById("quizNumero").textContent="Pregunta "+(qi+1)+" de "+preguntas.length;
- document.querySelector("#quizBarra div").style.width=((qi)/preguntas.length*100)+"%";
- document.getElementById("quizTexto").textContent=q[0];
- const cont=document.getElementById("quizOpciones");
- cont.innerHTML="";
- document.getElementById("quizFeedback").textContent="";
- document.getElementById("quizSiguiente").style.display="none";
- respondida=false;
+function showQuestion(){
+ let q=questions[qi];
+ $("quizNumber").textContent="Pregunta "+(qi+1)+" de "+questions.length;
+ $("quizBar").firstElementChild.style.width=(qi/questions.length*100)+"%";
+ $("quizText").textContent=q.q;
+ $("options").innerHTML="";
+ $("feedback").textContent="";
+ $("quizNext").style.display="none";
+ $("definition").style.display="none";
+ answered=false;
 
- q[1].forEach((op,j)=>{
-  const b=document.createElement("button");
-  b.className="quizOpt";
-  b.textContent=op;
-  b.onclick=()=>{
-   if(respondida)return;
-   respondida=true;
-   const correct=j===q[2];
-   if(correct){
-    aciertos++;
-    b.style.background="#9bd6a2";
-    document.getElementById("quizFeedback").textContent="✅ ¡Correcto!";
-   }else{
-    b.style.background="#e69b9b";
-    document.getElementById("quizFeedback").textContent="❌ Incorrecto. La respuesta correcta era: "+q[1][q[2]];
-   }
-   document.getElementById("quizSiguiente").style.display="inline-block";
-  };
-  cont.appendChild(b);
- });
-}
-
-document.getElementById("quizSiguiente").onclick=()=>{
- qi++;
- if(qi<preguntas.length){
-  mostrarPregunta();
+ if(q.type==="choice"){
+  q.a.forEach((text,i)=>{
+   let b=document.createElement("button");
+   b.className="quizOption";
+   b.textContent=text;
+   b.onclick=()=>{
+    if(answered)return;
+    answered=true;
+    if(i===q.c){
+     correct++;
+     b.classList.add("good");
+     $("feedback").textContent="✅ Correcto.";
+    }else{
+     b.classList.add("bad");
+     $("feedback").textContent="❌ Incorrecto. Revisa el contenido del libro.";
+    }
+    $("quizNext").style.display="inline-block";
+   };
+   $("options").appendChild(b);
+  });
  }else{
-  terminarQuiz();
+  $("definition").style.display="block";
+  let b=document.createElement("button");
+  b.className="quizOption";
+  b.textContent="✅ COMPROBAR DEFINICIÓN";
+  b.onclick=()=>{
+   if(answered)return;
+   let text=$("definition").value.toLowerCase();
+   let hits=q.keywords.filter(k=>text.includes(k)).length;
+
+   if(text.trim().length<35){
+    $("feedback").textContent="❌ Tu definición es demasiado corta. Explica mejor el concepto.";
+    return;
+   }
+
+   answered=true;
+
+   if(hits>=3){
+    correct++;
+    $("feedback").textContent="✅ Muy buena definición. Incluiste "+hits+" conceptos importantes.";
+   }else if(hits>=2){
+    correct++;
+    $("feedback").textContent="🟡 Aceptada. Incluiste ideas importantes, aunque podrías explicarla mejor.";
+   }else{
+    $("feedback").textContent="❌ La definición no incluye suficientes ideas clave. La respuesta debe mencionar unión/cooperación entre pueblos antillanos y su relación con la independencia.";
+   }
+
+   $("quizNext").style.display="inline-block";
+  };
+  $("options").appendChild(b);
  }
-};
-
-function terminarQuiz(){
- const porcentaje=aciertos*10;
- let premio=50;
- if(porcentaje>=90)premio=200;
- else if(porcentaje>=70)premio=150;
- else if(porcentaje>=50)premio=100;
-
- progreso.xp+=premio;
- progreso.mejorPuntuacion=Math.max(progreso.mejorPuntuacion,porcentaje);
- progreso.certificado=true;
- progreso.emblema=true;
- guardar();
- actualizarHUD();
-
- document.getElementById("quizFinal").style.display="none";
- document.getElementById("certResultado").innerHTML=
-  "ESCAPASTE DE LUIS<br>¡FELICIDADES!<br><br>"+
-  "Puntuación: "+porcentaje+"%<br>"+
-  "⭐ "+progreso.xp+" XP totales";
-
- registrarRanking(progreso.mejorPuntuacion,progreso.xp);
- document.getElementById("certificado").style.display="flex";
 }
 
-/* =========================
-   CERTIFICADO / EMBLEMA
-========================= */
-document.getElementById("verCertificado").onclick=()=>{
- document.getElementById("certificado").style.display="none";
- document.getElementById("emblema").style.display="flex";
-};
-document.getElementById("cerrarCertificado").onclick=()=>{
- document.getElementById("certificado").style.display="none";
-};
-document.getElementById("cerrarEmblema").onclick=()=>{
- document.getElementById("emblema").style.display="none";
+$("quizNext").onclick=()=>{
+ qi++;
+ if(qi<questions.length)showQuestion();
+ else finishQuiz();
 };
 
-/* =========================
-   TOP 10
-========================= */
-function obtenerRanking(){
+function finishQuiz(){
+ let percent=Math.round(correct/questions.length*100);
+ let reward=percent>=90?250:percent>=70?180:percent>=50?120:60;
+ data.xp+=reward;
+ data.best=percent;
+ save();
+ updateXP();
+
+ $("quizModal").style.display="none";
+ $("scoreText").innerHTML=
+ "<h2>"+percent+"%</h2><p>Respuestas correctas: "+correct+"/"+questions.length+"</p><p>⭐ +"+reward+" XP</p>";
+
+ $("nameModal").style.display="flex";
+}
+
+/* TOP */
+function getTop(){
  return JSON.parse(localStorage.getItem("cronicas_caribe_top10")||"[]");
 }
 
-function registrarRanking(puntuacion,xp){
- let top=obtenerRanking();
-
- let nombre=localStorage.getItem("cronicas_caribe_nombre");
- if(!nombre){
-  nombre=prompt("🏆 ¡Terminaste! Escribe tu nombre para el TOP 10:");
-  if(!nombre)nombre="Jugador";
-  localStorage.setItem("cronicas_caribe_nombre",nombre.trim().slice(0,25));
- }
-
- top.push({
-  nombre:localStorage.getItem("cronicas_caribe_nombre")||"Jugador",
-  puntos:puntuacion,
-  xp:xp,
-  fecha:Date.now()
- });
-
- top.sort((a,b)=>{
-  if(b.puntos!==a.puntos)return b.puntos-a.puntos;
-  return b.xp-a.xp;
- });
-
- top=top.slice(0,10);
- localStorage.setItem("cronicas_caribe_top10",JSON.stringify(top));
- mostrarRanking();
-}
-
-function mostrarRanking(){
- const lista=document.getElementById("rankingLista");
- const top=obtenerRanking();
- lista.innerHTML="";
+function renderTop(){
+ let top=getTop();
+ $("rankingList").innerHTML="";
 
  if(!top.length){
-  lista.innerHTML="<p>🏆 Todavía no hay puntuaciones.</p>";
+  $("rankingList").innerHTML="<p style='text-align:center'>Todavía nadie ha terminado el examen.</p>";
   return;
  }
 
  top.forEach((x,i)=>{
-  const div=document.createElement("div");
-  div.className="topItem";
-  let medalla=i===0?"🥇":i===1?"🥈":i===2?"🥉":"#"+(i+1);
-  div.innerHTML=
-   "<span class='topName'>"+medalla+" "+escapar(x.nombre)+"</span>"+
-   "<span class='topXP'>"+x.puntos+"% · "+x.xp+" XP</span>";
-  lista.appendChild(div);
+  let d=document.createElement("div");
+  d.className="rank";
+  let medal=i===0?"🥇":i===1?"🥈":i===2?"🥉":"#"+(i+1);
+  d.innerHTML="<b>"+medal+" "+escapeHTML(x.name)+"</b><b>"+x.score+"% · "+x.xp+" XP</b>";
+  $("rankingList").appendChild(d);
  });
 }
 
-function escapar(t){
- const d=document.createElement("div");
+function escapeHTML(t){
+ let d=document.createElement("div");
  d.textContent=t;
  return d.innerHTML;
 }
 
-document.getElementById("verRanking").onclick=()=>{
- mostrarRanking();
- document.getElementById("ranking").style.display="flex";
-};
-document.getElementById("cerrarRanking").onclick=()=>{
- document.getElementById("ranking").style.display="none";
+$("saveScore").onclick=()=>{
+ let name=$("playerName").value.trim()||"Jugador";
+ let top=getTop();
+
+ top.push({
+  name:name,
+  score:data.best,
+  xp:data.xp,
+  time:Date.now()
+ });
+
+ top.sort((a,b)=>{
+  if(b.score!==a.score)return b.score-a.score;
+  return b.xp-a.xp;
+ });
+
+ localStorage.setItem("cronicas_caribe_top10",JSON.stringify(top.slice(0,10)));
+
+ $("nameModal").style.display="none";
+ $("finalScore").innerHTML=
+ "Puntuación: <b>"+data.best+"%</b><br>"+
+ "⭐ "+data.xp+" XP<br><br>"+
+ "🏆 Tu resultado fue guardado en el TOP 10.";
+
+ $("certificate").style.display="flex";
+ renderTop();
 };
 
-/* =========================
-   AUDIO WEB
-========================= */
-let audioCtx=null,master=null,currentSound=null,muted=false;
+$("topBtn").onclick=()=>{
+ renderTop();
+ $("topModal").style.display="flex";
+};
 
-function iniciarAudio(tipo){
- if(!audioCtx){
-  audioCtx=new(window.AudioContext||window.webkitAudioContext)();
-  master=audioCtx.createGain();
-  master.gain.value=.006;
-  master.connect(audioCtx.destination);
- }
- if(audioCtx.state==="suspended")audioCtx.resume();
- reproducir(tipo);
+$("closeTop").onclick=()=>$("topModal").style.display="none";
+
+$("badgeBtn").onclick=()=>{
+ $("certificate").style.display="none";
+ $("badgeModal").style.display="flex";
+};
+
+$("closeCert").onclick=()=>$("certificate").style.display="none";
+$("closeBadge").onclick=()=>$("badgeModal").style.display="none";
+
+/* CARGAR */
+let old=localStorage.getItem("cronicas_caribe_nuevo");
+if(old){
+ try{
+  data=JSON.parse(old);
+  current=data.page||0;
+ }catch(e){}
 }
-
-function reproducir(tipo){
- if(!audioCtx)return;
- if(currentSound)currentSound.forEach(n=>{try{n.stop()}catch(e){}});
- currentSound=[];
-
- const osc=(freq,type,vol)=>{
-  const o=audioCtx.createOscillator(),g=audioCtx.createGain();
-  o.type=type;o.frequency.value=freq;g.gain.value=vol;
-  o.connect(g);g.connect(master);o.start();currentSound.push(o);
- };
- const noise=(filterFreq,type)=>{
-  const buffer=audioCtx.createBuffer(1,audioCtx.sampleRate*2,audioCtx.sampleRate);
-  const data=buffer.getChannelData(0);
-  for(let i=0;i<data.length;i++)data[i]=Math.random()*2-1;
-  const s=audioCtx.createBufferSource();
-  const f=audioCtx.createBiquadFilter();
-  const g=audioCtx.createGain();
-  s.buffer=buffer;f.type=type;f.frequency.value=filterFreq;g.gain.value=.7;
-  s.loop=true;s.connect(f);f.connect(g);g.connect(master);s.start();
-  currentSound.push(s);
- };
-
- if(tipo==="mar"){
-  noise(550,"lowpass");osc(110,"sine",.25);osc(165,"sine",.12);
- }
- if(tipo==="lluvia"){
-  noise(2800,"highpass");osc(440,"sine",.08);osc(660,"sine",.05);
- }
- if(tipo==="caribe"){
-  noise(400,"lowpass");osc(130,"triangle",.18);osc(196,"sine",.08);osc(260,"sine",.05);
- }
- if(tipo==="fuego"){
-  noise(1000,"bandpass");osc(90,"triangle",.22);osc(180,"sine",.05);
- }
- if(tipo==="noche"){
-  noise(250,"lowpass");osc(70,"sine",.3);osc(105,"triangle",.08);
- }
-}
-
-document.getElementById("audioToggle").onclick=()=>{
- const p=document.getElementById("audioPanel");
- p.style.display=p.style.display==="block"?"none":"block";
-};
-document.querySelectorAll(".sound").forEach(b=>{
- b.onclick=()=>{
-  iniciarAudio(b.dataset.sound);
-  document.getElementById("audioPanel").style.display="none";
- };
-});
-document.getElementById("muteBtn").onclick=()=>{
- muted=!muted;
- if(master)master.gain.value=muted?0:Number(document.getElementById("volume").value);
- document.getElementById("muteBtn").textContent=muted?"🔊 Activar":"🔇 Silenciar";
-};
-document.getElementById("volume").oninput=e=>{
- if(master&&!muted)master.gain.value=Number(e.target.value);
-};
-
-actualizarHUD();
-mostrarPagina(paginaActual);
+updateXP();
+showPage(current);
 </script>
-
 </body>
 </html>
