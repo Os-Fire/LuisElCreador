@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,11 +9,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 html,body{
     width:100%;
@@ -28,10 +25,6 @@ body{
         radial-gradient(circle at 80% 70%,rgba(255,220,150,.12),transparent 25%),
         linear-gradient(135deg,#0b4050,#0d6671,#176f72,#0a3d50);
 }
-
-/* =========================
-   FONDO ANIMADO
-========================= */
 
 .ocean{
     position:fixed;
@@ -51,18 +44,13 @@ body{
     animation:waveMove 12s ease-in-out infinite alternate;
 }
 
-.wave.one{
-    bottom:8%;
-    background:#fff;
-}
-
+.wave.one{bottom:8%;background:#fff}
 .wave.two{
     bottom:22%;
     background:#f6d68b;
     animation-duration:17s;
     animation-delay:-4s;
 }
-
 .wave.three{
     bottom:-5%;
     background:#8fe3e0;
@@ -71,8 +59,8 @@ body{
 }
 
 @keyframes waveMove{
-    from{transform:translateX(-4%) rotate(-2deg);}
-    to{transform:translateX(5%) rotate(2deg);}
+    from{transform:translateX(-4%) rotate(-2deg)}
+    to{transform:translateX(5%) rotate(2deg)}
 }
 
 .particle{
@@ -85,21 +73,13 @@ body{
 }
 
 @keyframes floatParticle{
-    from{
-        transform:translateY(110vh) translateX(0);
-        opacity:0;
-    }
-    15%{opacity:1;}
-    85%{opacity:.8;}
-    to{
-        transform:translateY(-10vh) translateX(80px);
-        opacity:0;
-    }
+    from{transform:translateY(110vh);opacity:0}
+    15%{opacity:1}
+    85%{opacity:.8}
+    to{transform:translateY(-10vh) translateX(80px);opacity:0}
 }
 
-/* =========================
-   PANTALLA DE CONTRASEÑA
-========================= */
+/* LOGIN */
 
 #loginScreen{
     min-height:100vh;
@@ -114,12 +94,9 @@ body{
     padding:45px 35px;
     text-align:center;
     border-radius:25px;
-    background:
-        linear-gradient(rgba(255,248,220,.96),rgba(226,193,130,.96));
+    background:linear-gradient(rgba(255,248,220,.96),rgba(226,193,130,.96));
     border:7px solid #6c421e;
-    box-shadow:
-        0 25px 70px rgba(0,0,0,.45),
-        inset 0 0 30px rgba(90,50,15,.18);
+    box-shadow:0 25px 70px rgba(0,0,0,.45),inset 0 0 30px rgba(90,50,15,.18);
     animation:appear .8s ease;
 }
 
@@ -130,7 +107,7 @@ body{
 }
 
 @keyframes floatIcon{
-    50%{transform:translateY(-8px) rotate(2deg);}
+    50%{transform:translateY(-8px) rotate(2deg)}
 }
 
 .loginCard h1{
@@ -181,9 +158,7 @@ body{
     font-weight:bold;
 }
 
-/* =========================
-   APP
-========================= */
+/* APP */
 
 #app{
     display:none;
@@ -193,13 +168,12 @@ body{
 
 .topBar{
     width:min(1150px,100%);
-    margin:auto;
+    margin:auto auto 14px;
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:12px;
     padding:12px 16px;
-    margin-bottom:14px;
     color:#fff8e7;
     background:rgba(20,35,38,.78);
     border:1px solid rgba(255,255,255,.15);
@@ -229,11 +203,7 @@ body{
     cursor:pointer;
 }
 
-/* XP */
-
-.xpBox{
-    min-width:145px;
-}
+.xpBox{min-width:145px}
 
 .xpText{
     font-size:12px;
@@ -255,9 +225,7 @@ body{
     transition:.5s;
 }
 
-/* =========================
-   LIBRO
-========================= */
+/* BOOK */
 
 .bookArea{
     width:min(1100px,100%);
@@ -270,16 +238,9 @@ body{
     border-radius:18px;
     padding:18px;
     background:
-        linear-gradient(90deg,
-            rgba(70,36,10,.15),
-            transparent 4%,
-            transparent 96%,
-            rgba(70,36,10,.15)
-        ),
+        linear-gradient(90deg,rgba(70,36,10,.15),transparent 4%,transparent 96%,rgba(70,36,10,.15)),
         #603817;
-    box-shadow:
-        0 30px 70px rgba(0,0,0,.48),
-        inset 0 0 25px rgba(0,0,0,.4);
+    box-shadow:0 30px 70px rgba(0,0,0,.48),inset 0 0 25px rgba(0,0,0,.4);
 }
 
 .bookLeather{
@@ -298,18 +259,10 @@ body{
     background:
         radial-gradient(circle at 20% 20%,rgba(120,75,25,.08),transparent 25%),
         radial-gradient(circle at 80% 80%,rgba(120,75,25,.07),transparent 25%),
-        repeating-linear-gradient(
-            0deg,
-            rgba(100,65,30,.025) 0px,
-            rgba(100,65,30,.025) 1px,
-            transparent 1px,
-            transparent 4px
-        ),
+        repeating-linear-gradient(0deg,rgba(100,65,30,.025) 0,rgba(100,65,30,.025) 1px,transparent 1px,transparent 4px),
         #f4e4b9;
-    box-shadow:
-        inset 0 0 35px rgba(90,50,15,.16),
-        0 4px 12px rgba(0,0,0,.3);
-    overflow:hidden;
+    box-shadow:inset 0 0 35px rgba(90,50,15,.16),0 4px 12px rgba(0,0,0,.3);
+    overflow:auto;
 }
 
 .paper:before,
@@ -380,34 +333,21 @@ body{
     font-size:25px;
     cursor:pointer;
     box-shadow:0 6px 15px rgba(0,0,0,.3);
-    transition:.2s;
 }
 
-.navArrow:hover{
-    transform:translateY(-50%) scale(1.08);
-}
-
-#prevBtn{left:5px;}
-#nextBtn{right:5px;}
+#prevBtn{left:5px}
+#nextBtn{right:5px}
 
 .flip{
     animation:pageFlip .55s ease;
 }
 
 @keyframes pageFlip{
-    0%{
-        transform:perspective(900px) rotateY(-8deg);
-        opacity:.4;
-    }
-    100%{
-        transform:perspective(900px) rotateY(0);
-        opacity:1;
-    }
+    0%{transform:perspective(900px) rotateY(-8deg);opacity:.4}
+    100%{transform:perspective(900px) rotateY(0);opacity:1}
 }
 
-/* =========================
-   PROGRESO
-========================= */
+/* PROGRESS */
 
 .progressWrap{
     margin:13px auto 0;
@@ -436,13 +376,9 @@ body{
     transition:.5s;
 }
 
-/* =========================
-   CONTENIDO FINAL
-========================= */
+/* FINAL */
 
-.finalCard{
-    text-align:center;
-}
+.finalCard{text-align:center}
 
 .finalIcon{
     font-size:80px;
@@ -450,7 +386,7 @@ body{
 }
 
 @keyframes badgeFloat{
-    50%{transform:translateY(-10px) rotate(4deg);}
+    50%{transform:translateY(-10px) rotate(4deg)}
 }
 
 .finalCard h2{
@@ -459,9 +395,7 @@ body{
     margin:15px 0;
 }
 
-.finalCard p{
-    line-height:1.8;
-}
+.finalCard p{line-height:1.8}
 
 .actionArea{
     margin-top:25px;
@@ -470,10 +404,6 @@ body{
     flex-wrap:wrap;
     gap:10px;
 }
-
-/* =========================
-   CREDITOS
-========================= */
 
 .credits{
     margin-top:35px;
@@ -508,9 +438,7 @@ body{
     color:#664729;
 }
 
-/* =========================
-   MODALES
-========================= */
+/* MODALES */
 
 .modal{
     display:none;
@@ -561,13 +489,9 @@ body{
     background:rgba(255,255,255,.35);
 }
 
-.option:hover{
-    background:rgba(255,255,255,.7);
-}
+.option:hover{background:rgba(255,255,255,.7)}
 
-.option input{
-    margin-right:8px;
-}
+.option input{margin-right:8px}
 
 textarea{
     width:100%;
@@ -591,9 +515,7 @@ textarea{
     cursor:pointer;
 }
 
-/* =========================
-   CERTIFICADO
-========================= */
+/* CERTIFICATE */
 
 .certificate{
     display:none;
@@ -601,14 +523,11 @@ textarea{
     padding:35px;
     border:7px double #9b6a31;
     border-radius:15px;
-    background:
-        radial-gradient(circle,#fff2c9,#e8cb87);
+    background:radial-gradient(circle,#fff2c9,#e8cb87);
     box-shadow:inset 0 0 30px rgba(90,50,15,.2);
 }
 
-.certificate .trophy{
-    font-size:70px;
-}
+.certificate .trophy{font-size:70px}
 
 .certificate h2{
     font-size:clamp(28px,6vw,52px);
@@ -622,13 +541,9 @@ textarea{
     margin-top:20px;
 }
 
-/* =========================
-   TOP GLOBAL
-========================= */
+/* RANKING */
 
-.rankingList{
-    margin-top:15px;
-}
+.rankingList{margin-top:15px}
 
 .rankRow{
     display:grid;
@@ -647,14 +562,8 @@ textarea{
     text-align:center;
 }
 
-.rankName{
-    font-weight:bold;
-}
-
-.rankScore,
-.rankXP{
-    text-align:right;
-}
+.rankName{font-weight:bold}
+.rankScore,.rankXP{text-align:right}
 
 .status{
     text-align:center;
@@ -676,13 +585,25 @@ textarea{
     margin-right:7px;
 }
 
-@keyframes spin{
-    to{transform:rotate(360deg);}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ERROR SUPABASE */
+
+#supabaseError{
+    display:none;
+    margin-top:15px;
+    padding:15px;
+    border-radius:12px;
+    background:#ffdada;
+    border:2px solid #a52b2b;
+    color:#6e1111;
+    font-family:Arial,sans-serif;
+    font-size:13px;
+    word-break:break-word;
+    text-align:left;
 }
 
-/* =========================
-   TOAST
-========================= */
+/* TOAST */
 
 #toast{
     position:fixed;
@@ -698,6 +619,8 @@ textarea{
     box-shadow:0 10px 30px rgba(0,0,0,.35);
     transition:.35s;
     pointer-events:none;
+    max-width:90%;
+    text-align:center;
 }
 
 #toast.show{
@@ -705,15 +628,9 @@ textarea{
     transform:translateX(-50%) translateY(0);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-
 @media(max-width:650px){
 
-    #app{
-        padding:8px;
-    }
+    #app{padding:8px}
 
     .topBar{
         align-items:flex-start;
@@ -725,17 +642,10 @@ textarea{
         justify-content:space-between;
     }
 
-    .xpBox{
-        width:100%;
-    }
+    .xpBox{width:100%}
 
-    .book{
-        padding:8px;
-    }
-
-    .bookLeather{
-        padding:8px;
-    }
+    .book{padding:8px}
+    .bookLeather{padding:8px}
 
     .paper{
         min-height:650px;
@@ -752,8 +662,8 @@ textarea{
         height:42px;
     }
 
-    #prevBtn{left:3px;}
-    #nextBtn{right:3px;}
+    #prevBtn{left:3px}
+    #nextBtn{right:3px}
 
     .rankRow{
         grid-template-columns:42px 1fr;
@@ -765,20 +675,12 @@ textarea{
         grid-column:2;
     }
 
-    .modalBox{
-        padding:20px;
-    }
+    .modalBox{padding:20px}
 }
 
 @keyframes appear{
-    from{
-        opacity:0;
-        transform:scale(.94) translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:scale(1) translateY(0);
-    }
+    from{opacity:0;transform:scale(.94) translateY(20px)}
+    to{opacity:1;transform:scale(1) translateY(0)}
 }
 </style>
 </head>
@@ -790,23 +692,17 @@ textarea{
     <div class="wave two"></div>
     <div class="wave three"></div>
 
-    <div class="particle" style="left:8%;animation-duration:12s;"></div>
-    <div class="particle" style="left:19%;animation-duration:17s;animation-delay:-5s;"></div>
-    <div class="particle" style="left:31%;animation-duration:14s;animation-delay:-2s;"></div>
-    <div class="particle" style="left:47%;animation-duration:19s;animation-delay:-8s;"></div>
-    <div class="particle" style="left:62%;animation-duration:13s;animation-delay:-4s;"></div>
-    <div class="particle" style="left:75%;animation-duration:16s;animation-delay:-7s;"></div>
-    <div class="particle" style="left:88%;animation-duration:20s;animation-delay:-10s;"></div>
+    <div class="particle" style="left:8%;animation-duration:12s"></div>
+    <div class="particle" style="left:19%;animation-duration:17s;animation-delay:-5s"></div>
+    <div class="particle" style="left:31%;animation-duration:14s;animation-delay:-2s"></div>
+    <div class="particle" style="left:47%;animation-duration:19s;animation-delay:-8s"></div>
+    <div class="particle" style="left:62%;animation-duration:13s;animation-delay:-4s"></div>
+    <div class="particle" style="left:75%;animation-duration:16s;animation-delay:-7s"></div>
+    <div class="particle" style="left:88%;animation-duration:20s;animation-delay:-10s"></div>
 </div>
 
-<!-- =========================
-     LOGIN
-========================= -->
-
 <section id="loginScreen">
-
     <div class="loginCard">
-
         <div class="loginIcon">📖</div>
 
         <h1>Crónicas del Caribe</h1>
@@ -829,14 +725,8 @@ textarea{
         </button>
 
         <div id="errorMsg"></div>
-
     </div>
-
 </section>
-
-<!-- =========================
-     APP
-========================= -->
 
 <main id="app">
 
@@ -867,7 +757,6 @@ textarea{
             </button>
 
         </div>
-
     </div>
 
     <div class="bookArea">
@@ -890,17 +779,9 @@ textarea{
                         Página <span id="pageNumber">1</span> / 20
                     </div>
 
-                    <button
-                        class="navArrow"
-                        id="prevBtn"
-                        onclick="previousPage()"
-                    >‹</button>
+                    <button class="navArrow" id="prevBtn" onclick="previousPage()">‹</button>
 
-                    <button
-                        class="navArrow"
-                        id="nextBtn"
-                        onclick="nextPage()"
-                    >›</button>
+                    <button class="navArrow" id="nextBtn" onclick="nextPage()">›</button>
 
                 </div>
 
@@ -920,14 +801,10 @@ textarea{
             </div>
 
         </div>
-
     </div>
-
 </main>
 
-<!-- =========================
-     QUIZ
-========================= -->
+<!-- QUIZ -->
 
 <div class="modal" id="quizModal">
 
@@ -935,34 +812,27 @@ textarea{
 
         <button class="closeBtn" onclick="closeQuiz()">×</button>
 
-        <h2 class="modalTitle">
-            📝 PREGUNTAS FINALES
-        </h2>
+        <h2 class="modalTitle">📝 PREGUNTAS FINALES</h2>
 
-        <p style="text-align:center;line-height:1.7;">
+        <p style="text-align:center;line-height:1.7">
             Responde según lo aprendido durante la lectura.
             ¡Lee con cuidado!
         </p>
 
         <div id="quizContent"></div>
 
-        <div style="text-align:center;margin-top:20px;">
-
+        <div style="text-align:center;margin-top:20px">
             <button class="mainBtn" onclick="submitQuiz()">
                 ✅ TERMINAR EXAMEN
             </button>
-
         </div>
 
-        <div id="quizResult" style="margin-top:20px;"></div>
+        <div id="quizResult" style="margin-top:20px"></div>
 
     </div>
-
 </div>
 
-<!-- =========================
-     CERTIFICADO
-========================= -->
+<!-- CERTIFICADO -->
 
 <div class="modal" id="certificateModal">
 
@@ -986,7 +856,7 @@ textarea{
 
             <strong id="certificateName"></strong>
 
-            <p style="margin-top:20px;">
+            <p style="margin-top:20px">
                 Tu puntuación:
                 <strong id="certificateScore"></strong>
             </p>
@@ -998,7 +868,7 @@ textarea{
 
         </div>
 
-        <div style="text-align:center;margin-top:20px;">
+        <div style="text-align:center;margin-top:20px">
 
             <button class="mainBtn" onclick="openRanking()">
                 🏆 VER TOP GLOBAL
@@ -1007,12 +877,9 @@ textarea{
         </div>
 
     </div>
-
 </div>
 
-<!-- =========================
-     RANKING
-========================= -->
+<!-- RANKING -->
 
 <div class="modal" id="rankingModal">
 
@@ -1020,11 +887,9 @@ textarea{
 
         <button class="closeBtn" onclick="closeRanking()">×</button>
 
-        <h2 class="modalTitle">
-            🌎 TOP GLOBAL
-        </h2>
+        <h2 class="modalTitle">🌎 TOP GLOBAL</h2>
 
-        <p style="text-align:center;line-height:1.7;">
+        <p style="text-align:center;line-height:1.7">
             Los mejores resultados de los lectores.
         </p>
 
@@ -1035,7 +900,9 @@ textarea{
 
         <div id="rankingList" class="rankingList"></div>
 
-        <div style="text-align:center;margin-top:20px;">
+        <div id="supabaseError"></div>
+
+        <div style="text-align:center;margin-top:20px">
 
             <button class="mainBtn" onclick="loadRanking()">
                 🔄 ACTUALIZAR TOP
@@ -1044,7 +911,6 @@ textarea{
         </div>
 
     </div>
-
 </div>
 
 <div id="toast"></div>
@@ -1068,7 +934,7 @@ const supabaseClient =
     );
 
 /* =========================================================
-   GUARDADO
+   GUARDADO LOCAL
 ========================================================= */
 
 const SAVE_KEY = "cronicas_caribe_nuevo";
@@ -1082,26 +948,36 @@ let data = {
 };
 
 try{
-    const saved = localStorage.getItem(SAVE_KEY);
+
+    const saved =
+        localStorage.getItem(SAVE_KEY);
 
     if(saved){
+
         data = {
             ...data,
             ...JSON.parse(saved)
         };
+
     }
+
 }catch(e){
+
     console.log("No se pudo leer el progreso.");
+
 }
 
 function saveData(){
 
     try{
+
         localStorage.setItem(
             SAVE_KEY,
             JSON.stringify(data)
         );
+
     }catch(e){}
+
 }
 
 /* =========================================================
@@ -1488,44 +1364,19 @@ Lo más importante es comprender los procesos, relacionar las causas y consecuen
    ELEMENTOS
 ========================================================= */
 
-const loginScreen =
-    document.getElementById("loginScreen");
-
-const app =
-    document.getElementById("app");
-
-const passwordInput =
-    document.getElementById("passwordInput");
-
-const errorMsg =
-    document.getElementById("errorMsg");
-
-const paper =
-    document.getElementById("paper");
-
-const pageTitle =
-    document.getElementById("pageTitle");
-
-const pageText =
-    document.getElementById("pageText");
-
-const chapterLabel =
-    document.getElementById("chapterLabel");
-
-const pageNumber =
-    document.getElementById("pageNumber");
-
-const progressFill =
-    document.getElementById("progressFill");
-
-const progressPercent =
-    document.getElementById("progressPercent");
-
-const xpText =
-    document.getElementById("xpText");
-
-const xpFill =
-    document.getElementById("xpFill");
+const loginScreen = document.getElementById("loginScreen");
+const app = document.getElementById("app");
+const passwordInput = document.getElementById("passwordInput");
+const errorMsg = document.getElementById("errorMsg");
+const paper = document.getElementById("paper");
+const pageTitle = document.getElementById("pageTitle");
+const pageText = document.getElementById("pageText");
+const chapterLabel = document.getElementById("chapterLabel");
+const pageNumber = document.getElementById("pageNumber");
+const progressFill = document.getElementById("progressFill");
+const progressPercent = document.getElementById("progressPercent");
+const xpText = document.getElementById("xpText");
+const xpFill = document.getElementById("xpFill");
 
 /* =========================================================
    ENTRAR
@@ -1539,10 +1390,11 @@ function enterBook(){
         app.style.display = "block";
 
         startAmbient();
-
         renderPage();
 
-        showToast("📖 ¡Bienvenido a Crónicas del Caribe!");
+        showToast(
+            "📖 ¡Bienvenido a Crónicas del Caribe!"
+        );
 
     }else{
 
@@ -1550,21 +1402,17 @@ function enterBook(){
             "❌ Contraseña incorrecta";
 
         passwordInput.value = "";
-
         passwordInput.focus();
     }
 }
 
-passwordInput.addEventListener(
-    "keydown",
-    function(e){
+passwordInput.addEventListener("keydown",function(e){
 
-        if(e.key === "Enter"){
-            enterBook();
-        }
-
+    if(e.key === "Enter"){
+        enterBook();
     }
-);
+
+});
 
 /* =========================================================
    PÁGINA
@@ -1577,53 +1425,45 @@ function renderPage(){
     if(!page) return;
 
     paper.classList.remove("flip");
-
     void paper.offsetWidth;
-
     paper.classList.add("flip");
 
-    chapterLabel.textContent =
-        page.chapter;
-
-    pageTitle.textContent =
-        page.title;
-
-    pageText.textContent =
-        page.text;
-
-    pageNumber.textContent =
-        data.page + 1;
+    chapterLabel.textContent = page.chapter;
+    pageTitle.textContent = page.title;
+    pageText.textContent = page.text;
+    pageNumber.textContent = data.page + 1;
 
     const percent =
         Math.round(
             ((data.page + 1) / pages.length) * 100
         );
 
-    progressFill.style.width =
-        percent + "%";
-
-    progressPercent.textContent =
-        percent + "%";
+    progressFill.style.width = percent + "%";
+    progressPercent.textContent = percent + "%";
 
     updateXP();
 
-    document.getElementById("prevBtn").style.opacity =
+    const prev =
+        document.getElementById("prevBtn");
+
+    const next =
+        document.getElementById("nextBtn");
+
+    prev.style.opacity =
         data.page === 0 ? ".35" : "1";
 
-    document.getElementById("prevBtn").disabled =
+    prev.disabled =
         data.page === 0;
 
     if(data.page === pages.length - 1){
 
-        document.getElementById("nextBtn").style.display =
-            "none";
+        next.style.display = "none";
 
         showFinalPage();
 
     }else{
 
-        document.getElementById("nextBtn").style.display =
-            "block";
+        next.style.display = "block";
     }
 
     saveData();
@@ -1643,12 +1483,13 @@ function nextPage(){
 
             data.xp += 15;
 
-            showToast("⭐ ¡Lectura completada! +15 XP");
+            showToast(
+                "⭐ ¡Lectura completada! +15 XP"
+            );
 
         }else{
 
             data.xp += 5;
-
         }
 
         renderPage();
@@ -1674,6 +1515,7 @@ function showFinalPage(){
     setTimeout(()=>{
 
         pageText.innerHTML = `
+
             <div class="finalCard">
 
                 <div class="finalIcon">🏅</div>
@@ -1754,8 +1596,7 @@ function showFinalPage(){
 
 function updateXP(){
 
-    xpText.textContent =
-        data.xp;
+    xpText.textContent = data.xp;
 
     const levelProgress =
         data.xp % 500;
@@ -1778,8 +1619,7 @@ function showToast(message){
     const toast =
         document.getElementById("toast");
 
-    toast.textContent =
-        message;
+    toast.textContent = message;
 
     toast.classList.add("show");
 
@@ -1788,7 +1628,7 @@ function showToast(message){
     toastTimer =
         setTimeout(()=>{
             toast.classList.remove("show");
-        },2600);
+        },3000);
 }
 
 /* =========================================================
@@ -1903,6 +1743,10 @@ open:true
 
 ];
 
+/* =========================================================
+   ABRIR QUIZ
+========================================================= */
+
 function openQuiz(){
 
     document.getElementById("quizModal").style.display =
@@ -1951,7 +1795,6 @@ function openQuiz(){
                 `;
 
             });
-
         }
 
         html += `</div>`;
@@ -1968,6 +1811,10 @@ function closeQuiz(){
     document.getElementById("quizModal").style.display =
         "none";
 }
+
+/* =========================================================
+   TERMINAR QUIZ
+========================================================= */
 
 function submitQuiz(){
 
@@ -1988,9 +1835,13 @@ function submitQuiz(){
         }
     }
 
+    const open =
+        document.getElementById("openAnswer");
+
     const answer =
-        document.getElementById("openAnswer").value
-        .toLowerCase();
+        open
+        ? open.value.toLowerCase()
+        : "";
 
     const keywords = [
         "unión",
@@ -2025,19 +1876,12 @@ function submitQuiz(){
     let reward;
 
     if(percent >= 90){
-
         reward = 250;
-
     }else if(percent >= 70){
-
         reward = 180;
-
     }else if(percent >= 50){
-
         reward = 120;
-
     }else{
-
         reward = 60;
     }
 
@@ -2054,6 +1898,7 @@ function submitQuiz(){
         document.getElementById("quizResult");
 
     result.innerHTML = `
+
         <div style="
             text-align:center;
             padding:20px;
@@ -2061,7 +1906,7 @@ function submitQuiz(){
             background:rgba(255,255,255,.4);
         ">
 
-            <div style="font-size:55px;">
+            <div style="font-size:55px">
                 ${percent >= 70 ? "🏆" : "📚"}
             </div>
 
@@ -2069,11 +1914,12 @@ function submitQuiz(){
                 ${correct}/10 correctas
             </h2>
 
-            <p style="margin-top:10px;">
-                Puntuación: <strong>${percent}%</strong>
+            <p style="margin-top:10px">
+                Puntuación:
+                <strong>${percent}%</strong>
             </p>
 
-            <p style="margin-top:10px;">
+            <p style="margin-top:10px">
                 ⭐ +${reward} XP
             </p>
 
@@ -2089,6 +1935,10 @@ function submitQuiz(){
 
     showToast("⭐ ¡Examen terminado!");
 }
+
+/* =========================================================
+   FINALIZAR QUIZ
+========================================================= */
 
 function finishQuiz(percent){
 
@@ -2127,16 +1977,13 @@ function finishQuiz(percent){
     }
 
     document.getElementById("certificateName")
-        .textContent =
-        name;
+        .textContent = name;
 
     document.getElementById("certificateScore")
-        .textContent =
-        percent + "%";
+        .textContent = percent + "%";
 
     document.getElementById("certificateXP")
-        .textContent =
-        data.xp + " XP";
+        .textContent = data.xp + " XP";
 
     submitGlobalScore(
         name,
@@ -2147,6 +1994,7 @@ function finishQuiz(percent){
 
 /* =========================================================
    SUPABASE — GUARDAR TOP
+   AHORA MUESTRA EL ERROR REAL
 ========================================================= */
 
 async function submitGlobalScore(
@@ -2155,6 +2003,9 @@ async function submitGlobalScore(
     xp
 ){
 
+    const errorBox =
+        document.getElementById("supabaseError");
+
     try{
 
         const cleanName =
@@ -2162,45 +2013,134 @@ async function submitGlobalScore(
             .trim()
             .substring(0,25);
 
-        const {error} =
+        console.log("===== SUPABASE TOP =====");
+        console.log("Nombre:",cleanName);
+        console.log("Puntuación:",percent);
+        console.log("XP:",xp);
+        console.log("URL:",SUPABASE_URL);
+
+        const {
+            data:insertedData,
+            error
+        } =
             await supabaseClient
             .from("ranking")
             .insert({
                 nombre:cleanName,
                 puntuacion:Number(percent),
                 xp:Number(xp)
-            });
+            })
+            .select();
 
         if(error){
 
             console.error(
-                "Error guardando ranking:",
-                error
+                "===== ERROR SUPABASE ====="
             );
+
+            console.error("Código:",error.code);
+            console.error("Mensaje:",error.message);
+            console.error("Detalles:",error.details);
+            console.error("Hint:",error.hint);
+            console.error("Objeto completo:",error);
+
+            if(errorBox){
+
+                errorBox.style.display = "block";
+
+                errorBox.innerHTML = `
+                    <strong>❌ ERROR DE SUPABASE</strong><br><br>
+
+                    <b>Código:</b>
+                    ${escapeHTML(error.code || "Sin código")}
+                    <br>
+
+                    <b>Mensaje:</b>
+                    ${escapeHTML(error.message || "Sin mensaje")}
+                    <br><br>
+
+                    <b>Detalles:</b>
+                    ${escapeHTML(error.details || "Sin detalles")}
+                    <br><br>
+
+                    <b>Hint:</b>
+                    ${escapeHTML(error.hint || "Sin sugerencia")}
+                `;
+            }
 
             showToast(
-                "⚠️ No se pudo guardar en el TOP"
+                "❌ Supabase rechazó el resultado"
             );
 
-            return;
+            return false;
+        }
+
+        console.log(
+            "===== GUARDADO CORRECTAMENTE ====="
+        );
+
+        console.log(insertedData);
+
+        if(errorBox){
+
+            errorBox.style.display = "block";
+
+            errorBox.style.background =
+                "#d9ffd9";
+
+            errorBox.style.borderColor =
+                "#248b24";
+
+            errorBox.style.color =
+                "#145b14";
+
+            errorBox.innerHTML = `
+                <strong>
+                    ✅ RESULTADO GUARDADO CORRECTAMENTE
+                </strong>
+                <br><br>
+                Ya apareces en el TOP GLOBAL.
+            `;
         }
 
         showToast(
             "🌎 ¡Resultado guardado en el TOP GLOBAL!"
         );
 
+        return true;
+
     }catch(error){
+
+        console.error(
+            "===== ERROR DE CONEXIÓN ====="
+        );
 
         console.error(error);
 
+        if(errorBox){
+
+            errorBox.style.display = "block";
+
+            errorBox.innerHTML = `
+                <strong>❌ ERROR DE CONEXIÓN</strong>
+                <br><br>
+                ${escapeHTML(
+                    error.message ||
+                    String(error)
+                )}
+            `;
+        }
+
         showToast(
-            "⚠️ Error de conexión con el TOP"
+            "❌ Error conectando con Supabase"
         );
+
+        return false;
     }
 }
 
 /* =========================================================
-   SUPABASE — CARGAR TOP
+   ABRIR RANKING
 ========================================================= */
 
 async function openRanking(){
@@ -2217,6 +2157,10 @@ function closeRanking(){
         .style.display = "none";
 }
 
+/* =========================================================
+   CARGAR TOP
+========================================================= */
+
 async function loadRanking(){
 
     const status =
@@ -2225,15 +2169,25 @@ async function loadRanking(){
     const list =
         document.getElementById("rankingList");
 
+    const errorBox =
+        document.getElementById("supabaseError");
+
     status.innerHTML =
         `<span class="spinner"></span>
          Cargando TOP GLOBAL...`;
 
     list.innerHTML = "";
 
+    if(errorBox){
+        errorBox.style.display = "none";
+    }
+
     try{
 
-        const {data:rows,error} =
+        const {
+            data:rows,
+            error
+        } =
             await supabaseClient
             .from("ranking")
             .select(
@@ -2257,11 +2211,32 @@ async function loadRanking(){
             );
 
             status.innerHTML =
-                `
-                ❌ No se pudo conectar al ranking.
-                <br>
-                Revisa tu conexión o intenta de nuevo.
+                "❌ No se pudo cargar el ranking.";
+
+            if(errorBox){
+
+                errorBox.style.display = "block";
+
+                errorBox.innerHTML = `
+                    <strong>❌ ERROR AL CARGAR TOP</strong>
+                    <br><br>
+
+                    <b>Código:</b>
+                    ${escapeHTML(error.code || "Sin código")}
+                    <br>
+
+                    <b>Mensaje:</b>
+                    ${escapeHTML(error.message || "Sin mensaje")}
+                    <br><br>
+
+                    <b>Detalles:</b>
+                    ${escapeHTML(error.details || "Sin detalles")}
+                    <br><br>
+
+                    <b>Hint:</b>
+                    ${escapeHTML(error.hint || "Sin sugerencia")}
                 `;
+            }
 
             return;
         }
@@ -2314,11 +2289,9 @@ async function loadRanking(){
                 <div class="rankXP">
                     ⭐ ${row.xp} XP
                 </div>
-
             `;
 
             list.appendChild(div);
-
         });
 
     }catch(error){
@@ -2326,16 +2299,26 @@ async function loadRanking(){
         console.error(error);
 
         status.innerHTML =
-            `
-            ❌ Error de conexión.
-            <br>
-            Intenta actualizar nuevamente.
+            "❌ Error de conexión.";
+
+        if(errorBox){
+
+            errorBox.style.display = "block";
+
+            errorBox.innerHTML = `
+                <strong>❌ ERROR</strong>
+                <br><br>
+                ${escapeHTML(
+                    error.message ||
+                    String(error)
+                )}
             `;
+        }
     }
 }
 
 /* =========================================================
-   SEGURIDAD PARA NOMBRES
+   SEGURIDAD
 ========================================================= */
 
 function escapeHTML(value){
@@ -2349,7 +2332,7 @@ function escapeHTML(value){
 }
 
 /* =========================================================
-   AUDIO AMBIENTAL
+   AUDIO
 ========================================================= */
 
 let audioContext = null;
@@ -2361,9 +2344,7 @@ function startAmbient(){
 
     if(!soundOn) return;
 
-    if(audioContext){
-        return;
-    }
+    if(audioContext) return;
 
     try{
 
@@ -2376,8 +2357,7 @@ function startAmbient(){
         masterGain =
             audioContext.createGain();
 
-        masterGain.gain.value =
-            0.035;
+        masterGain.gain.value = .035;
 
         masterGain.connect(
             audioContext.destination
@@ -2397,8 +2377,6 @@ function createCaribbeanAmbient(){
 
     if(!audioContext) return;
 
-    /* 🌊 Ruido suave del mar */
-
     const bufferSize =
         audioContext.sampleRate * 2;
 
@@ -2415,7 +2393,7 @@ function createCaribbeanAmbient(){
     for(let i=0;i<bufferSize;i++){
 
         output[i] =
-            (Math.random() * 2 - 1);
+            Math.random() * 2 - 1;
     }
 
     const noise =
@@ -2444,16 +2422,14 @@ function createCaribbeanAmbient(){
 
     ambientNodes.push(noise);
 
-    /* 🌴 Tonos tranquilos */
-
     const notes = [
         130.81,
         164.81,
-        196.00,
+        196,
         261.63
     ];
 
-    notes.forEach((freq,i)=>{
+    notes.forEach(freq=>{
 
         const osc =
             audioContext.createOscillator();
@@ -2464,8 +2440,7 @@ function createCaribbeanAmbient(){
         osc.type = "sine";
         osc.frequency.value = freq;
 
-        gainNode.gain.value =
-            .008;
+        gainNode.gain.value = .008;
 
         osc
             .connect(gainNode)
@@ -2474,7 +2449,6 @@ function createCaribbeanAmbient(){
         osc.start();
 
         ambientNodes.push(osc);
-
     });
 }
 
@@ -2490,10 +2464,12 @@ function toggleSound(){
         button.textContent = "🔊";
 
         if(!audioContext){
+
             startAmbient();
+
         }else{
-            masterGain.gain.value =
-                .035;
+
+            masterGain.gain.value = .035;
         }
 
     }else{
@@ -2501,13 +2477,14 @@ function toggleSound(){
         button.textContent = "🔇";
 
         if(masterGain){
+
             masterGain.gain.value = 0;
         }
     }
 }
 
 /* =========================================================
-   CERRAR CERTIFICADO
+   CERTIFICADO
 ========================================================= */
 
 function closeCertificate(){
@@ -2521,26 +2498,26 @@ function closeCertificate(){
    TECLADO
 ========================================================= */
 
-document.addEventListener(
-    "keydown",
-    function(e){
+document.addEventListener("keydown",function(e){
 
-        if(
-            app.style.display !== "none" &&
-            document.getElementById("quizModal").style.display !== "block"
-        ){
+    const quizOpen =
+        document.getElementById("quizModal")
+        .style.display === "block";
 
-            if(e.key === "ArrowRight"){
-                nextPage();
-            }
+    if(
+        app.style.display !== "none" &&
+        !quizOpen
+    ){
 
-            if(e.key === "ArrowLeft"){
-                previousPage();
-            }
+        if(e.key === "ArrowRight"){
+            nextPage();
         }
 
+        if(e.key === "ArrowLeft"){
+            previousPage();
+        }
     }
-);
+});
 
 /* =========================================================
    INICIALIZAR
@@ -2552,3 +2529,4 @@ updateXP();
 
 </body>
 </html>
+```
