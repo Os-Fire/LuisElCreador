@@ -1,760 +1,4180 @@
-html = r'''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-<meta name="theme-color" content="#07111f">
 
-<meta property="og:title" content="Crónicas del Caribe">
-<meta property="og:description" content="Un viaje interactivo por la historia, cultura y sociedad del Caribe.">
-<meta property="og:image" content="https://os-fire.github.io/LuisElCreador/preview.png">
-<meta property="og:image:type" content="image/png">
-<meta property="og:image:width" content="1536">
-<meta property="og:image:height" content="1024">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Crónicas del Caribe">
-<meta name="twitter:description" content="Un viaje interactivo por la historia, cultura y sociedad del Caribe.">
-<meta name="twitter:image" content="https://os-fire.github.io/LuisElCreador/preview.png">
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+
+<meta name="theme-color" content="#07111f">
 
 <title>Crónicas del Caribe</title>
 
+<!-- =====================================================
+     PREVISUALIZACIÓN AL COMPARTIR EL LINK
+===================================================== -->
+
+<meta property="og:title" content="Crónicas del Caribe">
+<meta property="og:description" content="Un viaje interactivo por la historia, cultura y sociedad del Caribe.">
+<meta property="og:image" content="preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1536">
+<meta property="og:image:height" content="1024">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Crónicas del Caribe">
+<meta name="twitter:description" content="Un viaje interactivo por la historia, cultura y sociedad del Caribe.">
+<meta name="twitter:image" content="preview.png">
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{width:100%;min-height:100%}
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html,body{
+    width:100%;
+    min-height:100%;
+}
+
 body{
-  font-family:Georgia,"Times New Roman",serif;color:#f6e8c8;background:#06101c;
-  overflow-x:hidden;transition:background 1s ease
+    font-family:Georgia,"Times New Roman",serif;
+    color:#f5e7c4;
+    background:#050b12;
+    overflow-x:hidden;
 }
+
+/* =====================================================
+   FONDO
+===================================================== */
+
 body::before{
-  content:"";position:fixed;inset:-20%;z-index:-5;
-  background:radial-gradient(circle at 20% 20%,rgba(0,190,255,.15),transparent 28%),
-  radial-gradient(circle at 80% 30%,rgba(0,255,170,.10),transparent 25%),
-  radial-gradient(circle at 50% 90%,rgba(255,170,40,.12),transparent 30%),
-  linear-gradient(135deg,#04101b,#082235 45%,#07111d);
-  animation:bgMove 18s ease-in-out infinite alternate;transition:all 1s ease
+    content:"";
+    position:fixed;
+    inset:-20%;
+    z-index:-10;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(0,190,255,.18),
+            transparent 27%
+        ),
+
+        radial-gradient(
+            circle at 80% 30%,
+            rgba(0,255,170,.10),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 50% 90%,
+            rgba(255,160,40,.14),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #02070d,
+            #082338 45%,
+            #07111c
+        );
+
+    animation:fondo 18s ease-in-out infinite alternate;
 }
-@keyframes bgMove{from{transform:scale(1)}to{transform:scale(1.12) rotate(1deg)}}
-body.theme-colonial::before{background:
-radial-gradient(circle at 15% 25%,rgba(255,185,65,.28),transparent 25%),
-radial-gradient(circle at 85% 70%,rgba(95,39,10,.5),transparent 30%),
-linear-gradient(135deg,#211208,#75451c 45%,#17100b)}
-body.theme-independencia::before{background:
-radial-gradient(circle at 20% 20%,rgba(255,70,70,.25),transparent 25%),
-radial-gradient(circle at 80% 70%,rgba(40,130,255,.3),transparent 30%),
-linear-gradient(135deg,#071429,#233f6d 50%,#35131c)}
-body.theme-crisis::before{background:
-radial-gradient(circle at 20% 20%,rgba(120,140,160,.15),transparent 25%),
-radial-gradient(circle at 80% 30%,rgba(10,10,20,.55),transparent 30%),
-linear-gradient(135deg,#080b12,#1b202b 50%,#090a0e)}
-body.theme-ocean::before{background:
-radial-gradient(circle at 20% 30%,rgba(0,220,255,.3),transparent 28%),
-radial-gradient(circle at 80% 70%,rgba(0,120,255,.25),transparent 30%),
-linear-gradient(135deg,#031522,#07526d 50%,#031522)}
-body.theme-culture::before{background:
-radial-gradient(circle at 20% 20%,rgba(255,170,50,.25),transparent 25%),
-radial-gradient(circle at 80% 70%,rgba(210,40,110,.2),transparent 30%),
-linear-gradient(135deg,#28120e,#69321e 50%,#17100c)}
 
-.particle{position:fixed;width:3px;height:3px;border-radius:50%;background:#ffd875;
-box-shadow:0 0 12px #ffd875;pointer-events:none;opacity:.5;animation:floatParticle linear infinite;z-index:-2}
-@keyframes floatParticle{from{transform:translateY(110vh);opacity:0}15%{opacity:.7}85%{opacity:.7}to{transform:translateY(-15vh) translateX(100px);opacity:0}}
+@keyframes fondo{
 
-#passwordScreen{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;
-background:radial-gradient(circle at 50% 35%,rgba(35,160,210,.18),transparent 35%),linear-gradient(135deg,#020812,#071b2b 55%,#020711)}
-.loginCard{width:min(460px,100%);padding:42px 30px;text-align:center;border:1px solid rgba(255,215,130,.35);
-border-radius:28px;background:linear-gradient(145deg,rgba(21,42,58,.95),rgba(5,17,28,.97));
-box-shadow:0 30px 80px rgba(0,0,0,.65),inset 0 1px rgba(255,255,255,.08);animation:loginAppear .8s cubic-bezier(.2,.8,.2,1)}
-@keyframes loginAppear{from{opacity:0;transform:translateY(30px) scale(.94)}to{opacity:1;transform:none}}
-.loginIcon{width:100px;height:100px;margin:0 auto 20px;border-radius:50%;display:grid;place-items:center;font-size:48px;
-background:radial-gradient(circle,#1d607b,#092334 70%);border:2px solid rgba(255,220,140,.55);box-shadow:0 0 40px rgba(0,200,255,.2);animation:iconPulse 3s infinite}
-@keyframes iconPulse{50%{box-shadow:0 0 65px rgba(0,200,255,.35)}}
-.loginCard h1{font-size:clamp(30px,7vw,48px);color:#ffe3a1;letter-spacing:2px;text-shadow:0 4px 18px #000}
-.loginCard p{margin:12px 0 25px;color:#b8d2dc;font-family:Arial,sans-serif;line-height:1.6}
-.passwordInput{width:100%;padding:16px 18px;border-radius:14px;border:1px solid rgba(255,215,130,.3);outline:none;background:#030d16;color:white;font-size:17px;text-align:center}
-.passwordInput:focus{border-color:#4fdcff;box-shadow:0 0 25px rgba(79,220,255,.18)}
-.enterButton{width:100%;margin-top:14px;padding:16px;border:0;border-radius:14px;cursor:pointer;color:#06121b;font-weight:900;font-size:16px;
-background:linear-gradient(135deg,#ffe18b,#ffb83e);transition:.2s}.enterButton:hover{transform:translateY(-2px)}
-.loginError{min-height:24px;margin-top:12px;color:#ff6d6d;font-family:Arial,sans-serif;font-size:14px}
+    from{
+        transform:scale(1);
+    }
 
-#app{display:none;min-height:100vh;padding:18px}
-.topBar,.progressArea,.bookNav{width:min(1180px,100%);margin-left:auto;margin-right:auto}
-.topBar{margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border:1px solid rgba(255,220,150,.18);
-border-radius:18px;background:rgba(4,17,29,.75);backdrop-filter:blur(15px);box-shadow:0 15px 45px rgba(0,0,0,.3)}
-.brand{font-family:Arial,sans-serif;font-weight:900;letter-spacing:1px;color:#ffe4a5}.controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
-.controlBtn{border:1px solid rgba(255,220,150,.2);background:#102738;color:#e8f7ff;border-radius:12px;padding:9px 12px;cursor:pointer;font-family:Arial,sans-serif;font-weight:bold;transition:.2s}
-.controlBtn:hover{transform:translateY(-2px);border-color:#55dfff}
-.progressArea{margin-bottom:15px}.progressInfo{display:flex;justify-content:space-between;font:700 12px Arial,sans-serif;color:#a9c6d1;margin-bottom:7px}
-.progressTrack{height:8px;border-radius:20px;background:#07141f;overflow:hidden;box-shadow:inset 0 1px 5px #000}
-#progressBar{width:0;height:100%;border-radius:20px;background:linear-gradient(90deg,#25d9ff,#ffe079,#ffae45);box-shadow:0 0 15px rgba(80,220,255,.6);transition:width .5s ease}
-
-.bookShell{width:min(1180px,100%);min-height:650px;margin:auto;padding:18px;border-radius:30px;
-background:linear-gradient(145deg,#542f16,#2d160b 45%,#5c3519);box-shadow:0 35px 90px rgba(0,0,0,.65),inset 0 0 0 3px rgba(255,220,140,.12)}
-.book{position:relative;min-height:610px;border-radius:18px;overflow:hidden;background:#c99b5b;
-box-shadow:inset 0 0 50px rgba(55,25,0,.45),0 0 0 2px #8d5d2e;perspective:2200px}
-.book:before{content:"";position:absolute;left:50%;top:0;bottom:0;width:8px;transform:translateX(-50%);z-index:30;
-background:linear-gradient(90deg,rgba(35,15,4,.55),rgba(255,230,165,.65),rgba(55,22,4,.5));box-shadow:0 0 22px rgba(30,10,0,.5);pointer-events:none}
-.pageLayer{position:absolute;inset:0;min-height:610px}
-.pageLayer.under{z-index:1}
-.pageLayer.turn{z-index:10;transform-origin:left center;backface-visibility:hidden;transform-style:preserve-3d}
-.pageLayer.turn.next{animation:realTurnNext .95s cubic-bezier(.72,.02,.24,1) forwards}
-.pageLayer.turn.prev{transform-origin:right center;animation:realTurnPrev .95s cubic-bezier(.72,.02,.24,1) forwards}
-@keyframes realTurnNext{
-0%{transform:rotateY(0deg);box-shadow:0 0 0 rgba(0,0,0,0)}
-25%{box-shadow:-15px 10px 35px rgba(0,0,0,.32)}
-50%{transform:rotateY(-105deg);box-shadow:-35px 10px 55px rgba(0,0,0,.48)}
-100%{transform:rotateY(-180deg);box-shadow:-5px 5px 18px rgba(0,0,0,.15)}
+    to{
+        transform:scale(1.12);
+    }
 }
-@keyframes realTurnPrev{
-0%{transform:rotateY(0deg);box-shadow:0 0 0 rgba(0,0,0,0)}
-25%{box-shadow:15px 10px 35px rgba(0,0,0,.32)}
-50%{transform:rotateY(105deg);box-shadow:35px 10px 55px rgba(0,0,0,.48)}
-100%{transform:rotateY(180deg);box-shadow:5px 5px 18px rgba(0,0,0,.15)}
+
+/* =====================================================
+   PARTICULAS
+===================================================== */
+
+.particle{
+    position:fixed;
+
+    width:3px;
+    height:3px;
+
+    border-radius:50%;
+
+    background:#ffd875;
+
+    box-shadow:
+        0 0 12px #ffd875;
+
+    pointer-events:none;
+
+    z-index:-2;
+
+    animation:particula linear infinite;
 }
-.page{width:100%;height:100%;min-height:610px;position:relative;padding:45px clamp(25px,6vw,75px) 85px;overflow-y:auto;color:#39230e;
-background:radial-gradient(circle at 20% 10%,rgba(255,255,255,.38),transparent 25%),radial-gradient(circle at 80% 90%,rgba(80,35,0,.1),transparent 25%),
-repeating-linear-gradient(0deg,rgba(95,55,15,.025) 0,rgba(95,55,15,.025) 1px,transparent 1px,transparent 4px),#f3dcae;
-box-shadow:inset 0 0 45px rgba(105,55,10,.2)}
-.page:after{content:"";position:absolute;inset:12px;border:1px solid rgba(100,55,20,.12);pointer-events:none;border-radius:7px}
-.page::-webkit-scrollbar{width:8px}.page::-webkit-scrollbar-thumb{background:#8b5a2d;border-radius:20px}
-.pageContent{max-width:900px;margin:auto;animation:pageIn .42s ease;position:relative;z-index:2}
-@keyframes pageIn{from{opacity:0;transform:translateX(25px)}to{opacity:1;transform:none}}
-.pageNumber{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-style:italic;color:#80542b;z-index:3}
-.pageCorner{position:absolute;right:25px;bottom:20px;width:70px;height:70px;border-bottom:2px solid rgba(100,55,20,.25);border-right:2px solid rgba(100,55,20,.25);transform:skew(-12deg);z-index:3}
-.kicker{font:900 12px Arial,sans-serif;letter-spacing:3px;color:#9a5d1c;text-transform:uppercase;margin-bottom:12px}
-.page h2{font-size:clamp(30px,5vw,48px);line-height:1.08;color:#5d3012;margin-bottom:20px}
-.page h3{font-size:clamp(22px,4vw,30px);color:#713c17;margin:24px 0 12px}
-.page p{font-size:clamp(16px,2vw,19px);line-height:1.85;margin-bottom:17px;text-align:justify}
-.page ul{margin:15px 0 20px 25px}.page li{margin:10px 0;font-size:18px;line-height:1.6}
-.quote{margin:25px 0;padding:20px 22px;border-left:5px solid #b97928;background:rgba(255,239,191,.55);border-radius:0 14px 14px 0;font-style:italic;box-shadow:0 8px 20px rgba(70,35,5,.08)}
-.factGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:25px 0}.fact{padding:18px;border-radius:15px;background:rgba(255,239,191,.65);border:1px solid rgba(120,70,20,.18)}
-.fact strong{display:block;margin-bottom:7px;color:#753c12}
-.cover{min-height:610px;display:flex;align-items:center;justify-content:center;text-align:center}.coverContent{max-width:800px}
-.coverEmblem{width:125px;height:125px;margin:0 auto 25px;border-radius:50%;display:grid;place-items:center;font-size:60px;background:radial-gradient(circle,#d99a39,#704013);
-border:5px double #f4d27c;box-shadow:0 15px 40px rgba(70,30,0,.3);animation:coverPulse 3s infinite}
-@keyframes coverPulse{50%{transform:scale(1.04);box-shadow:0 20px 60px rgba(70,30,0,.4)}}
-.cover h1{font-size:clamp(42px,8vw,76px);line-height:.95;color:#55280d;text-shadow:1px 2px #e9bd72}.cover .subtitle{margin-top:20px;font-size:21px;color:#75441d}
 
-.visualScene{margin:22px 0 26px;border-radius:18px;overflow:hidden;border:1px solid rgba(80,45,10,.18);box-shadow:0 15px 30px rgba(65,30,5,.13);background:#d9c08d}
-.visualScene svg{display:block;width:100%;height:auto}
-.caption{font:700 12px Arial,sans-serif;color:#765027;text-align:center;padding:9px 12px;background:rgba(255,239,191,.75)}
-.questionIntro{padding:18px;border-radius:18px;background:linear-gradient(145deg,rgba(255,244,205,.9),rgba(235,207,153,.75));border:1px solid rgba(120,70,20,.2);margin:18px 0}
-.questionIntro strong{color:#673311}
-.mainQuestions{display:grid;gap:18px;margin:25px 0}.mainQuestion{padding:22px;border-radius:18px;background:rgba(255,239,191,.72);border:2px solid rgba(120,70,20,.16)}
-.mainQuestion h3{font-size:20px;margin:0 0 14px}.answerChoice{display:block;padding:13px;margin:8px 0;border-radius:12px;background:#ead09a;border:1px solid #c39a58;cursor:pointer;font-family:Arial,sans-serif;transition:.2s}
-.answerChoice:hover{transform:translateX(4px);background:#f4dfa9}.answerChoice input{margin-right:8px}
-.answerChoice.selected{background:#ffe7a8;border-color:#9d631f;box-shadow:0 0 0 2px rgba(157,99,31,.12)}
-.questionResult{display:none;margin-top:14px;padding:14px;border-radius:12px;background:#fff0bf;font-family:Arial,sans-serif;font-size:14px;line-height:1.5}
-.themeButton{width:100%;padding:15px;border:0;border-radius:13px;margin-top:10px;cursor:pointer;font:bold 15px Arial;background:linear-gradient(135deg,#26d9ff,#ffd15c);color:#06131b}
-.choiceGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-top:18px}
-.topicCard{padding:17px;border-radius:17px;background:rgba(255,239,191,.72);border:1px solid rgba(120,70,20,.18);cursor:pointer;transition:.25s}
-.topicCard:hover{transform:translateY(-4px);box-shadow:0 12px 24px rgba(70,30,0,.12)}.topicCard h3{margin:8px 0;font-size:20px}.topicCard p{font-size:15px!important;line-height:1.55!important;text-align:left!important;margin:0!important}
-.iconScene{font-size:45px}
+@keyframes particula{
 
-.bookNav{margin-top:15px;display:flex;align-items:center;justify-content:space-between;gap:15px}.navButton{min-width:145px;padding:15px 18px;border:1px solid rgba(255,220,140,.3);border-radius:15px;cursor:pointer;color:#fff4d2;font:bold 14px Arial,sans-serif;background:linear-gradient(145deg,#18374b,#0b1d2b);box-shadow:0 10px 25px rgba(0,0,0,.25);transition:.2s}
-.navButton:hover:not(:disabled){transform:translateY(-3px);border-color:#5adfff}.navButton:disabled{opacity:.35;cursor:not-allowed}.pageCounter{font:bold 13px Arial,sans-serif;color:#9eb8c3;text-align:center}
+    from{
+        transform:
+            translateY(110vh)
+            translateX(0);
+        opacity:0;
+    }
 
-.badgeBox{display:none;margin:25px auto;text-align:center;padding:25px;border:1px solid rgba(255,211,93,.45);border-radius:20px;background:linear-gradient(145deg,rgba(72,47,12,.75),rgba(22,17,7,.75))}
-.badge{width:130px;height:130px;margin:auto;display:grid;place-items:center;border-radius:50%;border:5px double #ffe28b;background:radial-gradient(circle,#e8ae35,#71400d);color:#fff0a9;font:bold 22px Arial,sans-serif;box-shadow:0 0 35px rgba(255,190,45,.5),inset 0 0 30px rgba(255,255,255,.18);animation:badgeIn 1s cubic-bezier(.2,1.5,.3,1)}
-@keyframes badgeIn{from{transform:scale(0) rotate(-180deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
-.badgeBox h3{margin-top:15px;color:#ffe39a;font-family:Arial,sans-serif}
+    15%{
+        opacity:.7;
+    }
 
-.quiz{display:none;width:min(1000px,100%);margin:25px auto;padding:25px;border-radius:24px;border:1px solid rgba(255,220,140,.2);background:rgba(4,17,28,.9);box-shadow:0 25px 70px rgba(0,0,0,.5)}
-.quizHeader{text-align:center;margin-bottom:25px}.quizHeader h2{color:#ffe1a0;font-size:34px}.quizHeader p{color:#9fbac5;font-family:Arial,sans-serif;margin-top:8px}
-.questionCard{margin-bottom:20px;padding:20px;border-radius:18px;background:#0b2130;border:1px solid rgba(90,210,255,.12)}.questionCard h3{color:#eaf9ff;font:700 18px Arial,sans-serif;line-height:1.5;margin-bottom:14px}
-.option{display:block;margin:8px 0;padding:12px;border-radius:12px;cursor:pointer;background:#102d3e;border:1px solid rgba(255,255,255,.06);color:#cfe4eb;font:15px Arial,sans-serif;transition:.15s}
-.option:hover{background:#153d53;border-color:#43d9ff}.option input{margin-right:9px}.submitQuiz{display:block;width:100%;padding:17px;border:0;border-radius:14px;background:linear-gradient(135deg,#35dcff,#ffd15c);color:#06131d;font:bold 16px Arial,sans-serif;cursor:pointer}
+    85%{
+        opacity:.7;
+    }
 
-.certificate{display:none;width:min(850px,100%);margin:30px auto;padding:12px;border-radius:25px;background:linear-gradient(135deg,#a97524,#ffe49a,#98651b);box-shadow:0 30px 80px rgba(0,0,0,.55);animation:certificateIn .8s ease}
-@keyframes certificateIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
-.certificateInner{padding:45px 30px;border-radius:17px;text-align:center;background:#fff2cb;color:#4b290f;border:3px double #8a571b}
-.certificateInner .trophy{font-size:65px}.certificateInner h2{font-size:clamp(28px,6vw,52px);margin:12px 0}.certificateInner h3{font-size:22px;margin:15px 0}
+    to{
+        transform:
+            translateY(-15vh)
+            translateX(100px);
+        opacity:0;
+    }
+}
 
-.finalEmblem{width:150px;height:150px;margin:0 auto 15px;border-radius:50%;display:grid;place-items:center;text-align:center;
-font:bold 15px Arial,sans-serif;color:#fff7c5;border:6px double #ffe58b;background:radial-gradient(circle at 35% 25%,#fff0a0,#d08a19 38%,#5a3007 75%);
-box-shadow:0 0 0 5px rgba(130,80,15,.12),0 0 45px rgba(255,190,45,.5),inset 0 0 30px rgba(255,255,255,.22);animation:emblemReveal 1s cubic-bezier(.2,1.5,.3,1)}
-.finalEmblem .emblemIcon{font-size:58px;display:block;margin-bottom:3px}
-@keyframes emblemReveal{from{transform:scale(0) rotate(-220deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
+/* =====================================================
+   LOGIN
+===================================================== */
 
-.ranking{width:min(1000px,100%);margin:30px auto;padding:25px;border-radius:25px;border:1px solid rgba(255,220,140,.18);background:linear-gradient(145deg,rgba(11,37,51,.95),rgba(3,13,23,.95));box-shadow:0 25px 70px rgba(0,0,0,.45)}
-.rankingTitle{text-align:center;margin-bottom:18px}.rankingTitle .globe{font-size:45px}.rankingTitle h2{color:#ffe1a0;font-size:32px}.rankingTitle p{margin-top:6px;color:#89a8b5;font:14px Arial,sans-serif}
-.rankRow{display:grid;grid-template-columns:60px 1fr 58px 120px 100px;align-items:center;gap:10px;margin:8px 0;padding:10px 12px;border-radius:14px;background:linear-gradient(90deg,#0d2a3a,#102131);border:1px solid rgba(255,255,255,.05);font-family:Arial,sans-serif}
-.rankRow:first-child{background:linear-gradient(90deg,#5b4618,#182a32);border-color:rgba(255,210,80,.3)}.rankPos{font-size:21px;font-weight:900}.rankName{font-weight:800;color:#edfaff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rankScore{color:#62e1ff;text-align:right}.rankXP{color:#ffd568;text-align:right}
-.rankEmblem{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:22px;border:2px solid #e7c766;background:radial-gradient(circle,#b97820,#4d2908);box-shadow:0 0 15px rgba(255,190,45,.25)}
-.rankingStatus{text-align:center;color:#8eaab6;font:14px Arial,sans-serif;margin:10px 0 15px}
-.nameBox{display:none;margin:20px auto;width:min(500px,100%);padding:20px;border-radius:18px;background:#0b2130;text-align:center}.nameBox h3{color:#ffe09a;font-family:Arial,sans-serif;margin-bottom:12px}
-.nameBox input{width:100%;padding:13px;border-radius:11px;border:1px solid #284d60;background:#06131e;color:white;outline:none}.saveScoreBtn{width:100%;margin-top:10px;padding:13px;border:0;border-radius:11px;cursor:pointer;font-weight:bold;background:#ffd15c;color:#08131a}
-#supabaseError{display:none;margin-top:15px;padding:15px;border-radius:12px;background:#3b1515;border:1px solid #a94141;color:#ffb8b8;font:13px Arial,sans-serif;word-break:break-word}
+#passwordScreen{
 
-#toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,120px);z-index:10000;max-width:min(500px,90%);padding:14px 20px;border-radius:14px;background:#071722;border:1px solid rgba(90,220,255,.3);color:white;font:bold 14px Arial,sans-serif;box-shadow:0 15px 40px rgba(0,0,0,.5);transition:.35s}
-#toast.show{transform:translate(-50%,0)}
+    position:fixed;
+
+    inset:0;
+
+    z-index:99999;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    background:
+
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(0,190,255,.18),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            135deg,
+            #02060c,
+            #071d2d,
+            #02070c
+        );
+}
+
+.loginCard{
+
+    width:min(470px,100%);
+
+    padding:42px 30px;
+
+    text-align:center;
+
+    border-radius:28px;
+
+    border:
+        1px solid
+        rgba(255,220,140,.35);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(20,43,60,.97),
+            rgba(4,15,25,.98)
+        );
+
+    box-shadow:
+        0 35px 90px rgba(0,0,0,.7),
+        inset 0 1px rgba(255,255,255,.08),
+        0 0 70px rgba(0,190,255,.08);
+
+    animation:loginEntrada .8s ease;
+}
+
+@keyframes loginEntrada{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(30px)
+            scale(.92);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.loginIcon{
+
+    width:105px;
+    height:105px;
+
+    margin:0 auto 20px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:50%;
+
+    font-size:50px;
+
+    background:
+        radial-gradient(
+            circle,
+            #1d607b,
+            #092334 70%
+        );
+
+    border:
+        2px solid
+        rgba(255,220,140,.6);
+
+    box-shadow:
+        0 0 45px rgba(0,200,255,.25),
+        inset 0 0 30px rgba(255,210,100,.12);
+
+    animation:icono 3s infinite;
+}
+
+@keyframes icono{
+
+    50%{
+        box-shadow:
+            0 0 70px rgba(0,200,255,.4),
+            inset 0 0 30px rgba(255,210,100,.2);
+    }
+}
+
+.loginCard h1{
+
+    font-size:
+        clamp(29px,7vw,48px);
+
+    color:#ffe3a1;
+
+    letter-spacing:2px;
+
+    text-shadow:
+        0 4px 18px #000;
+}
+
+.loginCard p{
+
+    margin:
+        12px 0 25px;
+
+    color:#b8d2dc;
+
+    font-family:Arial,sans-serif;
+
+    line-height:1.6;
+}
+
+.passwordInput{
+
+    width:100%;
+
+    padding:16px;
+
+    border-radius:14px;
+
+    border:
+        1px solid
+        rgba(255,215,130,.3);
+
+    outline:none;
+
+    background:#030d16;
+
+    color:white;
+
+    font-size:17px;
+
+    text-align:center;
+}
+
+.passwordInput:focus{
+
+    border-color:#4fdcff;
+
+    box-shadow:
+        0 0 25px
+        rgba(79,220,255,.2);
+}
+
+.enterButton{
+
+    width:100%;
+
+    margin-top:14px;
+
+    padding:16px;
+
+    border:0;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    color:#06121b;
+
+    font-weight:900;
+
+    font-size:16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffe18b,
+            #ffb83e
+        );
+
+    box-shadow:
+        0 10px 30px
+        rgba(255,180,50,.2);
+
+    transition:.2s;
+}
+
+.enterButton:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(255,180,50,.4);
+}
+
+.enterButton:active{
+
+    transform:scale(.98);
+}
+
+.loginError{
+
+    min-height:24px;
+
+    margin-top:12px;
+
+    color:#ff6d6d;
+
+    font-family:Arial,sans-serif;
+
+    font-size:14px;
+}
+
+/* =====================================================
+   APP
+===================================================== */
+
+#app{
+
+    display:none;
+
+    min-height:100vh;
+
+    padding:18px;
+}
+
+/* =====================================================
+   TOP BAR
+===================================================== */
+
+.topBar{
+
+    width:min(1180px,100%);
+
+    margin:auto;
+    margin-bottom:16px;
+
+    padding:12px 16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    border-radius:18px;
+
+    border:
+        1px solid
+        rgba(255,220,150,.18);
+
+    background:
+        rgba(4,17,29,.78);
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.3);
+}
+
+.brand{
+
+    font-family:Arial,sans-serif;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+
+    color:#ffe4a5;
+}
+
+.controls{
+
+    display:flex;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+}
+
+.controlBtn{
+
+    padding:9px 12px;
+
+    border-radius:12px;
+
+    border:
+        1px solid
+        rgba(255,220,150,.2);
+
+    background:#102738;
+
+    color:#e8f7ff;
+
+    cursor:pointer;
+
+    font-family:Arial,sans-serif;
+
+    font-weight:bold;
+}
+
+/* =====================================================
+   PROGRESO
+===================================================== */
+
+.progressArea{
+
+    width:min(1180px,100%);
+
+    margin:
+        0 auto 15px;
+}
+
+.progressInfo{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:7px;
+
+    color:#a9c6d1;
+
+    font:
+        700 12px Arial;
+}
+
+.progressTrack{
+
+    height:8px;
+
+    border-radius:20px;
+
+    background:#07141f;
+
+    overflow:hidden;
+}
+
+#progressBar{
+
+    width:0%;
+
+    height:100%;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #25d9ff,
+            #ffe079,
+            #ffae45
+        );
+
+    box-shadow:
+        0 0 15px
+        rgba(80,220,255,.6);
+
+    transition:
+        width .5s ease;
+}
+
+/* =====================================================
+   LIBRO
+===================================================== */
+
+.bookShell{
+
+    width:min(1180px,100%);
+
+    min-height:650px;
+
+    margin:auto;
+
+    padding:18px;
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #633716,
+            #2d160b 45%,
+            #5c3519
+        );
+
+    box-shadow:
+        0 35px 90px rgba(0,0,0,.7),
+        inset 0 0 0 3px
+        rgba(255,220,140,.12);
+}
+
+.book{
+
+    position:relative;
+
+    min-height:610px;
+
+    overflow:hidden;
+
+    border-radius:18px;
+
+    background:#c99b5b;
+
+    box-shadow:
+        inset 0 0 50px
+        rgba(55,25,0,.45),
+        0 0 0 2px #8d5d2e;
+}
+
+.page{
+
+    width:100%;
+
+    min-height:610px;
+
+    position:relative;
+
+    padding:
+        45px
+        clamp(25px,6vw,75px)
+        85px;
+
+    overflow-y:auto;
+
+    color:#39230e;
+
+    background:
+
+        radial-gradient(
+            circle at 20% 10%,
+            rgba(255,255,255,.35),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 80% 90%,
+            rgba(80,35,0,.1),
+            transparent 25%
+        ),
+
+        #f3dcae;
+
+    box-shadow:
+        inset 0 0 45px
+        rgba(105,55,10,.2);
+
+    transform-origin:left center;
+}
+
+.page.turnNext{
+
+    animation:
+        pageTurnNext .7s ease;
+}
+
+.page.turnPrev{
+
+    animation:
+        pageTurnPrev .7s ease;
+}
+
+@keyframes pageTurnNext{
+
+    0%{
+        transform:
+            perspective(1600px)
+            rotateY(0deg);
+        filter:brightness(1);
+    }
+
+    45%{
+        transform:
+            perspective(1600px)
+            rotateY(-18deg);
+        filter:brightness(.85);
+    }
+
+    100%{
+        transform:
+            perspective(1600px)
+            rotateY(0deg);
+        filter:brightness(1);
+    }
+}
+
+@keyframes pageTurnPrev{
+
+    0%{
+        transform:
+            perspective(1600px)
+            rotateY(0deg);
+    }
+
+    45%{
+        transform:
+            perspective(1600px)
+            rotateY(18deg);
+    }
+
+    100%{
+        transform:
+            perspective(1600px)
+            rotateY(0deg);
+    }
+}
+
+.pageContent{
+
+    max-width:850px;
+
+    margin:auto;
+
+    animation:
+        pageAppear .45s ease;
+}
+
+@keyframes pageAppear{
+
+    from{
+        opacity:0;
+        transform:translateX(25px);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.page h2{
+
+    font-size:
+        clamp(30px,5vw,48px);
+
+    line-height:1.08;
+
+    color:#5d3012;
+
+    margin-bottom:20px;
+}
+
+.page h3{
+
+    font-size:
+        clamp(22px,4vw,30px);
+
+    color:#713c17;
+
+    margin:
+        24px 0 12px;
+}
+
+.page p{
+
+    font-size:
+        clamp(16px,2vw,19px);
+
+    line-height:1.85;
+
+    margin-bottom:17px;
+
+    text-align:justify;
+}
+
+.page ul{
+
+    margin:
+        15px 0 20px 25px;
+}
+
+.page li{
+
+    margin:10px 0;
+
+    font-size:18px;
+
+    line-height:1.6;
+}
+
+.kicker{
+
+    font:
+        900 12px Arial;
+
+    letter-spacing:3px;
+
+    color:#9a5d1c;
+
+    text-transform:uppercase;
+
+    margin-bottom:12px;
+}
+
+.quote{
+
+    margin:25px 0;
+
+    padding:20px 22px;
+
+    border-left:
+        5px solid #b97928;
+
+    background:
+        rgba(255,239,191,.55);
+
+    border-radius:
+        0 14px 14px 0;
+
+    font-style:italic;
+}
+
+.factGrid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:14px;
+
+    margin:25px 0;
+}
+
+.fact{
+
+    padding:18px;
+
+    border-radius:15px;
+
+    background:
+        rgba(255,239,191,.65);
+
+    border:
+        1px solid
+        rgba(120,70,20,.18);
+}
+
+.fact strong{
+
+    display:block;
+
+    margin-bottom:7px;
+
+    color:#753c12;
+}
+
+.cover{
+
+    min-height:610px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+}
+
+.coverContent{
+
+    max-width:760px;
+}
+
+.coverEmblem{
+
+    width:125px;
+    height:125px;
+
+    margin:
+        0 auto 25px;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:50%;
+
+    font-size:60px;
+
+    background:
+        radial-gradient(
+            circle,
+            #d99a39,
+            #704013
+        );
+
+    border:
+        5px double #f4d27c;
+
+    box-shadow:
+        0 15px 40px
+        rgba(70,30,0,.3);
+}
+
+.cover h1{
+
+    font-size:
+        clamp(42px,8vw,76px);
+
+    line-height:.95;
+
+    color:#55280d;
+}
+
+.cover .subtitle{
+
+    margin-top:20px;
+
+    font-size:21px;
+
+    color:#75441d;
+}
+
+.pageNumber{
+
+    position:absolute;
+
+    bottom:20px;
+
+    left:50%;
+
+    transform:
+        translateX(-50%);
+
+    color:#80542b;
+
+    font-style:italic;
+}
+
+/* =====================================================
+   NAVEGACIÓN
+===================================================== */
+
+.bookNav{
+
+    width:min(1180px,100%);
+
+    margin:
+        15px auto 0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+}
+
+.navButton{
+
+    min-width:145px;
+
+    padding:15px 18px;
+
+    border-radius:15px;
+
+    border:
+        1px solid
+        rgba(255,220,140,.3);
+
+    cursor:pointer;
+
+    color:#fff4d2;
+
+    font:bold 14px Arial;
+
+    background:
+        linear-gradient(
+            145deg,
+            #18374b,
+            #0b1d2b
+        );
+}
+
+.navButton:disabled{
+
+    opacity:.35;
+
+    cursor:not-allowed;
+}
+
+.pageCounter{
+
+    color:#9eb8c3;
+
+    font:bold 13px Arial;
+
+    text-align:center;
+}
+
+/* =====================================================
+   BADGE
+===================================================== */
+
+.badgeBox{
+
+    display:none;
+
+    width:min(700px,100%);
+
+    margin:
+        25px auto;
+
+    padding:25px;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(72,47,12,.8),
+            rgba(22,17,7,.8)
+        );
+
+    border:
+        1px solid
+        rgba(255,211,93,.45);
+}
+
+.badge{
+
+    width:130px;
+    height:130px;
+
+    margin:auto;
+
+    display:grid;
+
+    place-items:center;
+
+    border-radius:50%;
+
+    border:
+        5px double #ffe28b;
+
+    background:
+        radial-gradient(
+            circle,
+            #e8ae35,
+            #71400d
+        );
+
+    color:#fff0a9;
+
+    font:
+        bold 22px Arial;
+
+    box-shadow:
+        0 0 35px
+        rgba(255,190,45,.5);
+
+    animation:
+        badgeIn 1s
+        cubic-bezier(.2,1.5,.3,1);
+}
+
+@keyframes badgeIn{
+
+    from{
+        transform:
+            scale(0)
+            rotate(-180deg);
+
+        opacity:0;
+    }
+
+    to{
+        transform:
+            scale(1)
+            rotate(0);
+
+        opacity:1;
+    }
+}
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+.quiz{
+
+    display:none;
+
+    width:min(1000px,100%);
+
+    margin:
+        25px auto;
+
+    padding:25px;
+
+    border-radius:24px;
+
+    background:
+        rgba(4,17,28,.93);
+
+    border:
+        1px solid
+        rgba(255,220,140,.2);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.5);
+}
+
+.quizHeader{
+
+    text-align:center;
+
+    margin-bottom:25px;
+}
+
+.quizHeader h2{
+
+    color:#ffe1a0;
+
+    font-size:34px;
+}
+
+.quizHeader p{
+
+    color:#9fbac5;
+
+    font:
+        14px Arial;
+
+    margin-top:8px;
+}
+
+.questionCard{
+
+    margin-bottom:20px;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    background:#0b2130;
+
+    border:
+        1px solid
+        rgba(90,210,255,.12);
+}
+
+.questionCard h3{
+
+    color:#eaf9ff;
+
+    font:
+        700 18px Arial;
+
+    line-height:1.5;
+
+    margin-bottom:14px;
+}
+
+.option{
+
+    display:block;
+
+    margin:8px 0;
+
+    padding:13px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    background:#102d3e;
+
+    color:#cfe4eb;
+
+    font:15px Arial;
+
+    transition:.15s;
+}
+
+.option:hover{
+
+    background:#153d53;
+
+    border-color:#43d9ff;
+}
+
+.option input{
+
+    margin-right:9px;
+}
+
+.submitQuiz{
+
+    display:block;
+
+    width:100%;
+
+    padding:17px;
+
+    border:0;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            #35dcff,
+            #ffd15c
+        );
+
+    color:#06131d;
+
+    font:bold 16px Arial;
+}
+
+/* =====================================================
+   CERTIFICADO
+===================================================== */
+
+.certificate{
+
+    display:none;
+
+    width:min(850px,100%);
+
+    margin:
+        30px auto;
+
+    padding:12px;
+
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a97524,
+            #ffe49a,
+            #98651b
+        );
+
+    box-shadow:
+        0 30px 80px
+        rgba(0,0,0,.55);
+}
+
+.certificateInner{
+
+    padding:
+        45px 30px;
+
+    border-radius:17px;
+
+    text-align:center;
+
+    background:#fff2cb;
+
+    color:#4b290f;
+
+    border:
+        3px double #8a571b;
+}
+
+.trophy{
+
+    font-size:65px;
+}
+
+.certificateInner h2{
+
+    font-size:
+        clamp(28px,6vw,52px);
+
+    margin:
+        12px 0;
+}
+
+.certificateInner h3{
+
+    font-size:22px;
+
+    margin:
+        15px 0;
+}
+
+/* =====================================================
+   NOMBRE
+===================================================== */
+
+.nameBox{
+
+    display:none;
+
+    width:min(500px,100%);
+
+    margin:
+        20px auto;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    background:#0b2130;
+
+    text-align:center;
+}
+
+.nameBox h3{
+
+    color:#ffe09a;
+
+    font:
+        bold 18px Arial;
+
+    margin-bottom:12px;
+}
+
+.nameBox input{
+
+    width:100%;
+
+    padding:13px;
+
+    border-radius:11px;
+
+    border:
+        1px solid #284d60;
+
+    background:#06131e;
+
+    color:white;
+
+    outline:none;
+}
+
+.saveScoreBtn{
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:13px;
+
+    border:0;
+
+    border-radius:11px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    background:#ffd15c;
+
+    color:#08131a;
+}
+
+/* =====================================================
+   RANKING
+===================================================== */
+
+.ranking{
+
+    width:min(1000px,100%);
+
+    margin:
+        30px auto;
+
+    padding:25px;
+
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(11,37,51,.95),
+            rgba(3,13,23,.95)
+        );
+
+    border:
+        1px solid
+        rgba(255,220,140,.18);
+}
+
+.rankingTitle{
+
+    text-align:center;
+
+    margin-bottom:18px;
+}
+
+.rankingTitle .globe{
+
+    font-size:45px;
+}
+
+.rankingTitle h2{
+
+    color:#ffe1a0;
+
+    font-size:32px;
+}
+
+.rankingTitle p{
+
+    margin-top:6px;
+
+    color:#89a8b5;
+
+    font:14px Arial;
+}
+
+.rankingStatus{
+
+    text-align:center;
+
+    color:#8eaab6;
+
+    font:14px Arial;
+
+    margin:
+        10px 0 15px;
+}
+
+.rankRow{
+
+    display:grid;
+
+    grid-template-columns:
+        70px 1fr 130px 120px;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin:8px 0;
+
+    padding:13px 15px;
+
+    border-radius:14px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #0d2a3a,
+            #102131
+        );
+
+    font-family:Arial;
+}
+
+.rankRow:first-child{
+
+    background:
+        linear-gradient(
+            90deg,
+            #5b4618,
+            #182a32
+        );
+}
+
+.rankPos{
+
+    font-size:22px;
+
+    font-weight:900;
+}
+
+.rankName{
+
+    font-weight:800;
+
+    color:#edfaff;
+}
+
+.rankScore{
+
+    color:#62e1ff;
+
+    text-align:right;
+}
+
+.rankXP{
+
+    color:#ffd568;
+
+    text-align:right;
+}
+
+#supabaseError{
+
+    display:none;
+
+    margin-top:15px;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    background:#3b1515;
+
+    border:
+        1px solid #a94141;
+
+    color:#ffb8b8;
+
+    font:13px Arial;
+
+    word-break:break-word;
+}
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+#toast{
+
+    position:fixed;
+
+    left:50%;
+    bottom:25px;
+
+    transform:
+        translate(-50%,120px);
+
+    z-index:100000;
+
+    max-width:90%;
+
+    padding:14px 20px;
+
+    border-radius:14px;
+
+    background:#071722;
+
+    border:
+        1px solid
+        rgba(90,220,255,.3);
+
+    color:white;
+
+    font:bold 14px Arial;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.5);
+
+    transition:.35s;
+}
+
+#toast.show{
+
+    transform:
+        translate(-50%,0);
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:700px){
-#app{padding:9px}.topBar{border-radius:14px;padding:10px}.brand{font-size:12px}.controlBtn{padding:8px 9px;font-size:11px}
-.bookShell{padding:8px;border-radius:18px}.book{min-height:570px}.pageLayer{min-height:570px}.page{min-height:570px;padding:32px 21px 75px}
-.page p{text-align:left;line-height:1.7}.factGrid,.choiceGrid{grid-template-columns:1fr}.bookNav{gap:7px}.navButton{min-width:0;flex:1;padding:13px 8px;font-size:12px}
-.pageCounter{min-width:65px;font-size:11px}.loginCard{padding:32px 20px}.rankRow{grid-template-columns:42px 1fr 48px}.rankEmblem{grid-column:3;grid-row:1}.rankScore,.rankXP{text-align:left;grid-column:2}.rankXP{grid-row:2}.rankName{grid-column:2}
+
+    #app{
+        padding:9px;
+    }
+
+    .topBar{
+        border-radius:14px;
+        padding:10px;
+    }
+
+    .brand{
+        font-size:12px;
+    }
+
+    .controlBtn{
+        padding:8px 9px;
+        font-size:11px;
+    }
+
+    .bookShell{
+        padding:8px;
+        border-radius:18px;
+    }
+
+    .book{
+        min-height:570px;
+    }
+
+    .page{
+        min-height:570px;
+        padding:
+            32px 21px 75px;
+    }
+
+    .page p{
+        text-align:left;
+        line-height:1.7;
+    }
+
+    .factGrid{
+        grid-template-columns:1fr;
+    }
+
+    .bookNav{
+        gap:7px;
+    }
+
+    .navButton{
+        min-width:0;
+        flex:1;
+        padding:13px 8px;
+        font-size:12px;
+    }
+
+    .pageCounter{
+        min-width:65px;
+        font-size:11px;
+    }
+
+    .rankRow{
+        grid-template-columns:48px 1fr;
+    }
+
+    .rankScore,
+    .rankXP{
+        text-align:left;
+        grid-column:2;
+    }
+
+    .loginCard{
+        padding:32px 20px;
+    }
 }
+
 </style>
 </head>
 
 <body>
+
+<!-- =====================================================
+     PARTICULAS
+===================================================== -->
+
 <div id="particles"></div>
 
+<!-- =====================================================
+     PANTALLA DE CONTRASEÑA
+===================================================== -->
+
 <section id="passwordScreen">
-  <div class="loginCard">
-    <div class="loginIcon">📖</div>
-    <h1>CRÓNICAS DEL CARIBE</h1>
-    <p>Un viaje interactivo por la historia, cultura y sociedad del Caribe.</p>
-    <input id="passwordInput" class="passwordInput" type="password" placeholder="Introduce la contraseña" autocomplete="off">
-    <button id="enterButton" class="enterButton">🔐 ENTRAR AL LIBRO</button>
-    <div id="loginError" class="loginError"></div>
-  </div>
+
+    <div class="loginCard">
+
+        <div class="loginIcon">
+            📖
+        </div>
+
+        <h1>
+            CRÓNICAS DEL CARIBE
+        </h1>
+
+        <p>
+            Un viaje interactivo por la historia,
+            cultura y sociedad del Caribe.
+        </p>
+
+        <input
+            id="passwordInput"
+            class="passwordInput"
+            type="password"
+            placeholder="Introduce la contraseña"
+            autocomplete="off"
+        >
+
+        <button
+            id="enterButton"
+            class="enterButton"
+            type="button"
+        >
+            🔐 ENTRAR AL LIBRO
+        </button>
+
+        <div
+            id="loginError"
+            class="loginError"
+        ></div>
+
+    </div>
+
 </section>
 
+<!-- =====================================================
+     APP
+===================================================== -->
+
 <main id="app">
-  <div class="topBar">
-    <div class="brand">🌎 CRÓNICAS DEL CARIBE</div>
-    <div class="controls">
-      <button class="controlBtn" id="soundBtn">🔊 Sonido</button>
-      <button class="controlBtn" id="resetBtn">↻ Reiniciar</button>
+
+    <div class="topBar">
+
+        <div class="brand">
+            🌎 CRÓNICAS DEL CARIBE
+        </div>
+
+        <div class="controls">
+
+            <button
+                class="controlBtn"
+                id="soundBtn"
+                type="button"
+            >
+                🔊 Sonido
+            </button>
+
+            <button
+                class="controlBtn"
+                id="resetBtn"
+                type="button"
+            >
+                ↻ Reiniciar
+            </button>
+
+        </div>
+
     </div>
-  </div>
 
-  <div class="progressArea">
-    <div class="progressInfo"><span id="progressText">0% completado</span><span id="progressPage">Página 1</span></div>
-    <div class="progressTrack"><div id="progressBar"></div></div>
-  </div>
+    <!-- PROGRESO -->
 
-  <section class="bookShell">
-    <div class="book">
-      <div id="underLayer" class="pageLayer under"></div>
-      <div id="turnLayer" class="pageLayer turn"></div>
+    <div class="progressArea">
+
+        <div class="progressInfo">
+
+            <span id="progressText">
+                0% completado
+            </span>
+
+            <span id="progressPage">
+                Página 1
+            </span>
+
+        </div>
+
+        <div class="progressTrack">
+
+            <div id="progressBar"></div>
+
+        </div>
+
     </div>
-  </section>
 
-  <div class="bookNav">
-    <button id="prevButton" class="navButton">← ANTERIOR</button>
-    <div id="pageCounter" class="pageCounter"></div>
-    <button id="nextButton" class="navButton">SIGUIENTE →</button>
-  </div>
+    <!-- LIBRO -->
 
-  <div id="badgeBox" class="badgeBox">
-    <div class="badge">LECTOR</div>
-    <h3>🏅 ¡HAS COMPLETADO LA LECTURA!</h3>
-    <p style="color:#a8bdc6;font-family:Arial;margin-top:8px">Ya puedes desbloquear las preguntas finales.</p>
-  </div>
+    <section class="bookShell">
 
-  <section id="quiz" class="quiz">
-    <div class="quizHeader">
-      <h2>📝 PREGUNTAS FINALES</h2>
-      <p>Ahora toca analizar causas, consecuencias, relaciones y decisiones históricas.</p>
+        <div class="book">
+
+            <article
+                id="page"
+                class="page"
+            >
+
+                <div id="pageContent"></div>
+
+                <div
+                    id="pageNumber"
+                    class="pageNumber"
+                ></div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+    <!-- NAVEGACIÓN -->
+
+    <div class="bookNav">
+
+        <button
+            id="prevButton"
+            class="navButton"
+            type="button"
+        >
+            ← ANTERIOR
+        </button>
+
+        <div
+            id="pageCounter"
+            class="pageCounter"
+        ></div>
+
+        <button
+            id="nextButton"
+            class="navButton"
+            type="button"
+        >
+            SIGUIENTE →
+        </button>
+
     </div>
-    <div id="questionsContainer"></div>
-    <button id="submitQuiz" class="submitQuiz">🏆 TERMINAR Y VER RESULTADO</button>
-  </section>
 
-  <section id="certificate" class="certificate">
-    <div class="certificateInner">
-      <div id="finalEmblem" class="finalEmblem">
-        <div><span id="finalEmblemIcon" class="emblemIcon">🏆</span><span id="finalEmblemText">MAESTRO</span></div>
-      </div>
-      <div class="trophy">🏆</div>
-      <div id="certificateMessage" style="font-family:Arial;font-weight:bold;color:#825115"></div>
-      <h2>ESCAPASTE DE LUIS</h2>
-      <h3>¡FELICIDADES!</h3>
-      <p>Has completado el desafío educativo <strong>Crónicas del Caribe</strong>.</p>
-      <p id="finalScore" style="margin-top:15px"></p>
+    <!-- BADGE -->
+
+    <div
+        id="badgeBox"
+        class="badgeBox"
+    >
+
+        <div class="badge">
+            LECTOR
+        </div>
+
+        <h3>
+            🏅 ¡HAS COMPLETADO LA LECTURA!
+        </h3>
+
+        <p
+            style="
+            color:#a8bdc6;
+            font-family:Arial;
+            margin-top:8px;
+            "
+        >
+            Ya puedes desbloquear las preguntas finales.
+        </p>
+
     </div>
-  </section>
 
-  <section id="nameBox" class="nameBox">
-    <h3>🌎 ¡Pon tu nombre en el TOP GLOBAL!</h3>
-    <input id="playerName" maxlength="25" placeholder="Tu nombre">
-    <button id="saveScoreBtn" class="saveScoreBtn">🚀 GUARDAR RESULTADO</button>
-  </section>
+    <!-- QUIZ -->
 
-  <section class="ranking">
-    <div class="rankingTitle">
-      <div class="globe">🌎</div>
-      <h2>TOP GLOBAL</h2>
-      <p>Los mejores resultados de los lectores.</p>
-    </div>
-    <div id="rankingStatus" class="rankingStatus">Cargando TOP GLOBAL...</div>
-    <div id="rankingList"></div>
-    <div id="supabaseError"></div>
-  </section>
+    <section
+        id="quiz"
+        class="quiz"
+    >
+
+        <div class="quizHeader">
+
+            <h2>
+                📝 PREGUNTAS FINALES
+            </h2>
+
+            <p>
+                Demuestra cuánto aprendiste durante el recorrido.
+            </p>
+
+        </div>
+
+        <div id="questionsContainer"></div>
+
+        <button
+            id="submitQuiz"
+            class="submitQuiz"
+            type="button"
+        >
+            🏆 TERMINAR Y VER RESULTADO
+        </button>
+
+    </section>
+
+    <!-- CERTIFICADO -->
+
+    <section
+        id="certificate"
+        class="certificate"
+    >
+
+        <div class="certificateInner">
+
+            <div class="trophy">
+                🏆
+            </div>
+
+            <div
+                id="certificateMessage"
+                style="
+                font-family:Arial;
+                font-weight:bold;
+                color:#825115;
+                "
+            ></div>
+
+            <h2>
+                ESCAPASTE DE LUIS
+            </h2>
+
+            <h3>
+                ¡FELICIDADES!
+            </h3>
+
+            <p>
+                Has completado el desafío educativo
+                <strong>Crónicas del Caribe</strong>.
+            </p>
+
+            <p
+                id="finalScore"
+                style="margin-top:15px"
+            ></p>
+
+        </div>
+
+    </section>
+
+    <!-- NOMBRE -->
+
+    <section
+        id="nameBox"
+        class="nameBox"
+    >
+
+        <h3>
+            🌎 ¡Pon tu nombre en el TOP GLOBAL!
+        </h3>
+
+        <input
+            id="playerName"
+            maxlength="25"
+            placeholder="Tu nombre"
+        >
+
+        <button
+            id="saveScoreBtn"
+            class="saveScoreBtn"
+            type="button"
+        >
+            🚀 GUARDAR RESULTADO
+        </button>
+
+    </section>
+
+    <!-- TOP -->
+
+    <section class="ranking">
+
+        <div class="rankingTitle">
+
+            <div class="globe">
+                🌎
+            </div>
+
+            <h2>
+                TOP GLOBAL
+            </h2>
+
+            <p>
+                Los mejores resultados de los lectores.
+            </p>
+
+        </div>
+
+        <div
+            id="rankingStatus"
+            class="rankingStatus"
+        >
+            Cargando TOP GLOBAL...
+        </div>
+
+        <div id="rankingList"></div>
+
+        <div id="supabaseError"></div>
+
+    </section>
+
 </main>
 
 <div id="toast"></div>
 
 <script>
-/* =========================================================
-   SUPABASE — REST DIRECTO
-   No usa @supabase/supabase-js, así la pantalla de contraseña
-   no depende de que cargue un CDN externo.
-========================================================= */
-const SUPABASE_URL="https://nzhypmddfttfljlkwutq.supabase.co";
-const SUPABASE_KEY="sb_publishable_bI9S6fX2Hip3gip6t1dNUA_e63IL7pL";
 
-const sbHeaders={
-  "apikey":SUPABASE_KEY,
-  "Authorization":"Bearer "+SUPABASE_KEY,
-  "Content-Type":"application/json"
-};
+/* =====================================================
+   CONFIGURACIÓN
+===================================================== */
 
-async function sbFetch(path,options={}){
-  const response=await fetch(SUPABASE_URL+"/rest/v1/"+path,{
-    ...options,
-    headers:{...sbHeaders,...(options.headers||{})}
-  });
-  const text=await response.text();
-  let data=null;
-  try{data=text?JSON.parse(text):null}catch(_){data=text}
-  if(!response.ok){
-    const message=(data&&data.message)||data||("HTTP "+response.status);
-    const error=new Error(String(message));
-    error.code=(data&&data.code)||String(response.status);
-    throw error;
-  }
-  return data;
-}
+const PASSWORD = "luis22";
 
-/* =========================================================
+const SUPABASE_URL =
+    "https://nzhypmddfttfljlkwutq.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_bI9S6fX2Hip3gip6t1dNUA_e63IL7pL";
+
+
+/* =====================================================
    VARIABLES
-========================================================= */
-const PASSWORD="luis22";
-let currentPage=0;
-let isTurning=false;
-let completedPages=JSON.parse(localStorage.getItem("caribe_completed_pages")||"[]");
-let quizFinished=localStorage.getItem("caribe_quiz_finished")==="true";
-let finalPercent=0,finalXP=0;
-let finalEmblem={icon:"🧭",name:"EXPLORADOR"};
-let audioEnabled=localStorage.getItem("caribe_audio")!=="off";
-const guideAnswers=JSON.parse(localStorage.getItem("caribe_guide_answers")||"{}");
+===================================================== */
 
-/* =========================================================
-   ILUSTRACIONES SVG
-========================================================= */
-function scene(type){
-const scenes={
-ocean:`<svg viewBox="0 0 900 260" role="img" aria-label="Mapa marítimo del Caribe">
-<defs><linearGradient id="sea" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#65cfe0"/><stop offset="1" stop-color="#17637a"/></linearGradient></defs>
-<rect width="900" height="260" fill="url(#sea)"/><path d="M0 210Q130 175 240 210T470 205T700 215T900 195V260H0Z" fill="#d6b76d"/>
-<path d="M95 78l100 28-40 35-75-15zM305 65l82 15 20 42-115 12zM555 105l120-25 55 45-105 35zM760 52l65 18-25 60-68-25z" fill="#e8d39b"/>
-<path d="M75 205C220 150 320 175 430 145S650 170 820 115" fill="none" stroke="#fff1b1" stroke-width="5" stroke-dasharray="11 10"/>
-<circle cx="180" cy="130" r="7" fill="#ffd85e"/><circle cx="430" cy="150" r="7" fill="#ffd85e"/><circle cx="690" cy="145" r="7" fill="#ffd85e"/>
-<text x="450" y="35" text-anchor="middle" font-family="Georgia" font-size="28" fill="#fff4c6">El mar que conecta</text>
-<text x="450" y="65" text-anchor="middle" font-family="Arial" font-size="14" fill="#e5fbff">Rutas, personas, mercancías e ideas</text>
-</svg>`,
-indigenous:`<svg viewBox="0 0 900 260"><rect width="900" height="260" fill="#c8a76a"/><circle cx="760" cy="55" r="40" fill="#ffe08b"/>
-<path d="M0 205Q180 150 330 205T650 190T900 205V260H0Z" fill="#3c7b55"/><path d="M130 205q25-75 50-120q25 45 45 120M200 205q30-55 50-90q25 35 42 90" stroke="#6d3f1d" stroke-width="13" fill="none"/>
-<path d="M470 210q50-65 105 0" fill="#8b5a2b"/><path d="M455 210l62-45 65 45" fill="#e5bd5e"/>
-<circle cx="610" cy="173" r="18" fill="#7b4a28"/><circle cx="655" cy="173" r="18" fill="#7b4a28"/>
-<text x="450" y="35" text-anchor="middle" font-family="Georgia" font-size="28" fill="#3f2a13">Primeros habitantes</text>
-<text x="450" y="65" text-anchor="middle" font-family="Arial" font-size="14" fill="#51351b">Agricultura • navegación • pesca • comunidad</text></svg>`,
-colonial:`<svg viewBox="0 0 900 260"><rect width="900" height="260" fill="#8b5c2d"/><rect y="175" width="900" height="85" fill="#523319"/>
-<path d="M100 175V105h55V75h45v100M255 175V90h55v85M330 175V55h100v120M470 175V100h60v75M600 175V78h55v97M680 175V110h80v65" fill="#e6c890" stroke="#5d391c" stroke-width="6"/>
-<path d="M355 175v-80h50v80" fill="#5d391c"/><path d="M200 135h28v28h-28zM475 125h22v25h-22zM700 130h25v25h-25z" fill="#5d391c"/>
-<path d="M75 55q55-35 110 0" fill="none" stroke="#f3d78b" stroke-width="4"/><text x="450" y="35" text-anchor="middle" font-family="Georgia" font-size="28" fill="#fff0c1">La época colonial</text>
-<text x="450" y="238" text-anchor="middle" font-family="Arial" font-size="14" fill="#ffe7ad">Dominio político • comercio • plantaciones • resistencia</text></svg>`,
-independencia:`<svg viewBox="0 0 900 260"><rect width="900" height="260" fill="#355d82"/><path d="M0 220Q170 160 340 215T680 195T900 210V260H0Z" fill="#2b4a36"/>
-<path d="M450 205V65" stroke="#f0d49a" stroke-width="7"/><path d="M453 68l190 42-190 43z" fill="#d94747"/><path d="M510 94l60 13-60 13z" fill="#fff2b0"/>
-<circle cx="315" cy="183" r="20" fill="#6e4226"/><circle cx="370" cy="177" r="20" fill="#7d4c2b"/><circle cx="680" cy="181" r="20" fill="#6e4226"/>
-<path d="M300 205l30-35 30 35M355 205l25-38 28 38M665 205l30-35 30 35" fill="#d49c55"/>
-<text x="450" y="34" text-anchor="middle" font-family="Georgia" font-size="28" fill="#fff1bd">Independencia</text>
-<text x="450" y="242" text-anchor="middle" font-family="Arial" font-size="14" fill="#e6f5ff">Autonomía • representación • gobierno propio</text></svg>`,
-crisis:`<svg viewBox="0 0 900 260"><rect width="900" height="260" fill="#202936"/><circle cx="690" cy="62" r="42" fill="#8d99a6"/>
-<path d="M0 205l120-60 95 35 115-70 100 80 105-55 120 55 145-75v145H0z" fill="#0d1118"/>
-<path d="M450 30l-22 48 30 12-32 58" fill="none" stroke="#e5c75f" stroke-width="9"/>
-<path d="M180 160h120v55H180zM190 145h100v15H190z" fill="#b78c40"/><circle cx="215" cy="188" r="13" fill="#e8ca68"/><circle cx="265" cy="188" r="13" fill="#e8ca68"/>
-<text x="450" y="35" text-anchor="middle" font-family="Georgia" font-size="28" fill="#f1f1e8">Crisis de una metrópoli</text>
-<text x="450" y="242" text-anchor="middle" font-family="Arial" font-size="14" fill="#dce6ed">Guerras • problemas económicos • conflictos internos</text></svg>`,
-culture:`<svg viewBox="0 0 900 260"><rect width="900" height="260" fill="#a45c38"/><circle cx="130" cy="72" r="42" fill="#ffd36a"/><path d="M0 220Q170 165 330 215T650 200T900 215V260H0Z" fill="#4d7448"/>
-<circle cx="330" cy="150" r="27" fill="#63391f"/><circle cx="450" cy="145" r="27" fill="#754329"/><circle cx="570" cy="150" r="27" fill="#63391f"/>
-<path d="M285 190l45-65 45 65M405 190l45-65 45 65M525 190l45-65 45 65" fill="#e6bd61"/>
-<circle cx="730" cy="140" r="35" fill="#f1c26b"/><path d="M705 140h50M730 115v50" stroke="#77401e" stroke-width="6"/>
-<text x="450" y="35" text-anchor="middle" font-family="Georgia" font-size="28" fill="#fff0c1">Cultura caribeña</text>
-<text x="450" y="242" text-anchor="middle" font-family="Arial" font-size="14" fill="#fff1cf">Pueblos diferentes • intercambio • nuevas identidades</text></svg>`
-};
-return `<div class="visualScene">${scenes[type]||scenes.ocean}<div class="caption">Ilustración temática: ${type==="ocean"?"conexión marítima":type==="indigenous"?"sociedades indígenas":type==="colonial"?"orden colonial":type==="independencia"?"autonomía política":type==="crisis"?"crisis y debilitamiento":"mezcla cultural"}</div></div>`;
-}
+let currentPage = 0;
 
-/* =========================================================
-   PÁGINAS
-========================================================= */
-const pages=[
-`<div class="cover"><div class="coverContent"><div class="coverEmblem">🌎</div><div class="kicker">Proyecto educativo</div><h1>CRÓNICAS<br>DEL CARIBE</h1><div class="subtitle">Historia, cultura y sociedad de una región llena de memoria.</div><div class="quote">“Conocer el pasado permite comprender mejor el presente y construir el futuro.”</div><p>Este libro digital propone un recorrido por algunos de los procesos históricos y sociales que ayudaron a formar el Caribe. Avanza por sus páginas, observa las ilustraciones y utiliza las preguntas para relacionar causas y consecuencias.</p></div></div>`,
+let completedPages =
+    JSON.parse(
+        localStorage.getItem(
+            "caribe_completed_pages"
+        ) || "[]"
+    );
 
-`<div class="pageContent"><div class="kicker">Capítulo I</div><h2>🌊 Un mar que conecta</h2>${scene("ocean")}<p>El mar Caribe no solamente separa territorios. Durante siglos funcionó como una enorme vía de comunicación. Por sus aguas circularon personas, mercancías, ideas, idiomas, costumbres y creencias.</p><p>Las islas y las costas continentales desarrollaron sociedades diferentes, pero compartieron experiencias. La navegación permitió establecer contactos entre comunidades alejadas.</p><div class="factGrid"><div class="fact"><strong>🌊 Geografía</strong>El mar fue una vía fundamental para viajar y comerciar.</div><div class="fact"><strong>🧭 Navegación</strong>Las rutas marítimas conectaron diferentes territorios.</div></div><h3>Idea clave</h3><p>El Caribe se entiende mejor como una región conectada, no como un conjunto de lugares aislados.</p></div>`,
+let finalPercent = 0;
 
-`<div class="pageContent"><div class="kicker">Capítulo II</div><h2>🏝️ Los primeros habitantes</h2>${scene("indigenous")}<p>Mucho antes de la llegada de los europeos, las islas del Caribe ya estaban habitadas por diferentes pueblos indígenas. Desarrollaron agricultura, pesca, navegación, organización social y expresiones culturales propias.</p><p>Entre ellos se encontraban los taínos, caribes y otros grupos. Sus sociedades no eran idénticas: cada comunidad tenía autoridades, costumbres y formas de aprovechar los recursos naturales.</p><p>La agricultura, especialmente el cultivo de la yuca, fue fundamental. También fueron importantes la pesca, la recolección y la caza.</p><div class="quote">Las sociedades indígenas del Caribe tenían conocimientos adaptados a su entorno y una relación estrecha con la naturaleza.</div></div>`,
+let finalXP = 0;
 
-`<div class="pageContent"><div class="kicker">Capítulo III</div><h2>⛵ El encuentro de dos mundos</h2>${scene("colonial")}<p>A finales del siglo XV comenzó una etapa que transformaría profundamente la historia del Caribe. Los viajes europeos establecieron contacto con las sociedades que ya vivían en la región.</p><p>El encuentro no fue solamente intercambio cultural. También estuvo acompañado por conquista, colonización, explotación económica, conflictos y enfermedades.</p><h3>Consecuencias</h3><ul><li>Transformación de sociedades indígenas.</li><li>Nuevas estructuras políticas y económicas.</li><li>Expansión de idiomas y religiones.</li><li>Intercambio de productos entre continentes.</li><li>Conflictos y pérdida de población indígena.</li></ul><p>El resultado fue una nueva etapa histórica cuyos efectos todavía se observan en la cultura caribeña.</p></div>`,
+let audioEnabled =
+    localStorage.getItem(
+        "caribe_audio"
+    ) !== "off";
 
-`<div class="pageContent"><div class="kicker">Capítulo IV</div><h2>⚓ La época colonial</h2>${scene("colonial")}<p>Durante el período colonial, distintas potencias europeas establecieron territorios en el Caribe. La región adquirió importancia económica por su posición geográfica y por la producción de recursos.</p><p>Las plantaciones tuvieron gran importancia en varias economías. El azúcar, por ejemplo, alcanzó una enorme demanda internacional.</p><p>Este crecimiento estuvo relacionado con sistemas de trabajo coercitivos y con la esclavización de millones de africanos trasladados por la fuerza a América.</p><div class="quote">La historia del Caribe también es la historia de la resistencia de personas y comunidades frente a la explotación.</div><p>Las poblaciones africanas y sus descendientes transformaron profundamente la música, la gastronomía, las religiones, las lenguas y las tradiciones del Caribe.</p></div>`,
 
-`<div class="pageContent"><div class="kicker">Capítulo V</div><h2>🥁 Una cultura que nació de muchas culturas</h2>${scene("culture")}<p>La cultura caribeña actual es resultado de siglos de encuentros entre pueblos indígenas, africanos, europeos y otros grupos que llegaron posteriormente.</p><div class="factGrid"><div class="fact"><strong>🥁 Música</strong>Mezcla de ritmos, instrumentos y tradiciones.</div><div class="fact"><strong>🍲 Gastronomía</strong>Sabores que reflejan siglos de intercambio.</div><div class="fact"><strong>🎨 Arte</strong>Historias y símbolos expresados de distintas maneras.</div><div class="fact"><strong>🗣️ Lenguas</strong>Numerosos idiomas y variantes conviven en la región.</div></div><p>La mezcla cultural no significa que todos los pueblos sean iguales. Cada comunidad conserva elementos propios y crea nuevas formas de identidad.</p></div>`,
-
-`<div class="pageContent"><div class="kicker">Capítulo VI</div><h2>🏛️ Independencia y cambios políticos</h2>${scene("independencia")}<p>Con el paso del tiempo surgieron movimientos que cuestionaron el dominio colonial. En diferentes territorios del Caribe hubo rebeliones, movimientos independentistas y cambios políticos.</p><p>Las causas fueron diversas: desigualdad social, impuestos, falta de representación y deseo de establecer gobiernos propios.</p><p>La independencia no ocurrió de la misma manera en todos los territorios. Algunos procesos fueron rápidos y otros estuvieron marcados por largos conflictos.</p><div class="quote">La independencia política no resolvió automáticamente todos los problemas sociales y económicos heredados del período colonial.</div></div>`,
-
-`<div class="pageContent"><div class="kicker">Capítulo VII</div><h2>🌴 El Caribe dominicano</h2>${scene("culture")}<p>La historia de la República Dominicana está profundamente relacionada con el resto del Caribe. La isla La Española fue uno de los primeros territorios americanos ocupados de manera permanente por los españoles.</p><p>A lo largo de los siglos, la población y la cultura cambiaron por colonización, migraciones, conflictos y transformaciones económicas.</p><p>La sociedad dominicana recibió influencias indígenas, africanas y europeas. Estas pueden observarse en la música, gastronomía, celebraciones, palabras y costumbres.</p><h3>Identidad</h3><p>La identidad dominicana no puede explicarse mediante una sola influencia. Es el resultado de múltiples procesos históricos desarrollados durante siglos.</p></div>`,
-
-`<div class="pageContent"><div class="kicker">Capítulo VIII</div><h2>🌎 El Caribe en la actualidad</h2>${scene("ocean")}<p>Hoy el Caribe continúa siendo una región de gran importancia cultural, económica y geográfica. Millones de personas viven en sus islas y costas y millones más visitan sus territorios.</p><p>El turismo representa una actividad importante para numerosas economías. También existen desafíos relacionados con desigualdad, medio ambiente, cambio climático y protección de recursos.</p><p>Las comunidades caribeñas enfrentan esos desafíos mientras mantienen vivas sus tradiciones. La música, las fiestas, la gastronomía y las historias familiares continúan formando parte de la vida cotidiana.</p><h3>Un futuro compartido</h3><p>El Caribe demuestra que una región puede estar formada por muchos pueblos diferentes y, al mismo tiempo, compartir una historia conectada.</p></div>`,
-
-`<div class="pageContent"><div class="kicker">Preguntas guía</div><h2>🧭 Piensa como historiador</h2>${scene("colonial")}<div class="questionIntro"><strong>Estas tres preguntas no son el examen final.</strong><br>Sirven para que relaciones el contenido con las ideas centrales. Tu elección también cambia el ambiente del libro.</div>
-<div class="mainQuestions">
-<div class="mainQuestion"><h3>1. ¿Qué significa que un territorio sea colonial?</h3>
-<label class="answerChoice"><input type="radio" name="g1" value="colonial" onchange="chooseGuide(1,'colonial')">Está bajo dominio político de una potencia externa.</label>
-<label class="answerChoice"><input type="radio" name="g1" value="ocean" onchange="chooseGuide(1,'ocean')">Es un territorio aislado sin contactos con otros pueblos.</label>
-<label class="answerChoice"><input type="radio" name="g1" value="independencia" onchange="chooseGuide(1,'independencia')">Tiene soberanía completa y no depende de otra potencia.</label>
-<div id="g1result" class="questionResult"></div></div>
-<div class="mainQuestion"><h3>2. ¿Por qué un pueblo desea independizarse?</h3>
-<label class="answerChoice"><input type="radio" name="g2" value="independencia" onchange="chooseGuide(2,'independencia')">Busca autonomía, representación política y capacidad de gobernarse.</label>
-<label class="answerChoice"><input type="radio" name="g2" value="culture" onchange="chooseGuide(2,'culture')">Porque quiere eliminar toda relación cultural con otros pueblos.</label>
-<label class="answerChoice"><input type="radio" name="g2" value="colonial" onchange="chooseGuide(2,'colonial')">Porque desea mantener el control de una potencia extranjera.</label>
-<div id="g2result" class="questionResult"></div></div>
-<div class="mainQuestion"><h3>3. ¿Qué situaciones debilitan a una metrópoli?</h3>
-<label class="answerChoice"><input type="radio" name="g3" value="crisis" onchange="chooseGuide(3,'crisis')">Guerras, crisis económicas y conflictos políticos internos.</label>
-<label class="answerChoice"><input type="radio" name="g3" value="ocean" onchange="chooseGuide(3,'ocean')">La navegación y el comercio por sí solos.</label>
-<label class="answerChoice"><input type="radio" name="g3" value="culture" onchange="chooseGuide(3,'culture')">La diversidad cultural de las colonias.</label>
-<div id="g3result" class="questionResult"></div></div></div>
-<p class="quote">💡 No memorices solamente la respuesta: piensa en <strong>qué causa lleva a qué consecuencia</strong>.</p></div>`,
-
-`<div class="pageContent"><div class="kicker">Herramienta de estudio</div><h2>🗺️ De colonia a sociedad actual</h2>${scene("independencia")}<p>Los procesos históricos pueden entenderse como una cadena: un territorio puede quedar bajo dominio externo; ese dominio puede producir desigualdades y conflictos; una crisis de la metrópoli puede abrir oportunidades políticas; y después de la independencia aparecen nuevos desafíos.</p>
-<div class="choiceGrid"><div class="topicCard"><div class="iconScene">🏴</div><h3>Colonia</h3><p>Dominio político externo y relación económica desigual.</p></div><div class="topicCard"><div class="iconScene">⚔️</div><h3>Crisis</h3><p>Guerras, problemas económicos y conflictos internos pueden debilitar el control.</p></div><div class="topicCard"><div class="iconScene">🏛️</div><h3>Independencia</h3><p>Proceso para conseguir mayor autonomía y gobierno propio.</p></div><div class="topicCard"><div class="iconScene">🌎</div><h3>Presente</h3><p>Las sociedades actuales conservan huellas de esos procesos.</p></div></div></div>`,
-
-`<div class="pageContent"><div class="kicker">Lectura final</div><h2>📜 Lo que nos deja la historia</h2>${scene("crisis")}<p>La historia del Caribe no está formada por un único acontecimiento. Es una larga cadena de encuentros, conflictos, migraciones, intercambios, resistencias y transformaciones.</p><p>Los pueblos indígenas dejaron conocimientos y tradiciones. Las poblaciones africanas transformaron profundamente la cultura. Las sociedades europeas introdujeron nuevas instituciones y formas económicas. Posteriormente, otros grupos migraron al Caribe.</p><div class="quote">📖 Leer historia no significa solamente memorizar fechas. Significa comprender cómo las decisiones y experiencias del pasado ayudaron a construir el mundo actual.</div><p>Si llegaste hasta aquí, ya estás preparado para el desafío final.</p></div>`,
-
-`<div class="pageContent"><div class="kicker">Página especial</div><h2>🏅 ¡Lectura completada!</h2>${scene("independencia")}<p>Has llegado al final del recorrido principal de <strong>Crónicas del Caribe</strong>.</p><p>Ahora puedes demostrar tus conocimientos. Obtendrás puntos según tus respuestas y podrás aparecer en el <strong>TOP GLOBAL</strong>.</p><div class="quote">🎯 Consejo: piensa primero en la relación entre causa, proceso y consecuencia.</div><button class="themeButton" onclick="openQuiz()">📝 LLENAR PREGUNTAS FINALES</button></div>`,
-
-`<div class="pageContent"><div class="kicker">Créditos</div><h2>🎬 Equipo del proyecto</h2>${scene("culture")}<div class="factGrid"><div class="fact"><strong>OSCAR</strong>Programación y desarrollo de la página</div><div class="fact"><strong>JESÚS</strong>Diseño y apariencia visual</div><div class="fact" style="grid-column:1/-1"><strong>Y EQUIPO</strong>Proyecto educativo: Crónicas del Caribe</div></div><p>Gracias por recorrer este libro digital.</p><button class="themeButton" onclick="openQuiz()">📝 LLENAR PREGUNTAS FINALES</button></div>`
-];
-
-/* =========================================================
-   EXAMEN FINAL — MÁS DE ANÁLISIS
-========================================================= */
-const questions=[
-{q:"Si una metrópoli entra en una guerra costosa mientras enfrenta conflictos internos, ¿por qué eso podría favorecer un movimiento independentista?",options:["Porque aumenta automáticamente la riqueza colonial","Porque puede reducir los recursos disponibles para controlar el territorio","Porque hace que todas las colonias desaparezcan","Porque elimina las diferencias sociales"],answer:1},
-{q:"Un territorio paga impuestos a una potencia externa y no puede decidir sus principales asuntos políticos. ¿Qué concepto describe mejor la situación?",options:["Soberanía plena","Colonia","Migración","Intercambio cultural"],answer:1},
-{q:"¿Qué combinación explica mejor por qué un pueblo puede cuestionar el dominio colonial?",options:["Mayor autonomía + desigualdad + falta de representación","Aislamiento total + ausencia de conflictos","Más control externo + menos participación política","Desaparición del comercio + eliminación de identidades"],answer:0},
-{q:"¿Cuál es la mejor relación entre plantaciones y estructura social caribeña?",options:["Las plantaciones hicieron desaparecer el comercio","La producción para exportación se vinculó con trabajo coercitivo y esclavización","Las plantaciones eliminaron las diferencias económicas","La producción agrícola impidió las migraciones"],answer:1},
-{q:"Dos sociedades tienen lenguas y costumbres diferentes, pero ambas fueron transformadas por migraciones, comercio y conflictos. ¿Qué idea de la lectura permite compararlas?",options:["La cultura permanece idéntica","Las culturas pueden cambiar mediante interacción histórica","Toda cultura tiene una única raíz","El contacto siempre elimina las identidades"],answer:1},
-{q:"¿Por qué una independencia política puede ser solo el comienzo de otro proceso histórico?",options:["Porque los nuevos Estados deben construir instituciones y enfrentar problemas heredados","Porque la independencia elimina la necesidad de gobernar","Porque los territorios independientes dejan de tener economía","Porque todos los conflictos desaparecen inmediatamente"],answer:0},
-{q:"Si una metrópoli pierde recursos y su autoridad se debilita, ¿qué factor interno podría acelerar un cambio político en una colonia?",options:["Mayor obediencia sin demandas","Organización de grupos que exigen representación y autonomía","El aislamiento completo de la población","La desaparición de las comunicaciones"],answer:1},
-{q:"¿Cuál conclusión conecta mejor la historia indígena, africana y europea?",options:["Una sola cultura explica todo el Caribe","Los contactos, conflictos y aportes de distintos pueblos transformaron las sociedades","Las culturas nunca se mezclaron","Después del siglo XV no hubo cambios"],answer:1},
-{q:"Un estudiante afirma: “La cultura dominicana es únicamente europea”. ¿Cuál evidencia de la lectura contradice mejor esa afirmación?",options:["La existencia de una sola lengua","La presencia de influencias indígenas, africanas y europeas en música, gastronomía y costumbres","El aislamiento histórico de la isla","La desaparición de las tradiciones locales"],answer:1},
-{q:"¿Cuál es la idea más completa para explicar por qué estudiar el pasado ayuda a comprender el Caribe actual?",options:["Permite memorizar más fechas","Permite relacionar decisiones, conflictos, migraciones e intercambios con características de las sociedades actuales","Demuestra que todas las sociedades son iguales","Sirve solamente para estudiar guerras"],answer:1}
-];
-
-/* =========================================================
+/* =====================================================
    ELEMENTOS
-========================================================= */
-const passwordScreen=document.getElementById("passwordScreen"),app=document.getElementById("app"),passwordInput=document.getElementById("passwordInput"),
-loginError=document.getElementById("loginError"),underLayer=document.getElementById("underLayer"),turnLayer=document.getElementById("turnLayer"),
-pageNumber=document.getElementById("pageNumber"),pageCounter=document.getElementById("pageCounter"),progressBar=document.getElementById("progressBar"),
-progressText=document.getElementById("progressText"),progressPage=document.getElementById("progressPage"),prevButton=document.getElementById("prevButton"),
-nextButton=document.getElementById("nextButton"),badgeBox=document.getElementById("badgeBox"),quiz=document.getElementById("quiz"),
-certificate=document.getElementById("certificate"),nameBox=document.getElementById("nameBox"),toast=document.getElementById("toast");
+===================================================== */
 
-/* =========================================================
+const passwordScreen =
+    document.getElementById(
+        "passwordScreen"
+    );
+
+const app =
+    document.getElementById("app");
+
+const passwordInput =
+    document.getElementById(
+        "passwordInput"
+    );
+
+const enterButton =
+    document.getElementById(
+        "enterButton"
+    );
+
+const loginError =
+    document.getElementById(
+        "loginError"
+    );
+
+const page =
+    document.getElementById("page");
+
+const pageContent =
+    document.getElementById(
+        "pageContent"
+    );
+
+const pageNumber =
+    document.getElementById(
+        "pageNumber"
+    );
+
+const pageCounter =
+    document.getElementById(
+        "pageCounter"
+    );
+
+const progressBar =
+    document.getElementById(
+        "progressBar"
+    );
+
+const progressText =
+    document.getElementById(
+        "progressText"
+    );
+
+const progressPage =
+    document.getElementById(
+        "progressPage"
+    );
+
+const prevButton =
+    document.getElementById(
+        "prevButton"
+    );
+
+const nextButton =
+    document.getElementById(
+        "nextButton"
+    );
+
+const badgeBox =
+    document.getElementById(
+        "badgeBox"
+    );
+
+const quiz =
+    document.getElementById("quiz");
+
+const certificate =
+    document.getElementById(
+        "certificate"
+    );
+
+const nameBox =
+    document.getElementById(
+        "nameBox"
+    );
+
+const toast =
+    document.getElementById("toast");
+
+
+/* =====================================================
    PARTICULAS
-========================================================= */
-for(let i=0;i<35;i++){const p=document.createElement("div");p.className="particle";p.style.left=Math.random()*100+"%";p.style.animationDuration=(7+Math.random()*12)+"s";p.style.animationDelay=(-Math.random()*15)+"s";p.style.opacity=.2+Math.random()*.6;document.getElementById("particles").appendChild(p)}
+===================================================== */
 
-/* =========================================================
+for(let i = 0; i < 35; i++){
+
+    const particle =
+        document.createElement("div");
+
+    particle.className =
+        "particle";
+
+    particle.style.left =
+        Math.random() * 100 + "%";
+
+    particle.style.animationDuration =
+        (7 + Math.random() * 12) + "s";
+
+    particle.style.animationDelay =
+        (-Math.random() * 15) + "s";
+
+    document
+        .getElementById("particles")
+        .appendChild(particle);
+}
+
+
+/* =====================================================
    TOAST
-========================================================= */
+===================================================== */
+
 let toastTimer;
-function showToast(message){toast.textContent=message;toast.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove("show"),3000)}
 
-/* =========================================================
-   PASSWORD — INDEPENDIENTE DE SUPABASE
-========================================================= */
+function showToast(message){
+
+    toast.textContent =
+        message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(
+            () =>
+                toast.classList.remove("show"),
+            3000
+        );
+}
+
+
+/* =====================================================
+   PÁGINAS
+===================================================== */
+
+const pages = [
+
+/* 0 */
+
+`
+<div class="cover">
+
+<div class="coverContent">
+
+<div class="coverEmblem">
+🌎
+</div>
+
+<div class="kicker">
+Proyecto educativo
+</div>
+
+<h1>
+CRÓNICAS<br>DEL CARIBE
+</h1>
+
+<div class="subtitle">
+Historia, cultura y sociedad de una región llena de memoria.
+</div>
+
+<div class="quote">
+“Conocer el pasado permite comprender mejor el presente y construir el futuro.”
+</div>
+
+<p>
+Este libro digital propone un recorrido por algunos de los
+procesos históricos y sociales que ayudaron a formar el Caribe.
+Avanza por sus páginas, lee con atención y descubre los hechos
+que dejaron huella en sus pueblos.
+</p>
+
+</div>
+</div>
+`,
+
+/* 1 */
+
+`
+<div class="pageContent">
+
+<div class="kicker">
+Capítulo I
+</div>
+
+<h2>
+🌊 Un mar que conecta
+</h2>
+
+<p>
+El mar Caribe no solamente separa territorios. Durante siglos
+ha funcionado como una enorme vía de comunicación. A través de
+sus aguas circularon personas, mercancías, ideas, idiomas,
+costumbres y creencias.
+</p>
+
+<p>
+Las islas y las costas continentales que rodean el Caribe
+desarrollaron sociedades diferentes, pero también compartieron
+experiencias. La navegación permitió establecer contactos entre
+comunidades que estaban muy alejadas entre sí.
+</p>
+
+<p>
+Por eso, cuando estudiamos el Caribe, no debemos imaginarlo como
+un conjunto de lugares completamente aislados. Es mejor entenderlo
+como una región conectada por rutas marítimas y por una historia
+en la que participaron numerosos pueblos.
+</p>
+
+<div class="factGrid">
+
+<div class="fact">
+<strong>🌊 Geografía</strong>
+El mar fue una vía fundamental para viajar y comerciar.
+</div>
+
+<div class="fact">
+<strong>🧭 Navegación</strong>
+Las rutas marítimas ayudaron a conectar diferentes territorios.
+</div>
+
+</div>
+
+<h3>
+Una región diversa
+</h3>
+
+<p>
+La diversidad es una de las características más importantes del
+Caribe. En la región conviven distintas lenguas, tradiciones,
+formas de organización y expresiones culturales.
+</p>
+
+</div>
+`,
+
+/* 2 */
+
+`
+<div class="pageContent">
+
+<div class="kicker">
+Capítulo II
+</div>
+
+<h2>
+🏝️ Los primeros habitantes
+</h2>
+
+<p>
+Mucho antes de la llegada de los europeos, las islas del Caribe
+ya estaban habitadas por diferentes pueblos indígenas. Estas
+comunidades desarrollaron formas propias de agricultura,
+pesca, navegación, organización social y expresión cultural.
+</p>
+
+<p>
+Entre los pueblos que habitaron la región se encontraban los
+taínos, caribes y otros grupos. Sus sociedades no eran idénticas:
+cada comunidad tenía sus propias costumbres, autoridades,
+creencias y formas de aprovechar los recursos naturales.
+</p>
+
+<p>
+La agricultura tuvo una enorme importancia. El cultivo de
+productos como la yuca permitió alimentar a las comunidades y
+favoreció el establecimiento de poblaciones permanentes.
+También fueron importantes la pesca, la recolección y la caza.
+</p>
+
+<div class="quote">
+Las sociedades indígenas del Caribe tenían conocimientos
+adaptados a su entorno y una relación estrecha con la naturaleza.
+</div>
+
+<p>
+Sus conocimientos sobre el mar también fueron fundamentales.
+Las canoas permitían desplazarse entre islas y realizar
+intercambios. Gracias a la navegación existían contactos entre
+poblaciones que podían encontrarse a grandes distancias.
+</p>
+
+</div>
+`,
+
+/* 3 */
+
+`
+<div class="pageContent">
+
+<div class="kicker">
+Capítulo III
+</div>
+
+<h2>
+⛵ El encuentro de dos mundos
+</h2>
+
+<p>
+A finales del siglo XV comenzó una etapa que transformaría
+profundamente la historia del Caribe. Los viajes europeos
+llegaron a las islas y establecieron un contacto que produjo
+consecuencias enormes para las poblaciones que ya vivían allí.
+</p>
+
+<p>
+El encuentro no fue simplemente un intercambio cultural.
+También estuvo acompañado por procesos de conquista,
+colonización, explotación económica y conflictos.
+</p>
+
+<p>
+Los europeos introdujeron nuevas instituciones, idiomas,
+religiones, animales, productos y tecnologías. Al mismo tiempo,
+las sociedades americanas aportaron alimentos, conocimientos
+sobre el territorio y numerosas prácticas culturales.
+</p>
+
+<h3>
+Consecuencias
+</h3>
+
+<ul>
+
+<li>
+Transformación de las sociedades indígenas.
+</li>
+
+<li>
+Creación de nuevas estructuras políticas.
+</li>
+
+<li>
+Expansión de nuevas lenguas y religiones.
+</li>
+
+<li>
+Intercambio de productos entre continentes.
+</li>
+
+<li>
+Conflictos, enfermedades y pérdida de población indígena.
+</li>
+
+</ul>
+
+<p>
+Este proceso marcó el comienzo de una nueva etapa histórica para
+el Caribe y tuvo efectos que todavía pueden observarse en la
+cultura de la región.
+</p>
+
+</div>
+`,
+
+/* 4 */
+
+`
+<div class="pageContent">
+
+<div class="kicker">
+Capítulo IV
+</div>
+
+<h2>
+⚓ La época colonial
+</h2>
+
+<p>
+Durante el período colonial, distintas potencias europeas
+establecieron territorios en el Caribe. La región adquirió
+importancia económica debido a su posición geográfica y a la
+producción de diferentes recursos.
+</p>
+
+<p>
+Las plantaciones se convirtieron en una parte importante de
+varias economías caribeñas. Productos como el azúcar tuvieron
+una enorme demanda internacional.
+</p>
+
+<p>
+El crecimiento de estas actividades estuvo relacionado con
+sistemas de trabajo muy duros y con la esclavización de millones
+de africanos trasladados por la fuerza al continente americano
+y a las islas.
+</p>
+
+<div class="quote">
+La historia del Caribe también es la historia de la resistencia
+de personas y comunidades frente a la explotación.
+</div>
+
+<p>
+Las personas africanas y sus descendientes tuvieron un papel
+fundamental en la construcción de las sociedades caribeñas.
+Sus idiomas, religiones, música, gastronomía y tradiciones
+contribuyeron profundamente a la cultura regional.
+</p>
+
+</div>
+`,
+
+/* 5 */
+
+`
+<div class="pageContent">
+
+<div class="kicker">
+Capítulo V
+</div>
+
+<h2>
+🥁 Una cultura que nació de muchas culturas
+</h2>
+
+<p>
+La cultura caribeña actual es resultado de siglos de encuentros
+entre pueblos indígenas, africanos, europeos y posteriormente
+otros grupos que llegaron a la región.
+</p>
+
+<p>
+La música es uno de los ejemplos más claros. Diferentes ritmos,
+instrumentos y formas de expresión se mezclaron hasta producir
+géneros que hoy son reconocidos internacionalmente.
+</p>
+
+<p>
+La gastronomía también refleja esa diversidad. Ingredientes
+originarios de América se combinaron con productos introducidos
+desde otros continentes y con técnicas culinarias procedentes
+de distintas tradiciones.
+</p>
+
+<div class="factGrid">
+
+<div class="fact">
+<strong>🥁 Música</strong>
+Una combinación de ritmos, instrumentos y tradiciones.
+</div>
+
+<div class="fact">
+<strong>🍲 Gastronomía</strong>
+Sabores que reflejan siglos de intercambio cultural.
+</div>
+
+<div class="fact">
+<strong>🎨 Arte</strong>
+Historias, símbolos y tradiciones expresadas de diferentes formas.
+</div>
+
+<div class="fact">
+<strong>🗣️ Lenguas</strong>
+La región reúne numerosos idiomas y variantes lingüísticas.
+</div>
+
+</div>
+
+<p>
+Esta mezcla no significa que todas las culturas sean iguales.
+Cada pueblo conservó elementos propios y desarrolló nuevas
+formas de identidad.
+</p>
+
+</div>
+`,
+
+/* 6 */
+
+`
+<div class="pageContent">
+
+<div class="kicker">
+Capítulo VI
+</div>
+
+<h2>
+🏛️ Independencia y cambios políticos
+</h2>
+
+<p>
+Con el paso del tiempo surgieron movimientos que cuestionaron
+el dominio colonial. En diferentes territorios del Caribe se
+produjeron rebeliones, movimientos independentistas y procesos
+políticos que modificaron el mapa de la región.
+</p>
+
+<p>
+Las causas fueron diversas. Algunas estuvieron relacionadas con
+la desigualdad social, los impuestos, la falta de representación
+política y el deseo de establecer gobiernos propios.
+</p>
+
+<p>
+La independencia no ocurrió de la misma manera en todos los
+territorios. Algunos procesos fueron relativamente rápidos,
+mientras que otros estuvieron marcados por largos conflictos.
+</p>
+
+<p>
+Después de la independencia, los nuevos Estados tuvieron que
+enfrentar enormes desafíos: organizar sus instituciones,
+establecer economías estables y definir su identidad nacional.
+</p>
+
+<div class="quote">
+La independencia política no resolvió automáticamente todos los
+problemas sociales y económicos heredados del período colonial.
+</div>
+
+</div>
+`,
+
+/* 7 */
+
+`
+<div class="pageContent">
+
+<div class="kicker">
+Capítulo VII
+</div>
+
+<h2>
+🌴 El Caribe dominicano
+</h2>
+
+<p>
+La historia de la República Dominicana está profundamente
+relacionada con el resto del Caribe. La isla La Española fue
+uno de los primeros territorios americanos ocupados de manera
+permanente por los españoles.
+</p>
+
+<p>
+A lo largo de los siglos, la población y la cultura del territorio
+cambiaron debido a los procesos de colonización, migraciones,
+conflictos y transformaciones económicas.
+</p>
+
+<p>
+La sociedad dominicana recibió influencias indígenas, africanas
+y europeas. Estas influencias pueden observarse en la música,
+la gastronomía, las celebraciones, las palabras utilizadas en
+el idioma y muchas costumbres cotidianas.
+</p>
+
+<h3>
+Identidad
+</h3>
+
+<p>
+La identidad dominicana no puede explicarse mediante una sola
+influencia. Es el resultado de múltiples procesos históricos
+que se desarrollaron durante siglos.
+</p>
+
+<div class="quote">
+Comprender la historia dominicana también significa comprender
+su conexión con el Caribe.
+</div>
+
+</div>
+`,
+
+/* 8 */
+
+`
+<div class="pageContent">
+
+<div class="kicker">
+Capítulo VIII
+</div>
+
+<h2>
+🌎 El Caribe en la actualidad
+</h2>
+
+<p>
+Hoy el Caribe continúa siendo una región de gran importancia
+cultural, económica y geográfica. Millones de personas viven
+en sus islas y costas, y millones más visitan sus territorios
+cada año.
+</p>
+
+<p>
+El turismo representa una actividad importante para numerosas
+economías. Sin embargo, también existen desafíos relacionados
+con la desigualdad, el medio ambiente, el cambio climático y
+la necesidad de proteger los recursos naturales.
+</p>
+
+<p>
+Las comunidades caribeñas enfrentan estos desafíos mientras
+mantienen vivas sus tradiciones. La música, las fiestas,
+la gastronomía, las historias familiares y las expresiones
+artísticas continúan formando parte de la vida cotidiana.
+</p>
+
+<h3>
+Un futuro compartido
+</h3>
+
+<p>
+El Caribe demuestra que una región puede estar formada por
+muchos pueblos diferentes y, al mismo tiempo, compartir una
+historia conectada.
+</p>
+
+<p>
+Conocer esa historia ayuda a valorar la diversidad y comprender
+por qué las sociedades actuales tienen las características que
+presentan.
+</p>
+
+</div>
+`,
+
+/* 9 */
+
+`
+<div class="pageContent">
+
+<div class="kicker">
+Lectura final
+</div>
+
+<h2>
+📜 Lo que nos deja la historia
+</h2>
+
+<p>
+Después de recorrer estas páginas podemos observar que la historia
+del Caribe no está formada por un único acontecimiento. Es una
+larga cadena de encuentros, conflictos, migraciones, intercambios,
+resistencias y transformaciones.
+</p>
+
+<p>
+Los pueblos indígenas dejaron conocimientos y tradiciones.
+Las poblaciones africanas transformaron profundamente la cultura
+de la región. Las sociedades europeas introdujeron nuevas
+instituciones y formas económicas. Posteriormente, otros grupos
+migraron al Caribe y continuaron enriqueciendo su diversidad.
+</p>
+
+<p>
+La historia permite comprender que las culturas no permanecen
+completamente estáticas. Cambian cuando las personas interactúan,
+aprenden, resisten, adaptan costumbres y crean nuevas formas
+de expresión.
+</p>
+
+<div class="quote">
+📖 Leer historia no significa solamente memorizar fechas.
+Significa comprender cómo las decisiones y experiencias del
+pasado ayudaron a construir el mundo actual.
+</div>
+
+<p>
+Si llegaste hasta aquí, ya estás preparado para el desafío final.
+Lee cuidadosamente cada pregunta y utiliza lo aprendido durante
+el recorrido.
+</p>
+
+</div>
+`,
+
+/* 10 */
+
+`
+<div class="pageContent">
+
+<div class="kicker">
+Página especial
+</div>
+
+<h2>
+🏅 ¡Lectura completada!
+</h2>
+
+<p>
+Has llegado al final del recorrido principal de
+<strong>Crónicas del Caribe</strong>.
+</p>
+
+<p>
+Ahora puedes demostrar tus conocimientos en las preguntas finales.
+Obtendrás puntos según tus respuestas y podrás aparecer en el
+<strong>TOP GLOBAL</strong> junto a otros lectores.
+</p>
+
+<div class="quote">
+🎯 Consejo: piensa en lo que acabas de leer antes de responder.
+</div>
+
+<button
+onclick="openQuiz()"
+style="
+width:100%;
+padding:17px;
+border:0;
+border-radius:14px;
+cursor:pointer;
+background:linear-gradient(135deg,#e8a936,#ffe18a);
+color:#4b280b;
+font:bold 16px Arial;
+"
+>
+📝 LLENAR PREGUNTAS FINALES
+</button>
+
+</div>
+`,
+
+/* 11 */
+
+`
+<div class="pageContent">
+
+<div class="kicker">
+Créditos
+</div>
+
+<h2>
+🎬 Equipo del proyecto
+</h2>
+
+<div class="factGrid">
+
+<div class="fact">
+
+<strong>
+OSCAR
+</strong>
+
+Programación y desarrollo de la página
+
+</div>
+
+<div class="fact">
+
+<strong>
+JESÚS
+</strong>
+
+Diseño y apariencia visual
+
+</div>
+
+<div class="fact">
+
+<strong>
+Y EQUIPO
+</strong>
+
+Proyecto educativo:
+Crónicas del Caribe
+
+</div>
+
+</div>
+
+<p>
+Gracias por recorrer este libro digital.
+</p>
+
+<button
+onclick="openQuiz()"
+style="
+width:100%;
+padding:17px;
+border:0;
+border-radius:14px;
+cursor:pointer;
+background:linear-gradient(135deg,#25d9ff,#ffe079);
+color:#07131b;
+font:bold 16px Arial;
+"
+>
+📝 LLENAR PREGUNTAS FINALES
+</button>
+
+</div>
+`
+
+];
+
+
+/* =====================================================
+   PREGUNTAS DIFÍCILES
+===================================================== */
+
+const questions = [
+
+{
+q:"¿Qué función tuvo principalmente el mar Caribe a lo largo de la historia?",
+options:[
+"Separar completamente a los pueblos",
+"Servir como vía de comunicación, navegación e intercambio",
+"Impedir el contacto entre territorios",
+"Eliminar las diferencias culturales"
+],
+answer:1
+},
+
+{
+q:"¿Por qué la agricultura fue importante para diversos pueblos indígenas?",
+options:[
+"Porque permitió obtener alimentos y establecer comunidades",
+"Porque sustituyó completamente la pesca",
+"Porque fue introducida por los europeos",
+"Porque eliminó la necesidad de comerciar"
+],
+answer:0
+},
+
+{
+q:"¿Por qué el encuentro europeo transformó profundamente al Caribe?",
+options:[
+"Porque no produjo ningún cambio político",
+"Porque combinó intercambio, conquista, colonización y conflictos",
+"Porque todos los pueblos abandonaron las islas",
+"Porque desaparecieron todas las actividades económicas"
+],
+answer:1
+},
+
+{
+q:"¿Qué relación existió entre las plantaciones y la esclavización?",
+options:[
+"No tuvieron ninguna relación",
+"Las plantaciones dependieron en varios territorios de sistemas de trabajo esclavizado",
+"Las plantaciones eliminaron la desigualdad",
+"La esclavización apareció después de la independencia"
+],
+answer:1
+},
+
+{
+q:"¿Qué significa que un territorio sea colonial?",
+options:[
+"Que gobierna completamente a otros territorios",
+"Que está bajo dominio político de una potencia externa",
+"Que no tiene población",
+"Que solamente utiliza otro idioma"
+],
+answer:1
+},
+
+{
+q:"¿Por qué un pueblo puede desear independizarse?",
+options:[
+"Para aumentar el control de una potencia extranjera",
+"Por razones relacionadas con soberanía, representación, desigualdad o dominio externo",
+"Para eliminar su propia cultura",
+"Para impedir toda actividad comercial"
+],
+answer:1
+},
+
+{
+q:"¿Qué situaciones pueden debilitar a una metrópoli?",
+options:[
+"Solamente las celebraciones culturales",
+"Guerras, crisis económicas, conflictos políticos e inestabilidad",
+"La existencia de diferentes idiomas",
+"El crecimiento de la agricultura"
+],
+answer:1
+},
+
+{
+q:"¿Por qué la cultura caribeña no puede explicarse mediante una sola influencia?",
+options:[
+"Porque solamente existe una cultura",
+"Porque fue formada mediante múltiples encuentros históricos",
+"Porque no recibió ninguna influencia externa",
+"Porque todas sus sociedades tienen exactamente las mismas costumbres"
+],
+answer:1
+},
+
+{
+q:"¿Cuál es una dificultad que pueden enfrentar los nuevos Estados después de independizarse?",
+options:[
+"Organizar instituciones y construir una economía estable",
+"Eliminar completamente su población",
+"Dejar de crear gobiernos",
+"Desaparecer del mapa"
+],
+answer:0
+},
+
+{
+q:"¿Cuál es una de las ideas centrales de la lectura?",
+options:[
+"La historia consiste únicamente en memorizar fechas",
+"Comprender el pasado ayuda a interpretar las sociedades actuales",
+"Las culturas permanecen siempre iguales",
+"El Caribe nunca experimentó transformaciones"
+],
+answer:1
+}
+
+];
+
+
+/* =====================================================
+   ENTRAR AL LIBRO
+   IMPORTANTE:
+   ESTE CÓDIGO NO DEPENDE DE SUPABASE
+===================================================== */
+
 function enterBook(){
-  if(passwordInput.value!==PASSWORD){
-    loginError.textContent="❌ Contraseña incorrecta";
-    passwordInput.animate([{transform:"translateX(-8px)"},{transform:"translateX(8px)"},{transform:"translateX(-5px)"},{transform:"translateX(0)"}],{duration:300});
-    return;
-  }
-  loginError.textContent="";
-  passwordScreen.style.display="none";app.style.display="block";
-  localStorage.setItem("caribe_unlocked","true");
-  startAudio();renderPage();loadRanking();
-  showToast("📖 Bienvenido a Crónicas del Caribe");
-}
-document.getElementById("enterButton").addEventListener("click",enterBook);
-passwordInput.addEventListener("keydown",e=>{if(e.key==="Enter")enterBook()});
 
-/* =========================================================
-   TEMAS
-========================================================= */
-function applyTheme(){
-  document.body.classList.remove("theme-colonial","theme-independencia","theme-crisis","theme-ocean","theme-culture");
-  let themes=Object.values(guideAnswers).map(x=>x.theme).filter(Boolean);
-  let chosen=themes.includes("crisis")?"crisis":themes.includes("independencia")?"independencia":themes.includes("colonial")?"colonial":themes.includes("culture")?"culture":"ocean";
-  const pageTheme=currentPage===1||currentPage===2?"ocean":currentPage===3||currentPage===4?"colonial":currentPage===5||currentPage===7?"culture":currentPage===6?"independencia":currentPage===8||currentPage===11?"crisis":chosen;
-  document.body.classList.add("theme-"+pageTheme);
-}
-function chooseGuide(q,theme){
-  guideAnswers[q]={theme};
-  localStorage.setItem("caribe_guide_answers",JSON.stringify(guideAnswers));
-  applyTheme();
-  const result=document.getElementById("g"+q+"result");
-  const messages={
-    1:{colonial:"Correcto. Una colonia está bajo dominio político de una potencia externa.",ocean:"La navegación conecta territorios, pero eso no define una colonia.",independencia:"Eso describe soberanía, no una situación colonial."},
-    2:{independencia:"Correcto. La autonomía y la representación son causas importantes de movimientos independentistas.",culture:"La cultura puede ser parte de una identidad, pero no explica por sí sola la independencia.",colonial:"Eso mantiene el dominio externo, no busca terminarlo."},
-    3:{crisis:"Correcto. Las guerras, crisis económicas y conflictos internos pueden reducir la capacidad de control.",ocean:"El comercio no explica por sí solo el debilitamiento de una metrópoli.",culture:"La diversidad cultural no es, por sí sola, la causa principal de una crisis metropolitana."}
-  };
-  result.textContent=messages[q][theme];result.style.display="block";
-  [...document.querySelectorAll(`[name="g${q}"]`)].forEach(x=>x.closest(".answerChoice").classList.toggle("selected",x.checked));
-}
+    const typed =
+        passwordInput.value.trim();
 
-/* =========================================================
-   RENDER DE UNA PÁGINA
-========================================================= */
-function makePage(index){
-  const wrapper=document.createElement("article");wrapper.className="page";
-  wrapper.innerHTML=pages[index];
-  const num=document.createElement("div");num.className="pageNumber";num.textContent="— "+(index+1)+" —";
-  const corner=document.createElement("div");corner.className="pageCorner";
-  wrapper.append(num,corner);
-  return wrapper;
-}
-function setLayer(layer,index){layer.innerHTML="";layer.appendChild(makePage(index))}
-function renderStatic(){
-  setLayer(underLayer,currentPage);setLayer(turnLayer,currentPage);
-  pageCounter.textContent=`Página ${currentPage+1} de ${pages.length}`;
-  prevButton.disabled=currentPage===0;nextButton.disabled=currentPage===pages.length-1;
-  const percent=Math.round(currentPage/(pages.length-1)*100);progressBar.style.width=percent+"%";progressText.textContent=percent+"% completado";progressPage.textContent="Página "+(currentPage+1);
-  if(!completedPages.includes(currentPage)){completedPages.push(currentPage);localStorage.setItem("caribe_completed_pages",JSON.stringify(completedPages))}
-  applyTheme();updateBadge();
-  window.scrollTo({top:0,behavior:"smooth"});
-}
-function renderPage(){renderStatic()}
+    loginError.textContent = "";
 
-/* =========================================================
-   CAMBIO DE HOJA REAL
-========================================================= */
-function changePage(direction){
-  if(isTurning)return;
-  if(direction==="next"&&currentPage>=pages.length-1)return;
-  if(direction==="prev"&&currentPage<=0)return;
-  isTurning=true;playPageSound();
-  const target=currentPage+(direction==="next"?1:-1);
-  setLayer(underLayer,target);
-  setLayer(turnLayer,currentPage);
-  turnLayer.classList.remove("next","prev");void turnLayer.offsetWidth;
-  turnLayer.classList.add(direction==="next"?"next":"prev");
-  setTimeout(()=>{
-    currentPage=target;
-    setLayer(turnLayer,currentPage);
-    turnLayer.classList.remove("next","prev");
-    renderStatic();
-    isTurning=false;
-  },950);
-}
-nextButton.addEventListener("click",()=>changePage("next"));
-prevButton.addEventListener("click",()=>changePage("prev"));
+    if(typed !== PASSWORD){
 
-/* =========================================================
-   BADGE LECTURA
-========================================================= */
-function updateBadge(){if(completedPages.length>=pages.length-2||currentPage>=pages.length-2)badgeBox.style.display="block"}
+        loginError.textContent =
+            "❌ Contraseña incorrecta";
 
-/* =========================================================
-   QUIZ
-========================================================= */
-function openQuiz(){updateBadge();quiz.style.display="block";renderQuestions();quiz.scrollIntoView({behavior:"smooth"});window.scrollTo({top:quiz.offsetTop-20,behavior:"smooth"})}
-window.openQuiz=openQuiz;
-function renderQuestions(){
-  const container=document.getElementById("questionsContainer");container.innerHTML="";
-  questions.forEach((item,index)=>{
-    const card=document.createElement("div");card.className="questionCard";
-    let html=`<h3>${index+1}. ${item.q}</h3>`;
-    item.options.forEach((option,optionIndex)=>html+=`<label class="option"><input type="radio" name="question${index}" value="${optionIndex}">${option}</label>`);
-    card.innerHTML=html;container.appendChild(card);
-  });
-}
+        passwordInput.animate(
+            [
+                {
+                    transform:
+                        "translateX(-8px)"
+                },
 
-/* =========================================================
-   EMBLEMAS SEGÚN RESULTADO
-========================================================= */
-function getEmblem(score){
-  if(score===10)return {icon:"👑",name:"MAESTRO DEL CARIBE"};
-  if(score>=9)return {icon:"⭐",name:"EXPERTO"};
-  if(score>=7)return {icon:"📚",name:"HISTORIADOR"};
-  if(score>=5)return {icon:"🔎",name:"INVESTIGADOR"};
-  return {icon:"🧭",name:"EXPLORADOR"};
-}
-function showFinalEmblem(){
-  document.getElementById("finalEmblemIcon").textContent=finalEmblem.icon;
-  document.getElementById("finalEmblemText").textContent=finalEmblem.name;
-}
+                {
+                    transform:
+                        "translateX(8px)"
+                },
 
-/* =========================================================
-   RESULTADO
-========================================================= */
-document.getElementById("submitQuiz").addEventListener("click",finishQuiz);
-async function finishQuiz(){
-  let score=0;
-  questions.forEach((item,index)=>{
-    const selected=document.querySelector(`input[name="question${index}"]:checked`);
-    if(selected&&Number(selected.value)===item.answer)score++;
-  });
-  finalPercent=Math.round(score/questions.length*100);finalXP=score*25;finalEmblem=getEmblem(score);
-  quizFinished=true;localStorage.setItem("caribe_quiz_finished","true");
-  localStorage.setItem("caribe_final_emblem",JSON.stringify(finalEmblem));
-  certificate.style.display="block";showFinalEmblem();
-  document.getElementById("finalScore").textContent=`Resultado: ${score}/${questions.length} correctas — ${finalPercent}% — ${finalXP} XP`;
-  document.getElementById("certificateMessage").textContent=finalEmblem.name;
-  nameBox.style.display="block";
-  certificate.scrollIntoView({behavior:"smooth"});
-  showToast(score===10?"👑 ¡PERFECTO! MAESTRO DEL CARIBE":"🏅 ¡Desafío completado!");
-}
+                {
+                    transform:
+                        "translateX(-5px)"
+                },
 
-/* =========================================================
-   ESCAPE
-========================================================= */
-function escapeHTML(value){return String(value??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
+                {
+                    transform:
+                        "translateX(0)"
+                }
+            ],
+            {
+                duration:350
+            }
+        );
 
-/* =========================================================
-   GUARDAR EN SUPABASE
-========================================================= */
-async function submitGlobalScore(name,percent,xp,emblem){
-  const errorBox=document.getElementById("supabaseError");
-  try{
-    const cleanName=String(name||"Lector").trim().substring(0,25);
-    if(!cleanName){showToast("❌ Escribe un nombre");return false}
-    const safePercent=Math.max(0,Math.min(100,Number(percent)||0));
-    const safeXP=Math.max(0,Number(xp)||0);
-    /* El campo emblema es opcional: si tu tabla todavía no lo tiene,
-       intentamos primero con él y, si Supabase responde columna inexistente,
-       guardamos con las columnas originales para NO romper el TOP. */
-    try{
-      await sbFetch("ranking",{method:"POST",headers:{"Prefer":"return=minimal"},body:JSON.stringify({nombre:cleanName,puntuacion:safePercent,xp:safeXP,emblema:emblem.icon+" "+emblem.name})});
-    }catch(firstError){
-      const msg=String(firstError.message||"");
-      if(/emblema|column|schema cache/i.test(msg)){
-        await sbFetch("ranking",{method:"POST",headers:{"Prefer":"return=minimal"},body:JSON.stringify({nombre:cleanName,puntuacion:safePercent,xp:safeXP})});
-      }else{throw firstError}
+        return;
     }
-    errorBox.style.display="block";errorBox.style.background="#103b28";errorBox.style.borderColor="#32d38b";errorBox.style.color="#b7ffdc";
-    errorBox.innerHTML="<strong>✅ ¡RESULTADO GUARDADO!</strong><br><br>Ya apareces en el TOP GLOBAL.";
-    showToast("🌎 ¡Entraste al TOP GLOBAL!");return true;
-  }catch(error){
-    console.error(error);errorBox.style.display="block";errorBox.style.background="#3b1515";errorBox.style.borderColor="#a94141";errorBox.style.color="#ffb8b8";
-    errorBox.innerHTML=`<strong>❌ NO SE PUDO GUARDAR</strong><br><br><b>Código:</b> ${escapeHTML(error.code||"Sin código")}<br><b>Mensaje:</b> ${escapeHTML(error.message||String(error))}`;
-    showToast("❌ No se pudo guardar en el TOP");return false;
-  }
+
+    /* CONTRASEÑA CORRECTA */
+
+    passwordScreen.style.display =
+        "none";
+
+    app.style.display =
+        "block";
+
+    localStorage.setItem(
+        "caribe_unlocked",
+        "true"
+    );
+
+    renderPage();
+
+    startAudio();
+
+    showToast(
+        "📖 ¡Bienvenido a Crónicas del Caribe!"
+    );
 }
 
-document.getElementById("saveScoreBtn").addEventListener("click",async()=>{
-  const input=document.getElementById("playerName"),button=document.getElementById("saveScoreBtn"),name=input.value.trim();
-  if(!name){showToast("✏️ Escribe tu nombre");input.focus();return}
-  button.disabled=true;button.textContent="⏳ GUARDANDO...";
-  const saved=await submitGlobalScore(name,finalPercent,finalXP,finalEmblem);
-  if(saved){localStorage.setItem("caribe_last_name",name);input.disabled=true;button.textContent="✅ GUARDADO";await loadRanking()}
-  else{button.disabled=false;button.textContent="🚀 GUARDAR RESULTADO"}
-});
 
-/* =========================================================
-   TOP GLOBAL
-========================================================= */
-async function loadRanking(){
-  const status=document.getElementById("rankingStatus"),list=document.getElementById("rankingList"),errorBox=document.getElementById("supabaseError");
-  status.innerHTML="⏳ Cargando TOP GLOBAL...";list.innerHTML="";
-  try{
-    const rows=await sbFetch("ranking?select=nombre,puntuacion,xp,creado_en,emblema&order=puntuacion.desc,xp.desc&limit=10");
-    if(!rows||!rows.length){status.innerHTML="🏆 Todavía no hay jugadores.";return}
-    status.innerHTML="🌎 TOP GLOBAL ACTUALIZADO";
-    rows.forEach((row,index)=>{
-      const medal=index===0?"🥇":index===1?"🥈":index===2?"🥉":"#"+(index+1);
-      let emblem=row.emblema;
-      if(!emblem){
-        const e=getEmblem(Math.round(Number(row.puntuacion)||0)/10);
-        emblem=e.icon;
-      }else emblem=String(emblem).trim().split(" ")[0]||"🏅";
-      const div=document.createElement("div");div.className="rankRow";
-      div.innerHTML=`<div class="rankPos">${medal}</div><div class="rankName">${escapeHTML(row.nombre)}</div><div class="rankEmblem" title="Emblema">${escapeHTML(emblem)}</div><div class="rankScore">🎯 ${Number(row.puntuacion)||0}%</div><div class="rankXP">⭐ ${Number(row.xp)||0} XP</div>`;
-      list.appendChild(div);
+/* =====================================================
+   BOTÓN CONTRASEÑA
+===================================================== */
+
+enterButton.addEventListener(
+    "click",
+    enterBook
+);
+
+
+/* =====================================================
+   ENTER DEL TECLADO
+===================================================== */
+
+passwordInput.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            event.preventDefault();
+
+            enterBook();
+        }
+    }
+);
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function renderPage(){
+
+    if(currentPage < 0)
+        currentPage = 0;
+
+    if(currentPage >= pages.length)
+        currentPage =
+            pages.length - 1;
+
+    pageContent.innerHTML =
+        pages[currentPage];
+
+    pageNumber.textContent =
+        "— " +
+        (currentPage + 1) +
+        " —";
+
+    pageCounter.textContent =
+        "Página " +
+        (currentPage + 1) +
+        " de " +
+        pages.length;
+
+    prevButton.disabled =
+        currentPage === 0;
+
+    nextButton.disabled =
+        currentPage === pages.length - 1;
+
+    const percent =
+        Math.round(
+            (
+                currentPage /
+                (pages.length - 1)
+            ) * 100
+        );
+
+    progressBar.style.width =
+        percent + "%";
+
+    progressText.textContent =
+        percent +
+        "% completado";
+
+    progressPage.textContent =
+        "Página " +
+        (currentPage + 1);
+
+    if(
+        !completedPages.includes(
+            currentPage
+        )
+    ){
+
+        completedPages.push(
+            currentPage
+        );
+
+        localStorage.setItem(
+            "caribe_completed_pages",
+            JSON.stringify(
+                completedPages
+            )
+        );
+    }
+
+    updateBadge();
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
     });
-  }catch(error){
-    console.error(error);status.innerHTML="❌ No se pudo cargar el ranking.";
-    errorBox.style.display="block";errorBox.innerHTML=`<strong>❌ ERROR AL CARGAR TOP</strong><br><br>${escapeHTML(error.message||"Error")}`;
-  }
 }
 
-/* =========================================================
-   RESET
-========================================================= */
-document.getElementById("resetBtn").addEventListener("click",()=>{
-  if(!confirm("¿Quieres reiniciar tu progreso? Tu resultado del TOP GLOBAL no se borrará."))return;
-  localStorage.removeItem("caribe_completed_pages");localStorage.removeItem("caribe_quiz_finished");localStorage.removeItem("caribe_guide_answers");localStorage.removeItem("caribe_final_emblem");
-  completedPages=[];quizFinished=false;currentPage=0;
-  certificate.style.display="none";nameBox.style.display="none";quiz.style.display="none";
-  renderPage();showToast("↻ Progreso reiniciado");
-});
 
-/* =========================================================
+/* =====================================================
+   CAMBIAR PÁGINA
+===================================================== */
+
+function changePage(direction){
+
+    if(
+        direction === 1 &&
+        currentPage >= pages.length - 1
+    ){
+        return;
+    }
+
+    if(
+        direction === -1 &&
+        currentPage <= 0
+    ){
+        return;
+    }
+
+    page.classList.remove(
+        "turnNext",
+        "turnPrev"
+    );
+
+    void page.offsetWidth;
+
+    page.classList.add(
+        direction === 1
+            ? "turnNext"
+            : "turnPrev"
+    );
+
+    playPageSound();
+
+    setTimeout(
+        function(){
+
+            currentPage +=
+                direction;
+
+            renderPage();
+
+        },
+        250
+    );
+}
+
+
+/* =====================================================
+   BOTONES
+===================================================== */
+
+prevButton.addEventListener(
+    "click",
+    function(){
+
+        changePage(-1);
+
+    }
+);
+
+nextButton.addEventListener(
+    "click",
+    function(){
+
+        changePage(1);
+
+    }
+);
+
+
+/* =====================================================
+   BADGE
+===================================================== */
+
+function updateBadge(){
+
+    const lastReadingPage =
+        pages.length - 2;
+
+    if(
+        currentPage >=
+        lastReadingPage
+    ){
+
+        badgeBox.style.display =
+            "block";
+    }
+}
+
+
+/* =====================================================
+   QUIZ
+===================================================== */
+
+function openQuiz(){
+
+    quiz.style.display =
+        "block";
+
+    renderQuestions();
+
+    quiz.scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+window.openQuiz =
+    openQuiz;
+
+
+/* =====================================================
+   MOSTRAR PREGUNTAS
+===================================================== */
+
+function renderQuestions(){
+
+    const container =
+        document.getElementById(
+            "questionsContainer"
+        );
+
+    container.innerHTML = "";
+
+    questions.forEach(
+        function(item,index){
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+            card.className =
+                "questionCard";
+
+            let html =
+                "<h3>" +
+                (index + 1) +
+                ". " +
+                item.q +
+                "</h3>";
+
+            item.options.forEach(
+                function(option,optionIndex){
+
+                    html +=
+                    `
+                    <label class="option">
+
+                        <input
+                            type="radio"
+                            name="question${index}"
+                            value="${optionIndex}"
+                        >
+
+                        ${option}
+
+                    </label>
+                    `;
+                }
+            );
+
+            card.innerHTML =
+                html;
+
+            container.appendChild(
+                card
+            );
+        }
+    );
+}
+
+
+/* =====================================================
+   TERMINAR QUIZ
+===================================================== */
+
+document
+.getElementById("submitQuiz")
+.addEventListener(
+    "click",
+    finishQuiz
+);
+
+
+function finishQuiz(){
+
+    let score = 0;
+
+    questions.forEach(
+        function(item,index){
+
+            const selected =
+                document.querySelector(
+                    'input[name="question' +
+                    index +
+                    '"]:checked'
+                );
+
+            if(
+                selected &&
+                Number(selected.value) ===
+                item.answer
+            ){
+
+                score++;
+            }
+        }
+    );
+
+    finalPercent =
+        Math.round(
+            (
+                score /
+                questions.length
+            ) * 100
+        );
+
+    finalXP =
+        score * 25;
+
+    certificate.style.display =
+        "block";
+
+    document
+    .getElementById(
+        "finalScore"
+    )
+    .textContent =
+        "Resultado: " +
+        score +
+        "/" +
+        questions.length +
+        " correctas — " +
+        finalPercent +
+        "% — " +
+        finalXP +
+        " XP";
+
+    document
+    .getElementById(
+        "certificateMessage"
+    )
+    .textContent =
+        finalPercent >= 60
+            ? "LECTOR OFICIAL DEL CARIBE"
+            : "DESAFÍO COMPLETADO";
+
+    nameBox.style.display =
+        "block";
+
+    localStorage.setItem(
+        "caribe_quiz_finished",
+        "true"
+    );
+
+    certificate.scrollIntoView({
+        behavior:"smooth"
+    });
+
+    showToast(
+        finalPercent >= 60
+            ? "🏆 ¡Excelente trabajo!"
+            : "📖 ¡Terminaste el desafío!"
+    );
+}
+
+
+/* =====================================================
+   ESCAPAR HTML
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(value ?? "")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+}
+
+
+/* =====================================================
+   GUARDAR TOP GLOBAL
+   USAMOS FETCH DIRECTAMENTE
+   NO SUPABASE JS
+===================================================== */
+
+async function submitGlobalScore(
+    name,
+    percent,
+    xp
+){
+
+    const errorBox =
+        document.getElementById(
+            "supabaseError"
+        );
+
+    const cleanName =
+        String(
+            name || "Lector"
+        )
+        .trim()
+        .substring(0,25);
+
+    if(!cleanName){
+
+        showToast(
+            "✏️ Escribe un nombre"
+        );
+
+        return false;
+    }
+
+    try{
+
+        const response =
+            await fetch(
+                SUPABASE_URL +
+                "/rest/v1/ranking",
+                {
+                    method:"POST",
+
+                    headers:{
+                        "apikey":
+                            SUPABASE_KEY,
+
+                        "Authorization":
+                            "Bearer " +
+                            SUPABASE_KEY,
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Prefer":
+                            "return=minimal"
+                    },
+
+                    body:JSON.stringify({
+
+                        nombre:
+                            cleanName,
+
+                        puntuacion:
+                            Math.max(
+                                0,
+                                Math.min(
+                                    100,
+                                    Number(percent) || 0
+                                )
+                            ),
+
+                        xp:
+                            Math.max(
+                                0,
+                                Number(xp) || 0
+                            )
+                    })
+                }
+            );
+
+        if(!response.ok){
+
+            const errorText =
+                await response.text();
+
+            console.error(
+                "SUPABASE:",
+                errorText
+            );
+
+            if(errorBox){
+
+                errorBox.style.display =
+                    "block";
+
+                errorBox.innerHTML =
+                    `
+                    <strong>
+                    ❌ NO SE PUDO GUARDAR
+                    </strong>
+
+                    <br><br>
+
+                    ${escapeHTML(
+                        errorText
+                    )}
+                    `;
+            }
+
+            showToast(
+                "❌ No se pudo guardar en el TOP"
+            );
+
+            return false;
+        }
+
+        if(errorBox){
+
+            errorBox.style.display =
+                "block";
+
+            errorBox.style.background =
+                "#103b28";
+
+            errorBox.style.borderColor =
+                "#32d38b";
+
+            errorBox.style.color =
+                "#b7ffdc";
+
+            errorBox.innerHTML =
+                `
+                <strong>
+                ✅ ¡RESULTADO GUARDADO!
+                </strong>
+
+                <br><br>
+
+                Ya apareces en el TOP GLOBAL.
+                `;
+        }
+
+        showToast(
+            "🌎 ¡Entraste al TOP GLOBAL!"
+        );
+
+        return true;
+
+    }catch(error){
+
+        console.error(error);
+
+        if(errorBox){
+
+            errorBox.style.display =
+                "block";
+
+            errorBox.innerHTML =
+                `
+                <strong>
+                ❌ ERROR DE CONEXIÓN
+                </strong>
+
+                <br><br>
+
+                ${escapeHTML(
+                    error.message
+                )}
+                `;
+        }
+
+        showToast(
+            "❌ Error conectando con el TOP"
+        );
+
+        return false;
+    }
+}
+
+
+/* =====================================================
+   BOTÓN GUARDAR
+===================================================== */
+
+document
+.getElementById("saveScoreBtn")
+.addEventListener(
+    "click",
+    async function(){
+
+        const input =
+            document.getElementById(
+                "playerName"
+            );
+
+        const button =
+            document.getElementById(
+                "saveScoreBtn"
+            );
+
+        const name =
+            input.value.trim();
+
+        if(!name){
+
+            showToast(
+                "✏️ Escribe tu nombre"
+            );
+
+            input.focus();
+
+            return;
+        }
+
+        button.disabled =
+            true;
+
+        button.textContent =
+            "⏳ GUARDANDO...";
+
+        const saved =
+            await submitGlobalScore(
+                name,
+                finalPercent,
+                finalXP
+            );
+
+        if(saved){
+
+            localStorage.setItem(
+                "caribe_last_name",
+                name
+            );
+
+            input.disabled =
+                true;
+
+            button.textContent =
+                "✅ GUARDADO";
+
+            loadRanking();
+
+        }else{
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "🚀 GUARDAR RESULTADO";
+        }
+    }
+);
+
+
+/* =====================================================
+   CARGAR TOP GLOBAL
+===================================================== */
+
+async function loadRanking(){
+
+    const status =
+        document.getElementById(
+            "rankingStatus"
+        );
+
+    const list =
+        document.getElementById(
+            "rankingList"
+        );
+
+    status.innerHTML =
+        "⏳ Cargando TOP GLOBAL...";
+
+    list.innerHTML = "";
+
+    try{
+
+        const response =
+            await fetch(
+                SUPABASE_URL +
+                "/rest/v1/ranking" +
+                "?select=nombre,puntuacion,xp" +
+                "&order=puntuacion.desc,xp.desc" +
+                "&limit=10",
+                {
+                    method:"GET",
+
+                    headers:{
+                        "apikey":
+                            SUPABASE_KEY,
+
+                        "Authorization":
+                            "Bearer " +
+                            SUPABASE_KEY
+                    }
+                }
+            );
+
+        if(!response.ok){
+
+            const errorText =
+                await response.text();
+
+            console.error(
+                "TOP ERROR:",
+                errorText
+            );
+
+            status.innerHTML =
+                "❌ No se pudo cargar el TOP.";
+
+            return;
+        }
+
+        const rows =
+            await response.json();
+
+        if(
+            !rows ||
+            rows.length === 0
+        ){
+
+            status.innerHTML =
+                "🏆 Todavía no hay jugadores.";
+
+            return;
+        }
+
+        status.innerHTML =
+            "🌎 TOP GLOBAL ACTUALIZADO";
+
+        rows.forEach(
+            function(row,index){
+
+                let medal;
+
+                if(index === 0)
+                    medal = "🥇";
+
+                else if(index === 1)
+                    medal = "🥈";
+
+                else if(index === 2)
+                    medal = "🥉";
+
+                else
+                    medal =
+                        "#" +
+                        (index + 1);
+
+                const div =
+                    document.createElement(
+                        "div"
+                    );
+
+                div.className =
+                    "rankRow";
+
+                div.innerHTML =
+                    `
+                    <div class="rankPos">
+                        ${medal}
+                    </div>
+
+                    <div class="rankName">
+                        ${escapeHTML(
+                            row.nombre
+                        )}
+                    </div>
+
+                    <div class="rankScore">
+                        🎯
+                        ${Number(
+                            row.puntuacion
+                        ) || 0}%
+                    </div>
+
+                    <div class="rankXP">
+                        ⭐
+                        ${Number(
+                            row.xp
+                        ) || 0} XP
+                    </div>
+                    `;
+
+                list.appendChild(
+                    div
+                );
+            }
+        );
+
+    }catch(error){
+
+        console.error(error);
+
+        status.innerHTML =
+            "❌ Error de conexión.";
+    }
+}
+
+
+/* =====================================================
+   REINICIAR
+===================================================== */
+
+document
+.getElementById("resetBtn")
+.addEventListener(
+    "click",
+    function(){
+
+        const confirmed =
+            confirm(
+                "¿Quieres reiniciar tu progreso? Tu TOP GLOBAL no se borrará."
+            );
+
+        if(!confirmed)
+            return;
+
+        localStorage.removeItem(
+            "caribe_completed_pages"
+        );
+
+        localStorage.removeItem(
+            "caribe_quiz_finished"
+        );
+
+        completedPages = [];
+
+        currentPage = 0;
+
+        certificate.style.display =
+            "none";
+
+        nameBox.style.display =
+            "none";
+
+        quiz.style.display =
+            "none";
+
+        renderPage();
+
+        showToast(
+            "↻ Progreso reiniciado"
+        );
+    }
+);
+
+
+/* =====================================================
    AUDIO
-========================================================= */
-let audioContext=null,masterGain=null,audioNodes=[];
+===================================================== */
+
+let audioContext = null;
+
+let masterGain = null;
+
 function startAudio(){
-  if(!audioEnabled||audioContext)return;
-  try{
-    audioContext=new(window.AudioContext||window.webkitAudioContext)();masterGain=audioContext.createGain();masterGain.gain.value=.035;masterGain.connect(audioContext.destination);
-    createAmbientOcean();createAmbientTone();document.getElementById("soundBtn").textContent="🔊 Sonido ON";
-  }catch(error){console.warn(error)}
+
+    if(!audioEnabled)
+        return;
+
+    if(audioContext)
+        return;
+
+    try{
+
+        audioContext =
+            new (
+                window.AudioContext ||
+                window.webkitAudioContext
+            )();
+
+        masterGain =
+            audioContext.createGain();
+
+        masterGain.gain.value =
+            0.025;
+
+        masterGain.connect(
+            audioContext.destination
+        );
+
+        createOcean();
+
+        createTone();
+
+        document
+        .getElementById(
+            "soundBtn"
+        )
+        .textContent =
+            "🔊 Sonido ON";
+
+    }catch(error){
+
+        console.warn(
+            "Audio:",
+            error
+        );
+    }
 }
-function createAmbientOcean(){
-  const bufferSize=audioContext.sampleRate*2,buffer=audioContext.createBuffer(1,bufferSize,audioContext.sampleRate),data=buffer.getChannelData(0);
-  for(let i=0;i<bufferSize;i++)data[i]=Math.random()*2-1;
-  const source=audioContext.createBufferSource();source.buffer=buffer;source.loop=true;
-  const filter=audioContext.createBiquadFilter();filter.type="lowpass";filter.frequency.value=850;
-  const gain=audioContext.createGain();gain.gain.value=.7;source.connect(filter).connect(gain).connect(masterGain);source.start();audioNodes.push(source);
+
+
+/* =====================================================
+   SONIDO MAR
+===================================================== */
+
+function createOcean(){
+
+    if(!audioContext)
+        return;
+
+    const bufferSize =
+        audioContext.sampleRate * 2;
+
+    const buffer =
+        audioContext.createBuffer(
+            1,
+            bufferSize,
+            audioContext.sampleRate
+        );
+
+    const data =
+        buffer.getChannelData(0);
+
+    for(
+        let i=0;
+        i<bufferSize;
+        i++
+    ){
+
+        data[i] =
+            Math.random() * 2 - 1;
+    }
+
+    const source =
+        audioContext.createBufferSource();
+
+    source.buffer =
+        buffer;
+
+    source.loop =
+        true;
+
+    const filter =
+        audioContext.createBiquadFilter();
+
+    filter.type =
+        "lowpass";
+
+    filter.frequency.value =
+        850;
+
+    const gain =
+        audioContext.createGain();
+
+    gain.gain.value =
+        .65;
+
+    source
+        .connect(filter)
+        .connect(gain)
+        .connect(masterGain);
+
+    source.start();
 }
-function createAmbientTone(){
-  const osc=audioContext.createOscillator(),gain=audioContext.createGain();osc.type="sine";osc.frequency.value=110;gain.gain.value=.035;osc.connect(gain).connect(masterGain);osc.start();audioNodes.push(osc);
+
+
+/* =====================================================
+   TONO
+===================================================== */
+
+function createTone(){
+
+    if(!audioContext)
+        return;
+
+    const osc =
+        audioContext.createOscillator();
+
+    const gain =
+        audioContext.createGain();
+
+    osc.type =
+        "sine";
+
+    osc.frequency.value =
+        110;
+
+    gain.gain.value =
+        .025;
+
+    osc
+        .connect(gain)
+        .connect(masterGain);
+
+    osc.start();
 }
+
+
+/* =====================================================
+   SONIDO DE PASAR PÁGINA
+===================================================== */
+
 function playPageSound(){
-  if(!audioContext||!audioEnabled)return;
-  const osc=audioContext.createOscillator(),gain=audioContext.createGain();osc.type="triangle";
-  osc.frequency.setValueAtTime(260,audioContext.currentTime);osc.frequency.exponentialRampToValueAtTime(520,audioContext.currentTime+.09);
-  gain.gain.setValueAtTime(.0001,audioContext.currentTime);gain.gain.exponentialRampToValueAtTime(.055,audioContext.currentTime+.015);gain.gain.exponentialRampToValueAtTime(.0001,audioContext.currentTime+.14);
-  osc.connect(gain).connect(masterGain);osc.start();osc.stop(audioContext.currentTime+.15);
-}
-document.getElementById("soundBtn").addEventListener("click",()=>{
-  audioEnabled=!audioEnabled;localStorage.setItem("caribe_audio",audioEnabled?"on":"off");
-  if(audioEnabled){startAudio();if(audioContext){audioContext.resume();masterGain.gain.value=.035}document.getElementById("soundBtn").textContent="🔊 Sonido ON";showToast("🔊 Sonido activado")}
-  else{if(masterGain)masterGain.gain.value=0;document.getElementById("soundBtn").textContent="🔇 Sonido OFF";showToast("🔇 Sonido desactivado")}
-});
 
-/* =========================================================
+    if(
+        !audioContext ||
+        !audioEnabled
+    )
+        return;
+
+    const osc =
+        audioContext.createOscillator();
+
+    const gain =
+        audioContext.createGain();
+
+    osc.type =
+        "triangle";
+
+    const now =
+        audioContext.currentTime;
+
+    osc.frequency.setValueAtTime(
+        260,
+        now
+    );
+
+    osc.frequency.exponentialRampToValueAtTime(
+        520,
+        now + .09
+    );
+
+    gain.gain.setValueAtTime(
+        .0001,
+        now
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        .055,
+        now + .02
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        .0001,
+        now + .15
+    );
+
+    osc
+        .connect(gain)
+        .connect(masterGain);
+
+    osc.start();
+
+    osc.stop(
+        now + .16
+    );
+}
+
+
+/* =====================================================
+   BOTÓN SONIDO
+===================================================== */
+
+document
+.getElementById("soundBtn")
+.addEventListener(
+    "click",
+    function(){
+
+        audioEnabled =
+            !audioEnabled;
+
+        localStorage.setItem(
+            "caribe_audio",
+            audioEnabled
+                ? "on"
+                : "off"
+        );
+
+        if(audioEnabled){
+
+            startAudio();
+
+            if(audioContext){
+
+                audioContext.resume();
+
+                masterGain.gain.value =
+                    .025;
+            }
+
+            this.textContent =
+                "🔊 Sonido ON";
+
+            showToast(
+                "🔊 Sonido activado"
+            );
+
+        }else{
+
+            if(masterGain){
+
+                masterGain.gain.value =
+                    0;
+            }
+
+            this.textContent =
+                "🔇 Sonido OFF";
+
+            showToast(
+                "🔇 Sonido desactivado"
+            );
+        }
+    }
+);
+
+
+/* =====================================================
+   RECUPERAR NOMBRE
+===================================================== */
+
+const previousName =
+    localStorage.getItem(
+        "caribe_last_name"
+    );
+
+if(previousName){
+
+    document
+    .getElementById(
+        "playerName"
+    )
+    .value =
+        previousName;
+}
+
+
+/* =====================================================
    ARRANQUE
-========================================================= */
-const previousName=localStorage.getItem("caribe_last_name");
-if(previousName)document.getElementById("playerName").value=previousName;
+===================================================== */
 
-const savedEmblem=localStorage.getItem("caribe_final_emblem");
-if(savedEmblem){try{finalEmblem=JSON.parse(savedEmblem)}catch(_){}}
+/*
+   IMPORTANTE:
+   Si ya habías entrado anteriormente,
+   se mantiene desbloqueado.
+*/
 
-if(localStorage.getItem("caribe_unlocked")==="true"){
-  passwordScreen.style.display="none";app.style.display="block";renderPage();
+if(
+    localStorage.getItem(
+        "caribe_unlocked"
+    ) === "true"
+){
+
+    passwordScreen.style.display =
+        "none";
+
+    app.style.display =
+        "block";
+
+    renderPage();
+
 }else{
-  /* Importante: el ranking puede fallar sin bloquear la contraseña. */
-  passwordScreen.style.display="flex";app.style.display="none";
+
+    /*
+       Si no está desbloqueado,
+       mostramos la contraseña.
+    */
+
+    passwordScreen.style.display =
+        "flex";
+
+    app.style.display =
+        "none";
+
+    setTimeout(
+        function(){
+
+            passwordInput.focus();
+
+        },
+        300
+    );
 }
 
-/* Ranking se intenta solamente cuando ya está dentro o cuando la app está visible. */
-if(app.style.display==="block")loadRanking();
+
+/* =====================================================
+   CARGAR TOP
+===================================================== */
+
+loadRanking();
+
 </script>
+
 </body>
 </html>
-'''
-
-path="/mnt/data/index.html"
-with open(path,"w",encoding="utf-8") as f:
-    f.write(html)
-
-print(f"Listo: {path}")
-print(f"Tamaño: {len(html):,} caracteres")
