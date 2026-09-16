@@ -40,9 +40,55 @@ html,body{
 body{
     font-family:Georgia,"Times New Roman",serif;
     color:#f5e7c4;
-    background:#050b12;
+    background:#171008;
     overflow-x:hidden;
 }
+
+/* =====================================================
+   MAPA CARTOGRÁFICO — CAPA VISUAL
+===================================================== */
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-9;
+    pointer-events:none;
+    opacity:.34;
+    background:
+        radial-gradient(circle at 18% 24%, transparent 0 12%, rgba(88,52,19,.20) 12.2% 12.5%, transparent 12.7%),
+        radial-gradient(circle at 78% 72%, transparent 0 16%, rgba(88,52,19,.16) 16.2% 16.45%, transparent 16.7%),
+        repeating-linear-gradient(0deg, rgba(86,49,16,.10) 0 1px, transparent 1px 34px),
+        repeating-linear-gradient(90deg, rgba(86,49,16,.08) 0 1px, transparent 1px 34px),
+        linear-gradient(135deg, rgba(245,220,158,.10), transparent 35%, rgba(92,53,18,.14) 75%, transparent);
+    mix-blend-mode:multiply;
+}
+
+.mapCoords{
+    position:fixed; right:18px; bottom:14px; z-index:-1;
+    color:rgba(255,220,145,.38); font:900 10px/1.4 Arial,sans-serif;
+    letter-spacing:2px; text-transform:uppercase; pointer-events:none;
+}
+
+.mapCompass{
+    position:fixed; right:24px; top:74px; z-index:-1; width:88px; height:88px;
+    display:grid; place-items:center; border:1px solid rgba(255,218,143,.18);
+    border-radius:50%; color:rgba(255,218,143,.30); font:900 34px Georgia,serif;
+    transform:rotate(-8deg); pointer-events:none;
+}
+
+.mapCompass::before{
+    content:"N\A W     E\A S"; white-space:pre; position:absolute; inset:9px;
+    display:grid; place-items:center; text-align:center; font:900 8px/1.9 Arial,sans-serif;
+    letter-spacing:2px; color:rgba(255,225,160,.28);
+}
+
+.mapCompass::after{
+    content:"✦"; position:absolute; font-size:20px; color:rgba(255,210,110,.34);
+    animation:compassFloat 5s ease-in-out infinite;
+}
+
+@keyframes compassFloat{50%{transform:rotate(8deg) scale(1.06)}}
+
 
 .credits-corner{
     position:fixed;
@@ -1242,6 +1288,45 @@ body::before{
 }
 
 /* =====================================================
+   EXPEDICIÓN / RUTA / DESCUBRIMIENTOS
+===================================================== */
+.expeditionBar{
+    width:min(1180px,100%); margin:0 auto 14px; display:flex; align-items:center;
+    justify-content:space-between; gap:12px; padding:10px 14px;
+    border:1px solid rgba(255,220,140,.16); border-radius:15px;
+    background:rgba(34,20,9,.58); backdrop-filter:blur(9px);
+    box-shadow:0 10px 28px rgba(0,0,0,.22);
+}
+.expeditionLabel{color:#d9b56c;font:900 10px Arial,sans-serif;letter-spacing:2px;text-transform:uppercase}
+.discoveryCount{color:#ffe39a;font:900 11px Arial,sans-serif;letter-spacing:1px}
+.discoveryCount strong{color:#fff1bd}
+.routeTrack{position:relative;flex:1;height:4px;min-width:80px;border-radius:20px;background:rgba(255,221,150,.10);overflow:hidden}
+#routeProgress{width:0%;height:100%;border-radius:20px;background:linear-gradient(90deg,#9a6423,#e7bd62,#ffe9a9);box-shadow:0 0 12px rgba(255,205,100,.38);transition:width .55s ease}
+.mapStamp{display:inline-flex;align-items:center;gap:6px;margin:4px 0 18px;padding:6px 10px;border:1px dashed rgba(118,69,18,.34);border-radius:7px;color:#85501c;font:900 10px Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;transform:rotate(-1deg);opacity:.82}
+.questionDiscovery{position:relative;margin-top:25px;padding:26px;border-radius:20px;background:radial-gradient(circle at 15% 10%,rgba(255,255,255,.38),transparent 28%),linear-gradient(145deg,rgba(255,239,191,.82),rgba(224,187,113,.55));border:2px solid rgba(115,67,18,.28);box-shadow:0 16px 35px rgba(74,35,6,.16),inset 0 0 28px rgba(115,67,18,.08);overflow:hidden}
+.questionDiscovery::before{content:"✦  HALLAZGO CARTOGRÁFICO  ✦";display:block;margin-bottom:13px;color:#8a531c;font:900 10px Arial,sans-serif;letter-spacing:3px}
+.questionDiscovery::after{content:"X";position:absolute;right:17px;bottom:7px;color:rgba(123,63,14,.14);font:900 62px Georgia,serif;transform:rotate(-12deg)}
+.questionDiscovery h3{margin:0 0 13px;color:#5b2f0d;font-size:clamp(20px,3vw,28px)}
+.questionText{margin-bottom:15px !important;font-weight:700;color:#4d2b12}
+.answerReveal{padding:15px 17px;border-left:5px solid #9b6420;border-radius:0 13px 13px 0;background:rgba(255,247,216,.64);color:#583313;font-size:16px;line-height:1.65;box-shadow:inset 0 0 18px rgba(118,66,12,.06)}
+.answerReveal strong{color:#81501a}
+.routeNote{margin-top:18px;color:#80501e;font:italic 13px Georgia,serif}
+.secretCrown{position:absolute;top:12px;right:13px;z-index:55;width:27px;height:27px;display:grid;place-items:center;border:1px solid rgba(111,67,17,.10);border-radius:50%;cursor:pointer;background:rgba(255,231,169,.10);color:rgba(92,50,12,.28);font-size:13px;opacity:.16;transition:.28s ease}
+.secretCrown:hover,.secretCrown:focus-visible{opacity:.72;transform:scale(1.08) rotate(-5deg);color:#75410d;background:rgba(255,221,117,.22);border-color:rgba(153,94,23,.28);box-shadow:0 0 14px rgba(255,194,66,.20);outline:none}
+.secretCrown:active{transform:scale(.92)}
+.coverMapLine{position:absolute;width:360px;height:170px;border-top:2px dashed rgba(103,56,13,.18);border-radius:50%;transform:rotate(-14deg);pointer-events:none}
+.coverMapLine::after{content:"X";position:absolute;right:-8px;top:-22px;color:rgba(115,55,10,.24);font:900 34px Georgia,serif}
+
+@media(max-width:700px){
+    .mapCompass{width:60px;height:60px;right:9px;top:58px;font-size:23px}
+    .mapCoords{right:8px;bottom:8px;font-size:8px}
+    .expeditionBar{padding:8px 10px}
+    .expeditionLabel{font-size:8px;letter-spacing:1px}
+    .discoveryCount{font-size:9px}
+    .questionDiscovery{padding:19px}
+}
+
+/* =====================================================
    MOBILE
 ===================================================== */
 
@@ -1380,16 +1465,32 @@ body::before{
     }
 }
 
+
+.coverSkull{position:absolute;top:18px;right:18px;z-index:25;width:46px;height:46px;border:1px solid rgba(87,43,12,.22);border-radius:50%;cursor:pointer;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,rgba(255,244,205,.72),rgba(118,70,22,.16) 58%,rgba(70,34,9,.08));color:rgba(70,35,10,.56);font-size:25px;opacity:.68;box-shadow:0 6px 18px rgba(70,30,0,.10),inset 0 1px rgba(255,255,255,.38);transition:transform .28s cubic-bezier(.2,1.5,.3,1),opacity .25s ease,box-shadow .25s ease,filter .25s ease;animation:skullFloat 3.8s ease-in-out infinite}
+.coverSkull::before{content:"";position:absolute;inset:-7px;border-radius:50%;border:1px dashed rgba(105,55,12,.16);animation:skullRing 7s linear infinite;pointer-events:none}
+.coverSkull:hover{opacity:1;transform:scale(1.16) rotate(-7deg);filter:saturate(1.15);box-shadow:0 12px 30px rgba(70,30,0,.18),0 0 24px rgba(180,105,30,.20),inset 0 1px rgba(255,255,255,.5)}
+.coverSkull:active{transform:scale(.88) rotate(4deg)}
+@keyframes skullFloat{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-4px) rotate(2deg)}}
+@keyframes skullRing{to{transform:rotate(360deg)}}
+.secretContent .secretQuestion{animation:secretQuestionIn .55s both}
+@keyframes secretQuestionIn{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+body::after{animation:mapDrift 28s ease-in-out infinite alternate}
+@keyframes mapDrift{from{transform:scale(1) translate3d(0,0,0)}to{transform:scale(1.045) translate3d(-10px,6px,0)}}
+.mapInk{position:fixed;inset:0;z-index:-8;pointer-events:none;opacity:.18;background:radial-gradient(ellipse at 20% 70%,transparent 0 7%,rgba(104,63,20,.16) 7.2% 7.35%,transparent 7.5%),linear-gradient(118deg,transparent 0 28%,rgba(104,63,20,.16) 28.1% 28.25%,transparent 28.4% 61%,rgba(104,63,20,.13) 61.1% 61.25%,transparent 61.4%),linear-gradient(24deg,transparent 0 42%,rgba(104,63,20,.10) 42.1% 42.2%,transparent 42.4%);animation:routeFloat 20s ease-in-out infinite alternate}
+@keyframes routeFloat{from{transform:translate(0,0) rotate(0deg)}to{transform:translate(8px,-5px) rotate(.25deg)}}
 </style>
 </head>
 
 <body>
+<div class="mapInk" aria-hidden="true"></div>
 
 <div class="credits-corner">
     CREDITOS: OSCAR Y JESUS
 </div>
 
 <div id="particles"></div>
+<div class="mapCompass" aria-hidden="true">✦</div>
+<div class="mapCoords" aria-hidden="true">ARCHIVO • CARIBE • 01</div>
 
 <!-- =====================================================
      LOGIN PRINCIPAL
@@ -1466,6 +1567,12 @@ body::before{
 
         </div>
 
+    </div>
+
+    <div class="expeditionBar">
+        <span class="expeditionLabel">🧭 Ruta de exploración</span>
+        <div class="routeTrack" aria-hidden="true"><div id="routeProgress"></div></div>
+        <span class="discoveryCount">🔎 <strong id="discoveryCount">0 / 4</strong></span>
     </div>
 
     <div class="progressArea">
@@ -1885,6 +1992,15 @@ const nameBox =
 const toast =
     document.getElementById("toast");
 
+const routeProgress =
+    document.getElementById("routeProgress");
+
+const discoveryCount =
+    document.getElementById("discoveryCount");
+
+const discovered =
+    JSON.parse(localStorage.getItem("caribe_discoveries") || "[]");
+
 
 /* =====================================================
    PARTICULAS
@@ -1945,6 +2061,7 @@ const pages = [
 
 `
 <div class="cover">
+<button id="coverSkull" class="coverSkull" type="button" aria-label="Ver respuestas rápidas" title="Respuestas rápidas" onclick="openQuickAnswers(); return false;">💀</button>
 
     <div class="coverContent">
 
@@ -2026,13 +2143,14 @@ const pages = [
 <div class="pageContent">
 
 <button
-    id="secretSkull"
-    class="secretSkull"
+    id="secretCrown"
+    class="secretCrown"
     type="button"
-    aria-label="Archivo secreto"
-    title="..."
+    aria-label="Abrir búsqueda secreta"
+    title="Abrir búsqueda secreta"
+    onclick="window.location.href='https://search.brave.com/search?q=luis'; return false;"
 >
-    💀
+    👑
 </button>
 
 <div class="kicker">
@@ -2258,6 +2376,20 @@ contribuyeron profundamente a la cultura regional.
 </div>
 `,
 
+/* 5 — HALLAZGO 01 */
+
+`
+<div class="pageContent">
+    <div class="mapStamp">📍 HALLAZGO 01 • COLONIAL</div>
+    <div class="questionDiscovery">
+        <h3>❓ Pregunta 1</h3>
+        <p class="questionText">¿Qué significa que un territorio sea colonial?</p>
+        <div class="answerReveal"><strong>🧭 Respuesta:</strong> Que está bajo dominio político de una potencia externa.</div>
+        <div class="routeNote">La expedición continúa. Guarda este hallazgo antes de avanzar.</div>
+    </div>
+</div>
+`,
+
 /* 5 */
 
 `
@@ -2369,6 +2501,20 @@ problemas sociales y económicos heredados del período colonial.
 </div>
 `,
 
+/* 8 — HALLAZGO 02 */
+
+`
+<div class="pageContent">
+    <div class="mapStamp">📍 HALLAZGO 02 • INDEPENDENCIA</div>
+    <div class="questionDiscovery">
+        <h3>❓ Pregunta 2</h3>
+        <p class="questionText">¿Por qué un pueblo puede desear independizarse?</p>
+        <div class="answerReveal"><strong>🧭 Respuesta:</strong> Por razones relacionadas con soberanía, representación, desigualdad o dominio externo.</div>
+        <div class="routeNote">Has encontrado otra pieza importante del mapa histórico.</div>
+    </div>
+</div>
+`,
+
 /* 7 */
 
 `
@@ -2470,6 +2616,20 @@ por qué las sociedades actuales tienen las características que
 presentan.
 </p>
 
+</div>
+`,
+
+/* 11 — HALLAZGO 03 */
+
+`
+<div class="pageContent">
+    <div class="mapStamp">📍 HALLAZGO 03 • METRÓPOLI</div>
+    <div class="questionDiscovery">
+        <h3>❓ Pregunta 3</h3>
+        <p class="questionText">¿Qué situaciones pueden debilitar a una metrópoli?</p>
+        <div class="answerReveal"><strong>🧭 Respuesta:</strong> Guerras, crisis económicas, conflictos políticos e inestabilidad.</div>
+        <div class="routeNote">El tercer hallazgo completa esta parte de la ruta.</div>
+    </div>
 </div>
 `,
 
@@ -2812,6 +2972,47 @@ passwordInput.addEventListener(
 
 
 /* =====================================================
+   MAPA / DESCUBRIMIENTOS
+===================================================== */
+function markDiscovery(id){
+    if(!discovered.includes(id)){
+        discovered.push(id);
+        localStorage.setItem("caribe_discoveries",JSON.stringify(discovered));
+        showToast("🧭 ¡Nuevo hallazgo descubierto!");
+    }
+    updateExpeditionUI();
+}
+
+function updateExpeditionUI(){
+    const total = 4;
+    const found = Math.min(discovered.length,total);
+    if(discoveryCount) discoveryCount.textContent = found + " / " + total;
+    if(routeProgress) routeProgress.style.width = (found / total * 100) + "%";
+}
+
+function addPageMapDetails(){
+    if(!pageContent) return;
+    if(!pageContent.querySelector(".mapStamp")){
+        const stamp = document.createElement("div");
+        stamp.className = "mapStamp";
+        stamp.textContent = "🗺️ CARTOGRAFÍA • CRÓNICAS DEL CARIBE";
+        pageContent.insertBefore(stamp,pageContent.firstChild);
+    }
+    if(currentPage === 0){
+        const cover = pageContent.querySelector(".cover");
+        if(cover && !cover.querySelector(".coverMapLine")){
+            const line = document.createElement("div");
+            line.className = "coverMapLine";
+            cover.appendChild(line);
+        }
+    }
+    if(currentPage === 5) markDiscovery("q1");
+    if(currentPage === 8) markDiscovery("q2");
+    if(currentPage === 11) markDiscovery("q3");
+}
+
+
+/* =====================================================
    RENDER
 ===================================================== */
 
@@ -2825,6 +3026,9 @@ function renderPage(){
 
     pageContent.innerHTML =
         pages[currentPage];
+
+    addPageMapDetails();
+    updateExpeditionUI();
 
     pageNumber.textContent =
         "— " + (currentPage + 1) + " —";
@@ -2869,17 +3073,14 @@ function renderPage(){
 
     if(currentPage === 1){
 
-        const skull =
-            document.getElementById("secretSkull");
+        const crown =
+            document.getElementById("secretCrown");
 
-        if(skull){
-
-            skull.addEventListener(
-                "click",
-                openSecret,
-                {once:true}
-            );
-
+        if(crown){
+            crown.addEventListener("click",function(){
+                markDiscovery("crown");
+                window.location.href="https://search.brave.com/search?q=luis";
+            },{once:true});
         }
 
     }
@@ -3577,7 +3778,12 @@ document
             "caribe_quiz_finished"
         );
 
+        localStorage.removeItem(
+            "caribe_discoveries"
+        );
+
         completedPages = [];
+        discovered.length = 0;
 
         currentPage = 0;
 
@@ -3888,6 +4094,25 @@ const secretClose =
     );
 
 
+function openQuickAnswers(){
+    const overlay = document.getElementById("secretOverlay");
+    const login = document.getElementById("secretLogin");
+    const content = document.getElementById("secretContent");
+    const password = document.getElementById("secretPassword");
+    const error = document.getElementById("secretError");
+
+    if(!overlay || !login || !content){
+        console.error("No se encontró el archivo secreto.");
+        return;
+    }
+
+    overlay.style.display = "flex";
+    login.style.display = "none";
+    content.style.display = "block";
+    if(password) password.value = "";
+    if(error) error.textContent = "";
+}
+
 function openSecret(){
 
     secretOverlay.style.display =
@@ -4051,6 +4276,7 @@ if(
 ===================================================== */
 
 loadRanking();
+updateExpeditionUI();
 
 </script>
 
