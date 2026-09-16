@@ -213,7 +213,9 @@ body::before{
     box-shadow:0 15px 35px rgba(255,180,50,.4);
 }
 
-.enterButton:active{transform:scale(.98)}
+.enterButton:active{
+    transform:scale(.98);
+}
 
 .loginError{
     min-height:24px;
@@ -328,7 +330,6 @@ body::before{
     box-shadow:
         inset 0 0 50px rgba(55,25,0,.45),
         0 0 0 2px #8d5d2e;
-    perspective:1800px;
 }
 
 .book::before{
@@ -393,19 +394,23 @@ body::before{
         transform:perspective(1800px) rotateY(0deg) translateX(0);
         filter:brightness(1);
     }
+
     22%{
         transform:perspective(1800px) rotateY(-7deg) translateX(-3px);
         filter:brightness(.98);
     }
+
     52%{
         transform:perspective(1800px) rotateY(-24deg) translateX(-9px);
         filter:brightness(.84);
         box-shadow:inset 0 0 45px rgba(105,55,10,.2),-18px 12px 30px rgba(0,0,0,.28);
     }
+
     76%{
         transform:perspective(1800px) rotateY(-7deg) translateX(-3px);
         filter:brightness(.96);
     }
+
     100%{
         transform:perspective(1800px) rotateY(0deg) translateX(0);
         filter:brightness(1);
@@ -417,19 +422,23 @@ body::before{
         transform:perspective(1800px) rotateY(0deg) translateX(0);
         filter:brightness(1);
     }
+
     22%{
         transform:perspective(1800px) rotateY(7deg) translateX(3px);
         filter:brightness(.98);
     }
+
     52%{
         transform:perspective(1800px) rotateY(24deg) translateX(9px);
         filter:brightness(.84);
         box-shadow:inset 0 0 45px rgba(105,55,10,.2),18px 12px 30px rgba(0,0,0,.28);
     }
+
     76%{
         transform:perspective(1800px) rotateY(7deg) translateX(3px);
         filter:brightness(.96);
     }
+
     100%{
         transform:perspective(1800px) rotateY(0deg) translateX(0);
         filter:brightness(1);
@@ -449,6 +458,7 @@ body::before{
         opacity:0;
         transform:translateX(18px);
     }
+
     to{
         opacity:1;
         transform:none;
@@ -522,49 +532,163 @@ body::before{
     color:#753c12;
 }
 
+/* =====================================================
+   NUEVO INICIO
+===================================================== */
+
 .cover{
     min-height:610px;
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.cover::before{
+    content:"";
+    position:absolute;
+    width:650px;
+    height:650px;
+    border-radius:50%;
+    border:2px solid rgba(120,70,15,.12);
+    box-shadow:
+        0 0 0 35px rgba(120,70,15,.035),
+        0 0 0 70px rgba(120,70,15,.025),
+        0 0 0 105px rgba(120,70,15,.018);
+    animation:orbita 18s linear infinite;
+}
+
+.cover::after{
+    content:"✦  ✧  ⚖  ✦  🏛️  ✧  📜  ✦  🌎  ✧  🧭  ✦";
+    position:absolute;
+    left:50%;
+    top:35px;
+    transform:translateX(-50%);
+    width:100%;
+    color:rgba(105,55,12,.25);
+    font-size:25px;
+    letter-spacing:9px;
+    white-space:nowrap;
+    pointer-events:none;
+}
+
+@keyframes orbita{
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
 }
 
 .coverContent{
-    max-width:760px;
+    max-width:920px;
+    position:relative;
+    z-index:3;
+    padding:20px;
 }
 
 .coverEmblem{
-    width:125px;
-    height:125px;
-    margin:0 auto 25px;
+    width:135px;
+    height:135px;
+    margin:0 auto 20px;
     display:grid;
     place-items:center;
     border-radius:50%;
-    font-size:60px;
-    background:radial-gradient(circle,#d99a39,#704013);
+    font-size:64px;
+    background:
+        radial-gradient(circle at 35% 30%,#f6ca68,#b56c20 55%,#63300d);
     border:5px double #f4d27c;
-    box-shadow:0 15px 40px rgba(70,30,0,.3);
+    box-shadow:
+        0 15px 40px rgba(70,30,0,.3),
+        0 0 45px rgba(185,105,30,.18);
     animation:coverPulse 4s ease-in-out infinite;
 }
 
 @keyframes coverPulse{
     50%{
         transform:scale(1.035);
-        box-shadow:0 18px 55px rgba(70,30,0,.4);
+        box-shadow:
+            0 18px 55px rgba(70,30,0,.4),
+            0 0 70px rgba(185,105,30,.25);
     }
 }
 
+.coverClass{
+    display:inline-block;
+    margin-bottom:13px;
+    padding:10px 22px;
+    border-radius:999px;
+    background:rgba(91,47,12,.1);
+    border:2px solid rgba(105,55,12,.25);
+    color:#63330e;
+    font:bold clamp(18px,3vw,27px) Arial;
+    letter-spacing:2px;
+    text-shadow:0 1px rgba(255,255,255,.35);
+}
+
+.coverSubject{
+    margin:4px auto 20px;
+    color:#85501c;
+    font:900 clamp(20px,4vw,34px) Arial;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+
+.coverTask{
+    display:inline-block;
+    margin-bottom:23px;
+    padding:8px 22px;
+    color:#fff2b2;
+    background:linear-gradient(135deg,#74400f,#b77725,#66350d);
+    border-radius:12px;
+    border:2px solid #d39a48;
+    box-shadow:0 7px 20px rgba(75,35,5,.25);
+    font:bold clamp(17px,3vw,25px) Arial;
+    letter-spacing:5px;
+    transform:rotate(-1deg);
+}
+
 .cover h1{
-    font-size:clamp(42px,8vw,76px);
-    line-height:.95;
+    font-size:clamp(43px,9vw,82px);
+    line-height:.91;
     color:#55280d;
+    letter-spacing:2px;
+    text-shadow:
+        0 3px 0 rgba(255,230,175,.5),
+        0 7px 18px rgba(70,30,0,.25);
 }
 
 .cover .subtitle{
     margin-top:20px;
     font-size:21px;
     color:#75441d;
+}
+
+.cover .quote{
+    margin:25px auto;
+    max-width:750px;
+    text-align:left;
+}
+
+.coverDetails{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:22px;
+}
+
+.coverDetail{
+    padding:9px 14px;
+    border-radius:12px;
+    background:rgba(255,239,191,.55);
+    border:1px solid rgba(120,70,20,.18);
+    color:#704014;
+    font:bold 13px Arial;
 }
 
 .pageNumber{
@@ -647,6 +771,7 @@ body::before{
         opacity:0;
         transform:scale(.82) translateY(25px) rotateX(8deg);
     }
+
     to{
         opacity:1;
         transform:none;
@@ -810,8 +935,15 @@ body::before{
 }
 
 @keyframes badgeIn{
-    from{transform:scale(0) rotate(-180deg);opacity:0}
-    to{transform:scale(1) rotate(0);opacity:1}
+    from{
+        transform:scale(0) rotate(-180deg);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1) rotate(0);
+        opacity:1;
+    }
 }
 
 /* =====================================================
@@ -915,7 +1047,9 @@ body::before{
     border:3px double #8a571b;
 }
 
-.trophy{font-size:65px}
+.trophy{
+    font-size:65px;
+}
 
 .certificateInner h2{
     font-size:clamp(28px,6vw,52px);
@@ -987,7 +1121,9 @@ body::before{
     margin-bottom:18px;
 }
 
-.rankingTitle .globe{font-size:45px}
+.rankingTitle .globe{
+    font-size:45px;
+}
 
 .rankingTitle h2{
     color:#ffe1a0;
@@ -1111,14 +1247,18 @@ body::before{
 
 @media(max-width:700px){
 
-    #app{padding:9px}
+    #app{
+        padding:9px;
+    }
 
     .topBar{
         border-radius:14px;
         padding:10px;
     }
 
-    .brand{font-size:12px}
+    .brand{
+        font-size:12px;
+    }
 
     .controlBtn{
         padding:8px 9px;
@@ -1130,7 +1270,9 @@ body::before{
         border-radius:18px;
     }
 
-    .book{min-height:570px}
+    .book{
+        min-height:570px;
+    }
 
     .page{
         min-height:570px;
@@ -1146,7 +1288,9 @@ body::before{
         grid-template-columns:1fr;
     }
 
-    .bookNav{gap:7px}
+    .bookNav{
+        gap:7px;
+    }
 
     .navButton{
         min-width:0;
@@ -1199,6 +1343,40 @@ body::before{
 
     .secretQuestion{
         padding:15px;
+    }
+
+    .cover::after{
+        font-size:15px;
+        letter-spacing:4px;
+        top:20px;
+    }
+
+    .coverEmblem{
+        width:105px;
+        height:105px;
+        font-size:50px;
+    }
+
+    .coverClass{
+        padding:8px 13px;
+        letter-spacing:1px;
+    }
+
+    .coverSubject{
+        letter-spacing:1px;
+    }
+
+    .coverTask{
+        letter-spacing:2px;
+    }
+
+    .coverDetails{
+        gap:7px;
+    }
+
+    .coverDetail{
+        font-size:11px;
+        padding:7px 9px;
     }
 }
 
@@ -1499,8 +1677,6 @@ body::before{
                 ×
             </button>
 
-            <!-- LOGIN SECRETO -->
-
             <div id="secretLogin">
 
                 <div style="text-align:center;font-size:55px;margin-bottom:10px;">
@@ -1627,11 +1803,6 @@ const SUPABASE_URL =
 
 const SUPABASE_KEY =
     "sb_publishable_bI9S6fX2Hip3gip6t1dNUA_e63IL7pL";
-
-
-/* =====================================================
-   VARIABLES
-===================================================== */
 
 let currentPage = 0;
 
@@ -1770,41 +1941,82 @@ function showToast(message){
 
 const pages = [
 
-/* 0 */
+/* 0 — INICIO */
 
 `
 <div class="cover">
 
-<div class="coverContent">
+    <div class="coverContent">
 
-<div class="coverEmblem">
-🌎
-</div>
+        <div class="coverClass">
+            🎓 2DO B VESPERTINA
+        </div>
 
-<div class="kicker">
-Proyecto educativo
-</div>
+        <div class="coverSubject">
+            ⚖️ CCL — CIENCIAS SOCIALES
+        </div>
 
-<h1>
-CRÓNICAS<br>DEL CARIBE
-</h1>
+        <div class="coverEmblem">
+            🌎
+        </div>
 
-<div class="subtitle">
-Historia, cultura y sociedad de una región llena de memoria.
-</div>
+        <div class="kicker">
+            📜 Proyecto educativo • Historia • Cultura • Sociedad
+        </div>
 
-<div class="quote">
-“Conocer el pasado permite comprender mejor el presente y construir el futuro.”
-</div>
+        <h1>
+            CRÓNICAS<br>
+            DEL CARIBE
+        </h1>
 
-<p>
-Este libro digital propone un recorrido por algunos de los
-procesos históricos y sociales que ayudaron a formar el Caribe.
-Avanza por sus páginas, lee con atención y descubre los hechos
-que dejaron huella en sus pueblos.
-</p>
+        <div class="coverTask">
+            ✦ — TAREA — ✦
+        </div>
 
-</div>
+        <div class="subtitle">
+            Un viaje interactivo por la historia,
+            cultura y sociedad del Caribe.
+        </div>
+
+        <div class="coverDetails">
+
+            <div class="coverDetail">
+                🏛️ HISTORIA
+            </div>
+
+            <div class="coverDetail">
+                🌎 SOCIEDAD
+            </div>
+
+            <div class="coverDetail">
+                🧭 GEOGRAFÍA
+            </div>
+
+            <div class="coverDetail">
+                📜 CULTURA
+            </div>
+
+            <div class="coverDetail">
+                ⚖️ PROCESOS SOCIALES
+            </div>
+
+        </div>
+
+        <div class="quote">
+            “Conocer el pasado permite comprender mejor
+            el presente y construir el futuro.”
+        </div>
+
+        <p>
+            Este libro digital propone un recorrido por algunos
+            de los procesos históricos y sociales que ayudaron
+            a formar el Caribe. Avanza por sus páginas, lee con
+            atención y descubre los hechos que dejaron huella
+            en sus pueblos.
+        </p>
+
+    </div>
+
 </div>
 `,
 
@@ -2418,7 +2630,7 @@ font:bold 16px Arial;
 
 
 /* =====================================================
-   PREGUNTAS NORMALES
+   PREGUNTAS
 ===================================================== */
 
 const questions = [
@@ -2581,7 +2793,10 @@ function enterBook(){
     );
 }
 
-enterButton.addEventListener("click",enterBook);
+enterButton.addEventListener(
+    "click",
+    enterBook
+);
 
 passwordInput.addEventListener(
     "keydown",
@@ -2658,12 +2873,15 @@ function renderPage(){
             document.getElementById("secretSkull");
 
         if(skull){
+
             skull.addEventListener(
                 "click",
                 openSecret,
                 {once:true}
             );
+
         }
+
     }
 
     window.scrollTo({
@@ -2787,7 +3005,8 @@ function openQuiz(){
     });
 }
 
-window.openQuiz = openQuiz;
+window.openQuiz =
+    openQuiz;
 
 function renderQuestions(){
 
@@ -2965,7 +3184,9 @@ async function submitGlobalScore(
 
     if(!cleanName){
 
-        showToast("✏️ Escribe un nombre");
+        showToast(
+            "✏️ Escribe un nombre"
+        );
 
         return false;
     }
