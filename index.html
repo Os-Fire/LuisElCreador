@@ -10,10 +10,6 @@ content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no
 
 <title>Crónicas del Caribe</title>
 
-<!-- =====================================================
-     PREVISUALIZACIÓN AL COMPARTIR EL LINK
-===================================================== -->
-
 <meta property="og:title" content="Crónicas del Caribe">
 <meta property="og:description" content="Un viaje interactivo por la historia, cultura y sociedad del Caribe.">
 <meta property="og:image" content="https://os-fire.github.io/LuisElCreador/preview.png">
@@ -29,10 +25,6 @@ content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no
 <meta name="twitter:image" content="https://os-fire.github.io/LuisElCreador/preview.png">
 
 <style>
-
-/* =====================================================
-   RESET
-===================================================== */
 
 *{
     box-sizing:border-box;
@@ -52,142 +44,64 @@ body{
     overflow-x:hidden;
 }
 
-/* =====================================================
-   CREDITOS FIJOS
-===================================================== */
-
 .credits-corner{
     position:fixed;
     top:12px;
     left:14px;
     z-index:100001;
-
     padding:7px 12px;
-
     background:rgba(5,12,25,.88);
-
-    border:
-        1px solid
-        rgba(255,215,100,.35);
-
+    border:1px solid rgba(255,215,100,.35);
     border-radius:10px;
-
     color:#ffd966;
-
     font-family:Arial,sans-serif;
-
     font-size:11px;
-
     font-weight:900;
-
     letter-spacing:1px;
-
-    box-shadow:
-        0 0 12px
-        rgba(255,215,100,.15);
-
+    box-shadow:0 0 12px rgba(255,215,100,.15);
     backdrop-filter:blur(8px);
-
     -webkit-backdrop-filter:blur(8px);
-
     pointer-events:none;
 }
-
-/* =====================================================
-   FONDO
-===================================================== */
 
 body::before{
     content:"";
     position:fixed;
     inset:-20%;
     z-index:-10;
-
     background:
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(0,190,255,.18),
-            transparent 27%
-        ),
-
-        radial-gradient(
-            circle at 80% 30%,
-            rgba(0,255,170,.10),
-            transparent 25%
-        ),
-
-        radial-gradient(
-            circle at 50% 90%,
-            rgba(255,160,40,.14),
-            transparent 30%
-        ),
-
-        linear-gradient(
-            135deg,
-            #02070d,
-            #082338 45%,
-            #07111c
-        );
-
+        radial-gradient(circle at 20% 20%,rgba(0,190,255,.18),transparent 27%),
+        radial-gradient(circle at 80% 30%,rgba(0,255,170,.10),transparent 25%),
+        radial-gradient(circle at 50% 90%,rgba(255,160,40,.14),transparent 30%),
+        linear-gradient(135deg,#02070d,#082338 45%,#07111c);
     animation:fondo 18s ease-in-out infinite alternate;
 }
 
 @keyframes fondo{
-
-    from{
-        transform:scale(1);
-    }
-
-    to{
-        transform:scale(1.12);
-    }
+    from{transform:scale(1)}
+    to{transform:scale(1.12)}
 }
-
-/* =====================================================
-   PARTICULAS
-===================================================== */
 
 .particle{
     position:fixed;
-
     width:3px;
     height:3px;
-
     border-radius:50%;
-
     background:#ffd875;
-
-    box-shadow:
-        0 0 12px #ffd875;
-
+    box-shadow:0 0 12px #ffd875;
     pointer-events:none;
-
     z-index:-2;
-
     animation:particula linear infinite;
 }
 
 @keyframes particula{
-
     from{
-        transform:
-            translateY(110vh)
-            translateX(0);
+        transform:translateY(110vh) translateX(0);
         opacity:0;
     }
-
-    15%{
-        opacity:.7;
-    }
-
-    85%{
-        opacity:.7;
-    }
-
+    15%,85%{opacity:.7}
     to{
-        transform:
-            translateY(-15vh)
-            translateX(100px);
+        transform:translateY(-15vh) translateX(100px);
         opacity:0;
     }
 }
@@ -197,236 +111,115 @@ body::before{
 ===================================================== */
 
 #passwordScreen{
-
     position:fixed;
-
     inset:0;
-
     z-index:99999;
-
     display:flex;
-
     justify-content:center;
     align-items:center;
-
     padding:20px;
-
     background:
-
-        radial-gradient(
-            circle at 50% 30%,
-            rgba(0,190,255,.18),
-            transparent 35%
-        ),
-
-        linear-gradient(
-            135deg,
-            #02060c,
-            #071d2d,
-            #02070c
-        );
+        radial-gradient(circle at 50% 30%,rgba(0,190,255,.18),transparent 35%),
+        linear-gradient(135deg,#02060c,#071d2d,#02070c);
 }
 
 .loginCard{
-
     width:min(470px,100%);
-
     padding:42px 30px;
-
     text-align:center;
-
     border-radius:28px;
-
-    border:
-        1px solid
-        rgba(255,220,140,.35);
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(20,43,60,.97),
-            rgba(4,15,25,.98)
-        );
-
+    border:1px solid rgba(255,220,140,.35);
+    background:linear-gradient(145deg,rgba(20,43,60,.97),rgba(4,15,25,.98));
     box-shadow:
         0 35px 90px rgba(0,0,0,.7),
         inset 0 1px rgba(255,255,255,.08),
         0 0 70px rgba(0,190,255,.08);
-
     animation:loginEntrada .8s ease;
 }
 
 @keyframes loginEntrada{
-
-    from{
-        opacity:0;
-        transform:
-            translateY(30px)
-            scale(.92);
-    }
-
-    to{
-        opacity:1;
-        transform:none;
-    }
+    from{opacity:0;transform:translateY(30px) scale(.92)}
+    to{opacity:1;transform:none}
 }
 
 .loginIcon{
-
     width:105px;
     height:105px;
-
     margin:0 auto 20px;
-
     display:grid;
     place-items:center;
-
     border-radius:50%;
-
     font-size:50px;
-
-    background:
-        radial-gradient(
-            circle,
-            #1d607b,
-            #092334 70%
-        );
-
-    border:
-        2px solid
-        rgba(255,220,140,.6);
-
-    box-shadow:
-        0 0 45px rgba(0,200,255,.25),
-        inset 0 0 30px rgba(255,210,100,.12);
-
+    background:radial-gradient(circle,#1d607b,#092334 70%);
+    border:2px solid rgba(255,220,140,.6);
+    box-shadow:0 0 45px rgba(0,200,255,.25),inset 0 0 30px rgba(255,210,100,.12);
     animation:icono 3s infinite;
 }
 
 @keyframes icono{
-
     50%{
-        box-shadow:
-            0 0 70px rgba(0,200,255,.4),
-            inset 0 0 30px rgba(255,210,100,.2);
+        box-shadow:0 0 70px rgba(0,200,255,.4),inset 0 0 30px rgba(255,210,100,.2);
     }
 }
 
 .loginCard h1{
-
-    font-size:
-        clamp(29px,7vw,48px);
-
+    font-size:clamp(29px,7vw,48px);
     color:#ffe3a1;
-
     letter-spacing:2px;
-
-    text-shadow:
-        0 4px 18px #000;
+    text-shadow:0 4px 18px #000;
 }
 
 .loginCard p{
-
-    margin:
-        12px 0 25px;
-
+    margin:12px 0 25px;
     color:#b8d2dc;
-
     font-family:Arial,sans-serif;
-
     line-height:1.6;
 }
 
 .passwordInput{
-
     width:100%;
-
     padding:16px;
-
     border-radius:14px;
-
-    border:
-        1px solid
-        rgba(255,215,130,.3);
-
+    border:1px solid rgba(255,215,130,.3);
     outline:none;
-
     background:#030d16;
-
     color:white;
-
     font-size:17px;
-
     text-align:center;
 }
 
 .passwordInput:focus{
-
     border-color:#4fdcff;
-
-    box-shadow:
-        0 0 25px
-        rgba(79,220,255,.2);
+    box-shadow:0 0 25px rgba(79,220,255,.2);
 }
 
 .enterButton{
-
     width:100%;
-
     margin-top:14px;
-
     padding:16px;
-
     border:0;
-
     border-radius:14px;
-
     cursor:pointer;
-
     color:#06121b;
-
     font-weight:900;
-
     font-size:16px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffe18b,
-            #ffb83e
-        );
-
-    box-shadow:
-        0 10px 30px
-        rgba(255,180,50,.2);
-
+    background:linear-gradient(135deg,#ffe18b,#ffb83e);
+    box-shadow:0 10px 30px rgba(255,180,50,.2);
     transition:.2s;
 }
 
 .enterButton:hover{
-
     transform:translateY(-2px);
-
-    box-shadow:
-        0 15px 35px
-        rgba(255,180,50,.4);
+    box-shadow:0 15px 35px rgba(255,180,50,.4);
 }
 
-.enterButton:active{
-
-    transform:scale(.98);
-}
+.enterButton:active{transform:scale(.98)}
 
 .loginError{
-
     min-height:24px;
-
     margin-top:12px;
-
     color:#ff6d6d;
-
     font-family:Arial,sans-serif;
-
     font-size:14px;
 }
 
@@ -435,150 +228,78 @@ body::before{
 ===================================================== */
 
 #app{
-
     display:none;
-
     min-height:100vh;
-
     padding:18px;
 }
 
-/* =====================================================
-   TOP BAR
-===================================================== */
-
 .topBar{
-
     width:min(1180px,100%);
-
     margin:auto;
     margin-bottom:16px;
-
     padding:12px 16px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     gap:12px;
-
     border-radius:18px;
-
-    border:
-        1px solid
-        rgba(255,220,150,.18);
-
-    background:
-        rgba(4,17,29,.78);
-
+    border:1px solid rgba(255,220,150,.18);
+    background:rgba(4,17,29,.78);
     backdrop-filter:blur(15px);
-
-    box-shadow:
-        0 15px 45px rgba(0,0,0,.3);
+    box-shadow:0 15px 45px rgba(0,0,0,.3);
 }
 
 .brand{
-
     font-family:Arial,sans-serif;
-
     font-weight:900;
-
     letter-spacing:1px;
-
     color:#ffe4a5;
 }
 
 .controls{
-
     display:flex;
-
     gap:8px;
-
     flex-wrap:wrap;
 }
 
 .controlBtn{
-
     padding:9px 12px;
-
     border-radius:12px;
-
-    border:
-        1px solid
-        rgba(255,220,150,.2);
-
+    border:1px solid rgba(255,220,150,.2);
     background:#102738;
-
     color:#e8f7ff;
-
     cursor:pointer;
-
     font-family:Arial,sans-serif;
-
     font-weight:bold;
 }
 
-/* =====================================================
-   PROGRESO
-===================================================== */
-
 .progressArea{
-
     width:min(1180px,100%);
-
-    margin:
-        0 auto 15px;
+    margin:0 auto 15px;
 }
 
 .progressInfo{
-
     display:flex;
-
     justify-content:space-between;
-
     margin-bottom:7px;
-
     color:#a9c6d1;
-
-    font:
-        700 12px Arial;
+    font:700 12px Arial;
 }
 
 .progressTrack{
-
     height:8px;
-
     border-radius:20px;
-
     background:#07141f;
-
     overflow:hidden;
 }
 
 #progressBar{
-
     width:0%;
-
     height:100%;
-
     border-radius:20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #25d9ff,
-            #ffe079,
-            #ffae45
-        );
-
-    box-shadow:
-        0 0 15px
-        rgba(80,220,255,.6);
-
-    transition:
-        width .5s ease;
+    background:linear-gradient(90deg,#25d9ff,#ffe079,#ffae45);
+    box-shadow:0 0 15px rgba(80,220,255,.6);
+    transition:width .5s ease;
 }
 
 /* =====================================================
@@ -586,163 +307,148 @@ body::before{
 ===================================================== */
 
 .bookShell{
-
     width:min(1180px,100%);
-
     min-height:650px;
-
     margin:auto;
-
     padding:18px;
-
     border-radius:30px;
-
     background:
-        linear-gradient(
-            145deg,
-            #633716,
-            #2d160b 45%,
-            #5c3519
-        );
-
+        linear-gradient(145deg,#633716,#2d160b 45%,#5c3519);
     box-shadow:
         0 35px 90px rgba(0,0,0,.7),
-        inset 0 0 0 3px
-        rgba(255,220,140,.12);
+        inset 0 0 0 3px rgba(255,220,140,.12);
 }
 
 .book{
-
     position:relative;
-
     min-height:610px;
-
     overflow:hidden;
-
     border-radius:18px;
-
     background:#c99b5b;
-
     box-shadow:
-        inset 0 0 50px
-        rgba(55,25,0,.45),
+        inset 0 0 50px rgba(55,25,0,.45),
         0 0 0 2px #8d5d2e;
+    perspective:1800px;
+}
+
+.book::before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    bottom:0;
+    width:18px;
+    z-index:20;
+    pointer-events:none;
+    background:linear-gradient(
+        90deg,
+        rgba(55,25,4,.65),
+        rgba(255,220,140,.12),
+        rgba(40,15,0,.45)
+    );
+    box-shadow:8px 0 20px rgba(40,15,0,.25);
 }
 
 .page{
-
     width:100%;
-
     min-height:610px;
-
     position:relative;
-
-    padding:
-        45px
-        clamp(25px,6vw,75px)
-        85px;
-
+    padding:45px clamp(25px,6vw,75px) 85px;
     overflow-y:auto;
-
     color:#39230e;
-
     background:
-
-        radial-gradient(
-            circle at 20% 10%,
-            rgba(255,255,255,.35),
-            transparent 25%
-        ),
-
-        radial-gradient(
-            circle at 80% 90%,
-            rgba(80,35,0,.1),
-            transparent 25%
-        ),
-
+        radial-gradient(circle at 20% 10%,rgba(255,255,255,.42),transparent 25%),
+        radial-gradient(circle at 80% 90%,rgba(80,35,0,.1),transparent 25%),
+        linear-gradient(90deg,rgba(130,75,20,.08),transparent 8%,transparent 92%,rgba(100,50,10,.1)),
         #f3dcae;
-
     box-shadow:
-        inset 0 0 45px
-        rgba(105,55,10,.2);
-
+        inset 0 0 45px rgba(105,55,10,.2),
+        inset 8px 0 18px rgba(70,30,0,.12);
     transform-origin:left center;
+    transform-style:preserve-3d;
+    backface-visibility:hidden;
+    will-change:transform,filter;
+}
+
+.page::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    border:1px solid rgba(104,58,15,.18);
+    box-shadow:inset 0 0 35px rgba(92,45,5,.14);
 }
 
 .page.turnNext{
-
-    animation:
-        pageTurnNext .7s ease;
+    animation:pageTurnNext .72s cubic-bezier(.22,.75,.18,1);
 }
 
 .page.turnPrev{
-
-    animation:
-        pageTurnPrev .7s ease;
+    transform-origin:right center;
+    animation:pageTurnPrev .72s cubic-bezier(.22,.75,.18,1);
 }
 
 @keyframes pageTurnNext{
-
     0%{
-        transform:
-            perspective(1600px)
-            rotateY(0deg);
+        transform:perspective(1800px) rotateY(0deg) translateX(0);
         filter:brightness(1);
     }
-
-    45%{
-        transform:
-            perspective(1600px)
-            rotateY(-18deg);
-        filter:brightness(.85);
+    22%{
+        transform:perspective(1800px) rotateY(-7deg) translateX(-3px);
+        filter:brightness(.98);
     }
-
+    52%{
+        transform:perspective(1800px) rotateY(-24deg) translateX(-9px);
+        filter:brightness(.84);
+        box-shadow:inset 0 0 45px rgba(105,55,10,.2),-18px 12px 30px rgba(0,0,0,.28);
+    }
+    76%{
+        transform:perspective(1800px) rotateY(-7deg) translateX(-3px);
+        filter:brightness(.96);
+    }
     100%{
-        transform:
-            perspective(1600px)
-            rotateY(0deg);
+        transform:perspective(1800px) rotateY(0deg) translateX(0);
         filter:brightness(1);
     }
 }
 
 @keyframes pageTurnPrev{
-
     0%{
-        transform:
-            perspective(1600px)
-            rotateY(0deg);
+        transform:perspective(1800px) rotateY(0deg) translateX(0);
+        filter:brightness(1);
     }
-
-    45%{
-        transform:
-            perspective(1600px)
-            rotateY(18deg);
+    22%{
+        transform:perspective(1800px) rotateY(7deg) translateX(3px);
+        filter:brightness(.98);
     }
-
+    52%{
+        transform:perspective(1800px) rotateY(24deg) translateX(9px);
+        filter:brightness(.84);
+        box-shadow:inset 0 0 45px rgba(105,55,10,.2),18px 12px 30px rgba(0,0,0,.28);
+    }
+    76%{
+        transform:perspective(1800px) rotateY(7deg) translateX(3px);
+        filter:brightness(.96);
+    }
     100%{
-        transform:
-            perspective(1600px)
-            rotateY(0deg);
+        transform:perspective(1800px) rotateY(0deg) translateX(0);
+        filter:brightness(1);
     }
 }
 
 .pageContent{
-
     max-width:850px;
-
     margin:auto;
-
-    animation:
-        pageAppear .45s ease;
+    position:relative;
+    z-index:2;
+    animation:pageAppear .42s cubic-bezier(.2,.8,.2,1);
 }
 
 @keyframes pageAppear{
-
     from{
         opacity:0;
-        transform:translateX(25px);
+        transform:translateX(18px);
     }
-
     to{
         opacity:1;
         transform:none;
@@ -750,265 +456,326 @@ body::before{
 }
 
 .page h2{
-
-    font-size:
-        clamp(30px,5vw,48px);
-
+    font-size:clamp(30px,5vw,48px);
     line-height:1.08;
-
     color:#5d3012;
-
     margin-bottom:20px;
 }
 
 .page h3{
-
-    font-size:
-        clamp(22px,4vw,30px);
-
+    font-size:clamp(22px,4vw,30px);
     color:#713c17;
-
-    margin:
-        24px 0 12px;
+    margin:24px 0 12px;
 }
 
 .page p{
-
-    font-size:
-        clamp(16px,2vw,19px);
-
+    font-size:clamp(16px,2vw,19px);
     line-height:1.85;
-
     margin-bottom:17px;
-
     text-align:justify;
 }
 
 .page ul{
-
-    margin:
-        15px 0 20px 25px;
+    margin:15px 0 20px 25px;
 }
 
 .page li{
-
     margin:10px 0;
-
     font-size:18px;
-
     line-height:1.6;
 }
 
 .kicker{
-
-    font:
-        900 12px Arial;
-
+    font:900 12px Arial;
     letter-spacing:3px;
-
     color:#9a5d1c;
-
     text-transform:uppercase;
-
     margin-bottom:12px;
 }
 
 .quote{
-
     margin:25px 0;
-
     padding:20px 22px;
-
-    border-left:
-        5px solid #b97928;
-
-    background:
-        rgba(255,239,191,.55);
-
-    border-radius:
-        0 14px 14px 0;
-
+    border-left:5px solid #b97928;
+    background:rgba(255,239,191,.55);
+    border-radius:0 14px 14px 0;
     font-style:italic;
 }
 
 .factGrid{
-
     display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
+    grid-template-columns:repeat(2,1fr);
     gap:14px;
-
     margin:25px 0;
 }
 
 .fact{
-
     padding:18px;
-
     border-radius:15px;
-
-    background:
-        rgba(255,239,191,.65);
-
-    border:
-        1px solid
-        rgba(120,70,20,.18);
+    background:rgba(255,239,191,.65);
+    border:1px solid rgba(120,70,20,.18);
 }
 
 .fact strong{
-
     display:block;
-
     margin-bottom:7px;
-
     color:#753c12;
 }
 
 .cover{
-
     min-height:610px;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
     text-align:center;
 }
 
 .coverContent{
-
     max-width:760px;
 }
 
 .coverEmblem{
-
     width:125px;
     height:125px;
-
-    margin:
-        0 auto 25px;
-
+    margin:0 auto 25px;
     display:grid;
-
     place-items:center;
-
     border-radius:50%;
-
     font-size:60px;
+    background:radial-gradient(circle,#d99a39,#704013);
+    border:5px double #f4d27c;
+    box-shadow:0 15px 40px rgba(70,30,0,.3);
+    animation:coverPulse 4s ease-in-out infinite;
+}
 
-    background:
-        radial-gradient(
-            circle,
-            #d99a39,
-            #704013
-        );
-
-    border:
-        5px double #f4d27c;
-
-    box-shadow:
-        0 15px 40px
-        rgba(70,30,0,.3);
+@keyframes coverPulse{
+    50%{
+        transform:scale(1.035);
+        box-shadow:0 18px 55px rgba(70,30,0,.4);
+    }
 }
 
 .cover h1{
-
-    font-size:
-        clamp(42px,8vw,76px);
-
+    font-size:clamp(42px,8vw,76px);
     line-height:.95;
-
     color:#55280d;
 }
 
 .cover .subtitle{
-
     margin-top:20px;
-
     font-size:21px;
-
     color:#75441d;
 }
 
 .pageNumber{
-
     position:absolute;
-
     bottom:20px;
-
     left:50%;
-
-    transform:
-        translateX(-50%);
-
+    transform:translateX(-50%);
     color:#80542b;
-
     font-style:italic;
+    z-index:3;
 }
 
 /* =====================================================
-   NAVEGACIÓN
+   CALAVERA
+===================================================== */
+
+.secretSkull{
+    position:absolute;
+    right:13px;
+    top:12px;
+    z-index:50;
+    width:31px;
+    height:31px;
+    border:0;
+    border-radius:50%;
+    cursor:pointer;
+    display:grid;
+    place-items:center;
+    background:rgba(55,30,10,.12);
+    color:rgba(70,35,10,.38);
+    font-size:18px;
+    opacity:.38;
+    transition:.3s;
+}
+
+.secretSkull:hover{
+    opacity:1;
+    transform:scale(1.18) rotate(-8deg);
+    background:rgba(45,20,5,.18);
+    color:#572b0c;
+    box-shadow:0 0 18px rgba(100,55,10,.25);
+}
+
+.secretSkull:active{
+    transform:scale(.9);
+}
+
+/* =====================================================
+   MODAL SECRETO
+===================================================== */
+
+#secretOverlay{
+    position:fixed;
+    inset:0;
+    z-index:100002;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(1,5,10,.82);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+}
+
+.secretModal{
+    width:min(850px,100%);
+    max-height:90vh;
+    overflow:auto;
+    padding:7px;
+    border-radius:27px;
+    background:linear-gradient(145deg,#6c431c,#281509,#70451d);
+    box-shadow:
+        0 40px 120px rgba(0,0,0,.8),
+        0 0 70px rgba(255,180,50,.08);
+    animation:secretIn .45s cubic-bezier(.2,1.3,.3,1);
+}
+
+@keyframes secretIn{
+    from{
+        opacity:0;
+        transform:scale(.82) translateY(25px) rotateX(8deg);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.secretInner{
+    position:relative;
+    padding:35px;
+    border-radius:21px;
+    background:
+        radial-gradient(circle at 50% 0,rgba(255,220,140,.08),transparent 30%),
+        linear-gradient(145deg,#101b24,#071018);
+    border:1px solid rgba(255,220,140,.2);
+}
+
+.secretClose{
+    position:absolute;
+    right:15px;
+    top:13px;
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:50%;
+    cursor:pointer;
+    background:#182b37;
+    color:#ffe09a;
+    font-size:20px;
+}
+
+.secretTitle{
+    text-align:center;
+    color:#ffe09a;
+    font:900 clamp(26px,5vw,42px) Arial;
+    letter-spacing:1px;
+    margin-bottom:8px;
+}
+
+.secretSubtitle{
+    text-align:center;
+    color:#88aebc;
+    font:14px Arial;
+    margin-bottom:25px;
+}
+
+.secretSummary{
+    color:#dceaf0;
+    font:16px/1.75 Arial;
+}
+
+.secretQuestion{
+    margin-top:20px;
+    padding:19px;
+    border-radius:17px;
+    background:linear-gradient(145deg,#102b3b,#0a1a25);
+    border:1px solid rgba(90,210,255,.15);
+    transition:.25s;
+}
+
+.secretQuestion:hover{
+    transform:translateY(-2px);
+    border-color:rgba(255,215,100,.3);
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.secretQuestion h4{
+    color:#e9faff;
+    font:700 17px/1.5 Arial;
+    margin-bottom:12px;
+}
+
+.secretAnswer{
+    color:#ffd86e;
+    font:700 14px/1.5 Arial;
+    padding:11px 13px;
+    border-radius:11px;
+    background:rgba(255,210,80,.08);
+}
+
+.secretTag{
+    display:inline-block;
+    margin-bottom:15px;
+    padding:6px 10px;
+    border-radius:9px;
+    background:rgba(255,210,90,.1);
+    border:1px solid rgba(255,210,90,.2);
+    color:#ffd86e;
+    font:900 11px Arial;
+    letter-spacing:1px;
+}
+
+/* =====================================================
+   NAVEGACION
 ===================================================== */
 
 .bookNav{
-
     width:min(1180px,100%);
-
-    margin:
-        15px auto 0;
-
+    margin:15px auto 0;
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
-
     gap:15px;
 }
 
 .navButton{
-
     min-width:145px;
-
     padding:15px 18px;
-
     border-radius:15px;
-
-    border:
-        1px solid
-        rgba(255,220,140,.3);
-
+    border:1px solid rgba(255,220,140,.3);
     cursor:pointer;
-
     color:#fff4d2;
-
     font:bold 14px Arial;
+    background:linear-gradient(145deg,#18374b,#0b1d2b);
+    transition:.2s;
+}
 
-    background:
-        linear-gradient(
-            145deg,
-            #18374b,
-            #0b1d2b
-        );
+.navButton:hover:not(:disabled){
+    transform:translateY(-2px);
+    box-shadow:0 8px 22px rgba(0,0,0,.3);
 }
 
 .navButton:disabled{
-
     opacity:.35;
-
     cursor:not-allowed;
 }
 
 .pageCounter{
-
     color:#9eb8c3;
-
     font:bold 13px Arial;
-
     text-align:center;
 }
 
@@ -1017,86 +784,34 @@ body::before{
 ===================================================== */
 
 .badgeBox{
-
     display:none;
-
     width:min(700px,100%);
-
-    margin:
-        25px auto;
-
+    margin:25px auto;
     padding:25px;
-
     text-align:center;
-
     border-radius:20px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(72,47,12,.8),
-            rgba(22,17,7,.8)
-        );
-
-    border:
-        1px solid
-        rgba(255,211,93,.45);
+    background:linear-gradient(145deg,rgba(72,47,12,.8),rgba(22,17,7,.8));
+    border:1px solid rgba(255,211,93,.45);
 }
 
 .badge{
-
     width:130px;
     height:130px;
-
     margin:auto;
-
     display:grid;
-
     place-items:center;
-
     border-radius:50%;
-
-    border:
-        5px double #ffe28b;
-
-    background:
-        radial-gradient(
-            circle,
-            #e8ae35,
-            #71400d
-        );
-
+    border:5px double #ffe28b;
+    background:radial-gradient(circle,#e8ae35,#71400d);
     color:#fff0a9;
-
-    font:
-        bold 22px Arial;
-
-    box-shadow:
-        0 0 35px
-        rgba(255,190,45,.5);
-
-    animation:
-        badgeIn 1s
-        cubic-bezier(.2,1.5,.3,1);
+    font:bold 22px Arial;
+    box-shadow:0 0 35px rgba(255,190,45,.5);
+    animation:badgeIn 1s cubic-bezier(.2,1.5,.3,1);
 }
 
 @keyframes badgeIn{
-
-    from{
-        transform:
-            scale(0)
-            rotate(-180deg);
-
-        opacity:0;
-    }
-
-    to{
-        transform:
-            scale(1)
-            rotate(0);
-
-        opacity:1;
-    }
+    from{transform:scale(0) rotate(-180deg);opacity:0}
+    to{transform:scale(1) rotate(0);opacity:1}
 }
 
 /* =====================================================
@@ -1104,137 +819,76 @@ body::before{
 ===================================================== */
 
 .quiz{
-
     display:none;
-
     width:min(1000px,100%);
-
-    margin:
-        25px auto;
-
+    margin:25px auto;
     padding:25px;
-
     border-radius:24px;
-
-    background:
-        rgba(4,17,28,.93);
-
-    border:
-        1px solid
-        rgba(255,220,140,.2);
-
-    box-shadow:
-        0 25px 70px
-        rgba(0,0,0,.5);
+    background:rgba(4,17,28,.93);
+    border:1px solid rgba(255,220,140,.2);
+    box-shadow:0 25px 70px rgba(0,0,0,.5);
 }
 
 .quizHeader{
-
     text-align:center;
-
     margin-bottom:25px;
 }
 
 .quizHeader h2{
-
     color:#ffe1a0;
-
     font-size:34px;
 }
 
 .quizHeader p{
-
     color:#9fbac5;
-
-    font:
-        14px Arial;
-
+    font:14px Arial;
     margin-top:8px;
 }
 
 .questionCard{
-
     margin-bottom:20px;
-
     padding:20px;
-
     border-radius:18px;
-
     background:#0b2130;
-
-    border:
-        1px solid
-        rgba(90,210,255,.12);
+    border:1px solid rgba(90,210,255,.12);
 }
 
 .questionCard h3{
-
     color:#eaf9ff;
-
-    font:
-        700 18px Arial;
-
+    font:700 18px Arial;
     line-height:1.5;
-
     margin-bottom:14px;
 }
 
 .option{
-
     display:block;
-
     margin:8px 0;
-
     padding:13px;
-
     border-radius:12px;
-
     cursor:pointer;
-
     background:#102d3e;
-
     color:#cfe4eb;
-
     font:15px Arial;
-
     transition:.15s;
 }
 
 .option:hover{
-
     background:#153d53;
-
-    border-color:#43d9ff;
 }
 
 .option input{
-
     margin-right:9px;
 }
 
 .submitQuiz{
-
     display:block;
-
     width:100%;
-
     padding:17px;
-
     border:0;
-
     border-radius:14px;
-
     cursor:pointer;
-
-    background:
-        linear-gradient(
-            135deg,
-            #35dcff,
-            #ffd15c
-        );
-
+    background:linear-gradient(135deg,#35dcff,#ffd15c);
     color:#06131d;
-
     font:bold 16px Arial;
 }
 
@@ -1243,68 +897,34 @@ body::before{
 ===================================================== */
 
 .certificate{
-
     display:none;
-
     width:min(850px,100%);
-
-    margin:
-        30px auto;
-
+    margin:30px auto;
     padding:12px;
-
     border-radius:25px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #a97524,
-            #ffe49a,
-            #98651b
-        );
-
-    box-shadow:
-        0 30px 80px
-        rgba(0,0,0,.55);
+    background:linear-gradient(135deg,#a97524,#ffe49a,#98651b);
+    box-shadow:0 30px 80px rgba(0,0,0,.55);
 }
 
 .certificateInner{
-
-    padding:
-        45px 30px;
-
+    padding:45px 30px;
     border-radius:17px;
-
     text-align:center;
-
     background:#fff2cb;
-
     color:#4b290f;
-
-    border:
-        3px double #8a571b;
+    border:3px double #8a571b;
 }
 
-.trophy{
-
-    font-size:65px;
-}
+.trophy{font-size:65px}
 
 .certificateInner h2{
-
-    font-size:
-        clamp(28px,6vw,52px);
-
-    margin:
-        12px 0;
+    font-size:clamp(28px,6vw,52px);
+    margin:12px 0;
 }
 
 .certificateInner h3{
-
     font-size:22px;
-
-    margin:
-        15px 0;
+    margin:15px 0;
 }
 
 /* =====================================================
@@ -1312,69 +932,40 @@ body::before{
 ===================================================== */
 
 .nameBox{
-
     display:none;
-
     width:min(500px,100%);
-
-    margin:
-        20px auto;
-
+    margin:20px auto;
     padding:20px;
-
     border-radius:18px;
-
     background:#0b2130;
-
     text-align:center;
 }
 
 .nameBox h3{
-
     color:#ffe09a;
-
-    font:
-        bold 18px Arial;
-
+    font:bold 18px Arial;
     margin-bottom:12px;
 }
 
 .nameBox input{
-
     width:100%;
-
     padding:13px;
-
     border-radius:11px;
-
-    border:
-        1px solid #284d60;
-
+    border:1px solid #284d60;
     background:#06131e;
-
     color:white;
-
     outline:none;
 }
 
 .saveScoreBtn{
-
     width:100%;
-
     margin-top:10px;
-
     padding:13px;
-
     border:0;
-
     border-radius:11px;
-
     cursor:pointer;
-
     font-weight:bold;
-
     background:#ffd15c;
-
     color:#08131a;
 }
 
@@ -1383,204 +974,109 @@ body::before{
 ===================================================== */
 
 .ranking{
-
     width:min(1000px,100%);
-
-    margin:
-        30px auto;
-
+    margin:30px auto;
     padding:25px;
-
     border-radius:25px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(11,37,51,.95),
-            rgba(3,13,23,.95)
-        );
-
-    border:
-        1px solid
-        rgba(255,220,140,.18);
+    background:linear-gradient(145deg,rgba(11,37,51,.95),rgba(3,13,23,.95));
+    border:1px solid rgba(255,220,140,.18);
 }
 
 .rankingTitle{
-
     text-align:center;
-
     margin-bottom:18px;
 }
 
-.rankingTitle .globe{
-
-    font-size:45px;
-}
+.rankingTitle .globe{font-size:45px}
 
 .rankingTitle h2{
-
     color:#ffe1a0;
-
     font-size:32px;
 }
 
 .rankingTitle p{
-
     margin-top:6px;
-
     color:#89a8b5;
-
     font:14px Arial;
 }
 
 .rankingStatus{
-
     text-align:center;
-
     color:#8eaab6;
-
     font:14px Arial;
-
-    margin:
-        10px 0 15px;
+    margin:10px 0 15px;
 }
 
 .rankRow{
-
     display:grid;
-
-    grid-template-columns:
-        70px 1fr 130px 120px;
-
+    grid-template-columns:70px 1fr 130px 120px;
     align-items:center;
-
     gap:12px;
-
     margin:8px 0;
-
     padding:13px 15px;
-
     border-radius:14px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #0d2a3a,
-            #102131
-        );
-
+    background:linear-gradient(90deg,#0d2a3a,#102131);
     font-family:Arial;
 }
 
 .rankRow:first-child{
-
-    background:
-        linear-gradient(
-            90deg,
-            #5b4618,
-            #182a32
-        );
+    background:linear-gradient(90deg,#5b4618,#182a32);
 }
 
 .rankPos{
-
     font-size:22px;
-
     font-weight:900;
 }
 
 .rankName{
-
     font-weight:800;
-
     color:#edfaff;
 }
 
 .rankScore{
-
     color:#62e1ff;
-
     text-align:right;
 }
 
 .rankXP{
-
     color:#ffd568;
-
     text-align:right;
 }
 
-/* =====================================================
-   EMBLEMAS DEL TOP
-===================================================== */
-
 .rankBadge{
-
     display:inline-flex;
-
     align-items:center;
-
     gap:5px;
-
     margin-left:8px;
-
     padding:4px 8px;
-
     border-radius:9px;
-
-    background:
-        rgba(255,215,100,.12);
-
-    border:
-        1px solid
-        rgba(255,215,100,.2);
-
+    background:rgba(255,215,100,.12);
+    border:1px solid rgba(255,215,100,.2);
     color:#ffe08a;
-
     font-size:11px;
-
     font-weight:900;
-
     vertical-align:middle;
-
-    box-shadow:
-        0 0 10px
-        rgba(255,215,100,.06);
 }
 
 .rankBadgeIcon{
-
     font-size:16px;
-
     line-height:1;
 }
 
 .rankBadgeName{
-
     font-size:10px;
-
     white-space:nowrap;
 }
 
 #supabaseError{
-
     display:none;
-
     margin-top:15px;
-
     padding:15px;
-
     border-radius:12px;
-
     background:#3b1515;
-
-    border:
-        1px solid #a94141;
-
+    border:1px solid #a94141;
     color:#ffb8b8;
-
     font:13px Arial;
-
     word-break:break-word;
 }
 
@@ -1589,44 +1085,24 @@ body::before{
 ===================================================== */
 
 #toast{
-
     position:fixed;
-
     left:50%;
     bottom:25px;
-
-    transform:
-        translate(-50%,120px);
-
+    transform:translate(-50%,120px);
     z-index:100000;
-
     max-width:90%;
-
     padding:14px 20px;
-
     border-radius:14px;
-
     background:#071722;
-
-    border:
-        1px solid
-        rgba(90,220,255,.3);
-
+    border:1px solid rgba(90,220,255,.3);
     color:white;
-
     font:bold 14px Arial;
-
-    box-shadow:
-        0 15px 40px
-        rgba(0,0,0,.5);
-
+    box-shadow:0 15px 40px rgba(0,0,0,.5);
     transition:.35s;
 }
 
 #toast.show{
-
-    transform:
-        translate(-50%,0);
+    transform:translate(-50%,0);
 }
 
 /* =====================================================
@@ -1635,18 +1111,14 @@ body::before{
 
 @media(max-width:700px){
 
-    #app{
-        padding:9px;
-    }
+    #app{padding:9px}
 
     .topBar{
         border-radius:14px;
         padding:10px;
     }
 
-    .brand{
-        font-size:12px;
-    }
+    .brand{font-size:12px}
 
     .controlBtn{
         padding:8px 9px;
@@ -1658,14 +1130,11 @@ body::before{
         border-radius:18px;
     }
 
-    .book{
-        min-height:570px;
-    }
+    .book{min-height:570px}
 
     .page{
         min-height:570px;
-        padding:
-            32px 21px 75px;
+        padding:32px 21px 75px;
     }
 
     .page p{
@@ -1677,9 +1146,7 @@ body::before{
         grid-template-columns:1fr;
     }
 
-    .bookNav{
-        gap:7px;
-    }
+    .bookNav{gap:7px}
 
     .navButton{
         min-width:0;
@@ -1705,11 +1172,8 @@ body::before{
 
     .rankBadge{
         display:flex;
-
         width:max-content;
-
         margin-left:0;
-
         margin-top:6px;
     }
 
@@ -1720,12 +1184,21 @@ body::before{
     .credits-corner{
         top:8px;
         left:8px;
-
         font-size:9px;
-
         padding:5px 8px;
-
         letter-spacing:.7px;
+    }
+
+    .secretInner{
+        padding:28px 18px;
+    }
+
+    .secretModal{
+        max-height:94vh;
+    }
+
+    .secretQuestion{
+        padding:15px;
     }
 }
 
@@ -1734,22 +1207,14 @@ body::before{
 
 <body>
 
-<!-- =====================================================
-     CREDITOS
-===================================================== -->
-
 <div class="credits-corner">
     CREDITOS: OSCAR Y JESUS
 </div>
 
-<!-- =====================================================
-     PARTICULAS
-===================================================== -->
-
 <div id="particles"></div>
 
 <!-- =====================================================
-     PANTALLA DE CONTRASEÑA
+     LOGIN PRINCIPAL
 ===================================================== -->
 
 <section id="passwordScreen">
@@ -1785,10 +1250,7 @@ body::before{
             🔐 ENTRAR AL LIBRO
         </button>
 
-        <div
-            id="loginError"
-            class="loginError"
-        ></div>
+        <div id="loginError" class="loginError"></div>
 
     </div>
 
@@ -1828,8 +1290,6 @@ body::before{
 
     </div>
 
-    <!-- PROGRESO -->
-
     <div class="progressArea">
 
         <div class="progressInfo">
@@ -1845,38 +1305,26 @@ body::before{
         </div>
 
         <div class="progressTrack">
-
             <div id="progressBar"></div>
-
         </div>
 
     </div>
-
-    <!-- LIBRO -->
 
     <section class="bookShell">
 
         <div class="book">
 
-            <article
-                id="page"
-                class="page"
-            >
+            <article id="page" class="page">
 
                 <div id="pageContent"></div>
 
-                <div
-                    id="pageNumber"
-                    class="pageNumber"
-                ></div>
+                <div id="pageNumber" class="pageNumber"></div>
 
             </article>
 
         </div>
 
     </section>
-
-    <!-- NAVEGACIÓN -->
 
     <div class="bookNav">
 
@@ -1903,12 +1351,7 @@ body::before{
 
     </div>
 
-    <!-- BADGE -->
-
-    <div
-        id="badgeBox"
-        class="badgeBox"
-    >
+    <div id="badgeBox" class="badgeBox">
 
         <div class="badge">
             LECTOR
@@ -1918,24 +1361,17 @@ body::before{
             🏅 ¡HAS COMPLETADO LA LECTURA!
         </h3>
 
-        <p
-            style="
-            color:#a8bdc6;
-            font-family:Arial;
-            margin-top:8px;
-            "
-        >
+        <p style="color:#a8bdc6;font-family:Arial;margin-top:8px;">
             Ya puedes desbloquear las preguntas finales.
         </p>
 
     </div>
 
-    <!-- QUIZ -->
+    <!-- =================================================
+         QUIZ
+    ================================================== -->
 
-    <section
-        id="quiz"
-        class="quiz"
-    >
+    <section id="quiz" class="quiz">
 
         <div class="quizHeader">
 
@@ -1961,12 +1397,7 @@ body::before{
 
     </section>
 
-    <!-- CERTIFICADO -->
-
-    <section
-        id="certificate"
-        class="certificate"
-    >
+    <section id="certificate" class="certificate">
 
         <div class="certificateInner">
 
@@ -1976,11 +1407,7 @@ body::before{
 
             <div
                 id="certificateMessage"
-                style="
-                font-family:Arial;
-                font-weight:bold;
-                color:#825115;
-                "
+                style="font-family:Arial;font-weight:bold;color:#825115;"
             ></div>
 
             <h2>
@@ -1996,21 +1423,13 @@ body::before{
                 <strong>Crónicas del Caribe</strong>.
             </p>
 
-            <p
-                id="finalScore"
-                style="margin-top:15px"
-            ></p>
+            <p id="finalScore" style="margin-top:15px"></p>
 
         </div>
 
     </section>
 
-    <!-- NOMBRE -->
-
-    <section
-        id="nameBox"
-        class="nameBox"
-    >
+    <section id="nameBox" class="nameBox">
 
         <h3>
             🌎 ¡Pon tu nombre en el TOP GLOBAL!
@@ -2032,8 +1451,6 @@ body::before{
 
     </section>
 
-    <!-- TOP -->
-
     <section class="ranking">
 
         <div class="rankingTitle">
@@ -2052,10 +1469,7 @@ body::before{
 
         </div>
 
-        <div
-            id="rankingStatus"
-            class="rankingStatus"
-        >
+        <div id="rankingStatus" class="rankingStatus">
             Cargando TOP GLOBAL...
         </div>
 
@@ -2067,6 +1481,135 @@ body::before{
 
 </main>
 
+<!-- =====================================================
+     MODAL SECRETO
+===================================================== -->
+
+<div id="secretOverlay">
+
+    <div class="secretModal">
+
+        <div class="secretInner">
+
+            <button
+                id="secretClose"
+                class="secretClose"
+                type="button"
+            >
+                ×
+            </button>
+
+            <!-- LOGIN SECRETO -->
+
+            <div id="secretLogin">
+
+                <div style="text-align:center;font-size:55px;margin-bottom:10px;">
+                    💀
+                </div>
+
+                <div class="secretTitle">
+                    ARCHIVO SECRETO
+                </div>
+
+                <div class="secretSubtitle">
+                    Has encontrado una parte oculta del libro.
+                </div>
+
+                <input
+                    id="secretPassword"
+                    class="passwordInput"
+                    type="password"
+                    placeholder="Contraseña secreta"
+                    autocomplete="off"
+                >
+
+                <button
+                    id="secretEnter"
+                    class="enterButton"
+                    type="button"
+                >
+                    💀 ABRIR ARCHIVO
+                </button>
+
+                <div
+                    id="secretError"
+                    class="loginError"
+                ></div>
+
+            </div>
+
+            <!-- =================================================
+                 CONTENIDO SECRETO
+                 SOLO LAS 3 PREGUNTAS
+            ================================================== -->
+
+            <div
+                id="secretContent"
+                style="display:none;"
+            >
+
+                <div class="secretTitle">
+                    💀 ARCHIVO SECRETO
+                </div>
+
+                <div class="secretSubtitle">
+                    LAS 3 PREGUNTAS SECRETAS
+                </div>
+
+                <div class="secretSummary">
+
+                    <span class="secretTag">
+                        ❓ LAS 3 PREGUNTAS
+                    </span>
+
+                    <div class="secretQuestion">
+
+                        <h4>
+                            1. ¿Qué significa que un territorio sea colonial?
+                        </h4>
+
+                        <div class="secretAnswer">
+                            ✅ Que está bajo dominio político de una potencia externa.
+                        </div>
+
+                    </div>
+
+                    <div class="secretQuestion">
+
+                        <h4>
+                            2. ¿Por qué un pueblo puede desear independizarse?
+                        </h4>
+
+                        <div class="secretAnswer">
+                            ✅ Por razones relacionadas con soberanía,
+                            representación, desigualdad o dominio externo.
+                        </div>
+
+                    </div>
+
+                    <div class="secretQuestion">
+
+                        <h4>
+                            3. ¿Qué situaciones pueden debilitar a una metrópoli?
+                        </h4>
+
+                        <div class="secretAnswer">
+                            ✅ Guerras, crisis económicas, conflictos políticos
+                            e inestabilidad.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 <div id="toast"></div>
 
 <script>
@@ -2076,6 +1619,8 @@ body::before{
 ===================================================== */
 
 const PASSWORD = "luis22";
+
+const SECRET_PASSWORD = "luis55";
 
 const SUPABASE_URL =
     "https://nzhypmddfttfljlkwutq.supabase.co";
@@ -2098,7 +1643,6 @@ let completedPages =
     );
 
 let finalPercent = 0;
-
 let finalXP = 0;
 
 let audioEnabled =
@@ -2106,94 +1650,66 @@ let audioEnabled =
         "caribe_audio"
     ) !== "off";
 
+let changingPage = false;
+
 
 /* =====================================================
    ELEMENTOS
 ===================================================== */
 
 const passwordScreen =
-    document.getElementById(
-        "passwordScreen"
-    );
+    document.getElementById("passwordScreen");
 
 const app =
     document.getElementById("app");
 
 const passwordInput =
-    document.getElementById(
-        "passwordInput"
-    );
+    document.getElementById("passwordInput");
 
 const enterButton =
-    document.getElementById(
-        "enterButton"
-    );
+    document.getElementById("enterButton");
 
 const loginError =
-    document.getElementById(
-        "loginError"
-    );
+    document.getElementById("loginError");
 
 const page =
     document.getElementById("page");
 
 const pageContent =
-    document.getElementById(
-        "pageContent"
-    );
+    document.getElementById("pageContent");
 
 const pageNumber =
-    document.getElementById(
-        "pageNumber"
-    );
+    document.getElementById("pageNumber");
 
 const pageCounter =
-    document.getElementById(
-        "pageCounter"
-    );
+    document.getElementById("pageCounter");
 
 const progressBar =
-    document.getElementById(
-        "progressBar"
-    );
+    document.getElementById("progressBar");
 
 const progressText =
-    document.getElementById(
-        "progressText"
-    );
+    document.getElementById("progressText");
 
 const progressPage =
-    document.getElementById(
-        "progressPage"
-    );
+    document.getElementById("progressPage");
 
 const prevButton =
-    document.getElementById(
-        "prevButton"
-    );
+    document.getElementById("prevButton");
 
 const nextButton =
-    document.getElementById(
-        "nextButton"
-    );
+    document.getElementById("nextButton");
 
 const badgeBox =
-    document.getElementById(
-        "badgeBox"
-    );
+    document.getElementById("badgeBox");
 
 const quiz =
     document.getElementById("quiz");
 
 const certificate =
-    document.getElementById(
-        "certificate"
-    );
+    document.getElementById("certificate");
 
 const nameBox =
-    document.getElementById(
-        "nameBox"
-    );
+    document.getElementById("nameBox");
 
 const toast =
     document.getElementById("toast");
@@ -2234,8 +1750,7 @@ let toastTimer;
 
 function showToast(message){
 
-    toast.textContent =
-        message;
+    toast.textContent = message;
 
     toast.classList.add("show");
 
@@ -2243,8 +1758,7 @@ function showToast(message){
 
     toastTimer =
         setTimeout(
-            () =>
-                toast.classList.remove("show"),
+            () => toast.classList.remove("show"),
             3000
         );
 }
@@ -2298,6 +1812,16 @@ que dejaron huella en sus pueblos.
 
 `
 <div class="pageContent">
+
+<button
+    id="secretSkull"
+    class="secretSkull"
+    type="button"
+    aria-label="Archivo secreto"
+    title="..."
+>
+    💀
+</button>
 
 <div class="kicker">
 Capítulo I
@@ -2850,34 +2374,19 @@ Créditos
 <div class="factGrid">
 
 <div class="fact">
-
-<strong>
-OSCAR
-</strong>
-
+<strong>OSCAR</strong>
 Programación y desarrollo de la página
-
 </div>
 
 <div class="fact">
-
-<strong>
-JESÚS
-</strong>
-
+<strong>JESÚS</strong>
 Diseño y apariencia visual
-
 </div>
 
 <div class="fact">
-
-<strong>
-Y EQUIPO
-</strong>
-
+<strong>Y EQUIPO</strong>
 Proyecto educativo:
 Crónicas del Caribe
-
 </div>
 
 </div>
@@ -2909,7 +2418,7 @@ font:bold 16px Arial;
 
 
 /* =====================================================
-   PREGUNTAS DIFÍCILES
+   PREGUNTAS NORMALES
 ===================================================== */
 
 const questions = [
@@ -3028,9 +2537,7 @@ answer:1
 
 
 /* =====================================================
-   ENTRAR AL LIBRO
-   IMPORTANTE:
-   ESTE CÓDIGO NO DEPENDE DE SUPABASE
+   ENTRAR
 ===================================================== */
 
 function enterBook(){
@@ -3047,41 +2554,19 @@ function enterBook(){
 
         passwordInput.animate(
             [
-                {
-                    transform:
-                        "translateX(-8px)"
-                },
-
-                {
-                    transform:
-                        "translateX(8px)"
-                },
-
-                {
-                    transform:
-                        "translateX(-5px)"
-                },
-
-                {
-                    transform:
-                        "translateX(0)"
-                }
+                {transform:"translateX(-8px)"},
+                {transform:"translateX(8px)"},
+                {transform:"translateX(-5px)"},
+                {transform:"translateX(0)"}
             ],
-            {
-                duration:350
-            }
+            {duration:350}
         );
 
         return;
     }
 
-    /* CONTRASEÑA CORRECTA */
-
-    passwordScreen.style.display =
-        "none";
-
-    app.style.display =
-        "block";
+    passwordScreen.style.display = "none";
+    app.style.display = "block";
 
     localStorage.setItem(
         "caribe_unlocked",
@@ -3089,7 +2574,6 @@ function enterBook(){
     );
 
     renderPage();
-
     startAudio();
 
     showToast(
@@ -3097,31 +2581,17 @@ function enterBook(){
     );
 }
 
-
-/* =====================================================
-   BOTÓN CONTRASEÑA
-===================================================== */
-
-enterButton.addEventListener(
-    "click",
-    enterBook
-);
-
-
-/* =====================================================
-   ENTER DEL TECLADO
-===================================================== */
+enterButton.addEventListener("click",enterBook);
 
 passwordInput.addEventListener(
     "keydown",
     function(event){
 
         if(event.key === "Enter"){
-
             event.preventDefault();
-
             enterBook();
         }
+
     }
 );
 
@@ -3136,16 +2606,13 @@ function renderPage(){
         currentPage = 0;
 
     if(currentPage >= pages.length)
-        currentPage =
-            pages.length - 1;
+        currentPage = pages.length - 1;
 
     pageContent.innerHTML =
         pages[currentPage];
 
     pageNumber.textContent =
-        "— " +
-        (currentPage + 1) +
-        " —";
+        "— " + (currentPage + 1) + " —";
 
     pageCounter.textContent =
         "Página " +
@@ -3161,42 +2628,43 @@ function renderPage(){
 
     const percent =
         Math.round(
-            (
-                currentPage /
-                (pages.length - 1)
-            ) * 100
+            (currentPage / (pages.length - 1)) * 100
         );
 
     progressBar.style.width =
         percent + "%";
 
     progressText.textContent =
-        percent +
-        "% completado";
+        percent + "% completado";
 
     progressPage.textContent =
-        "Página " +
-        (currentPage + 1);
+        "Página " + (currentPage + 1);
 
-    if(
-        !completedPages.includes(
-            currentPage
-        )
-    ){
+    if(!completedPages.includes(currentPage)){
 
-        completedPages.push(
-            currentPage
-        );
+        completedPages.push(currentPage);
 
         localStorage.setItem(
             "caribe_completed_pages",
-            JSON.stringify(
-                completedPages
-            )
+            JSON.stringify(completedPages)
         );
     }
 
     updateBadge();
+
+    if(currentPage === 1){
+
+        const skull =
+            document.getElementById("secretSkull");
+
+        if(skull){
+            skull.addEventListener(
+                "click",
+                openSecret,
+                {once:true}
+            );
+        }
+    }
 
     window.scrollTo({
         top:0,
@@ -3206,10 +2674,13 @@ function renderPage(){
 
 
 /* =====================================================
-   CAMBIAR PÁGINA
+   CAMBIO DE PÁGINA
 ===================================================== */
 
 function changePage(direction){
+
+    if(changingPage)
+        return;
 
     if(
         direction === 1 &&
@@ -3224,6 +2695,8 @@ function changePage(direction){
     ){
         return;
     }
+
+    changingPage = true;
 
     page.classList.remove(
         "turnNext",
@@ -3243,36 +2716,40 @@ function changePage(direction){
     setTimeout(
         function(){
 
-            currentPage +=
-                direction;
+            currentPage += direction;
 
             renderPage();
 
         },
-        250
+        380
+    );
+
+    setTimeout(
+        function(){
+
+            page.classList.remove(
+                "turnNext",
+                "turnPrev"
+            );
+
+            changingPage = false;
+
+        },
+        760
     );
 }
-
-
-/* =====================================================
-   BOTONES
-===================================================== */
 
 prevButton.addEventListener(
     "click",
     function(){
-
         changePage(-1);
-
     }
 );
 
 nextButton.addEventListener(
     "click",
     function(){
-
         changePage(1);
-
     }
 );
 
@@ -3286,10 +2763,7 @@ function updateBadge(){
     const lastReadingPage =
         pages.length - 2;
 
-    if(
-        currentPage >=
-        lastReadingPage
-    ){
+    if(currentPage >= lastReadingPage){
 
         badgeBox.style.display =
             "block";
@@ -3313,13 +2787,7 @@ function openQuiz(){
     });
 }
 
-window.openQuiz =
-    openQuiz;
-
-
-/* =====================================================
-   MOSTRAR PREGUNTAS
-===================================================== */
+window.openQuiz = openQuiz;
 
 function renderQuestions(){
 
@@ -3334,9 +2802,7 @@ function renderQuestions(){
         function(item,index){
 
             const card =
-                document.createElement(
-                    "div"
-                );
+                document.createElement("div");
 
             card.className =
                 "questionCard";
@@ -3351,8 +2817,7 @@ function renderQuestions(){
             item.options.forEach(
                 function(option,optionIndex){
 
-                    html +=
-                    `
+                    html += `
                     <label class="option">
 
                         <input
@@ -3371,16 +2836,14 @@ function renderQuestions(){
             card.innerHTML =
                 html;
 
-            container.appendChild(
-                card
-            );
+            container.appendChild(card);
         }
     );
 }
 
 
 /* =====================================================
-   TERMINAR QUIZ
+   FINAL QUIZ
 ===================================================== */
 
 document
@@ -3389,7 +2852,6 @@ document
     "click",
     finishQuiz
 );
-
 
 function finishQuiz(){
 
@@ -3410,7 +2872,6 @@ function finishQuiz(){
                 Number(selected.value) ===
                 item.answer
             ){
-
                 score++;
             }
         }
@@ -3418,10 +2879,7 @@ function finishQuiz(){
 
     finalPercent =
         Math.round(
-            (
-                score /
-                questions.length
-            ) * 100
+            (score / questions.length) * 100
         );
 
     finalXP =
@@ -3431,9 +2889,7 @@ function finishQuiz(){
         "block";
 
     document
-    .getElementById(
-        "finalScore"
-    )
+    .getElementById("finalScore")
     .textContent =
         "Resultado: " +
         score +
@@ -3446,9 +2902,7 @@ function finishQuiz(){
         " XP";
 
     document
-    .getElementById(
-        "certificateMessage"
-    )
+    .getElementById("certificateMessage")
     .textContent =
         finalPercent >= 60
             ? "LECTOR OFICIAL DEL CARIBE"
@@ -3481,33 +2935,16 @@ function finishQuiz(){
 function escapeHTML(value){
 
     return String(value ?? "")
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 }
 
 
 /* =====================================================
-   GUARDAR TOP GLOBAL
-   USAMOS FETCH DIRECTAMENTE
-   NO SUPABASE JS
+   SUPABASE
 ===================================================== */
 
 async function submitGlobalScore(
@@ -3522,17 +2959,13 @@ async function submitGlobalScore(
         );
 
     const cleanName =
-        String(
-            name || "Lector"
-        )
+        String(name || "Lector")
         .trim()
         .substring(0,25);
 
     if(!cleanName){
 
-        showToast(
-            "✏️ Escribe un nombre"
-        );
+        showToast("✏️ Escribe un nombre");
 
         return false;
     }
@@ -3547,24 +2980,18 @@ async function submitGlobalScore(
                     method:"POST",
 
                     headers:{
-                        "apikey":
-                            SUPABASE_KEY,
-
+                        "apikey":SUPABASE_KEY,
                         "Authorization":
-                            "Bearer " +
-                            SUPABASE_KEY,
-
+                            "Bearer " + SUPABASE_KEY,
                         "Content-Type":
                             "application/json",
-
                         "Prefer":
                             "return=minimal"
                     },
 
                     body:JSON.stringify({
 
-                        nombre:
-                            cleanName,
+                        nombre:cleanName,
 
                         puntuacion:
                             Math.max(
@@ -3607,9 +3034,7 @@ async function submitGlobalScore(
 
                     <br><br>
 
-                    ${escapeHTML(
-                        errorText
-                    )}
+                    ${escapeHTML(errorText)}
                     `;
             }
 
@@ -3669,9 +3094,7 @@ async function submitGlobalScore(
 
                 <br><br>
 
-                ${escapeHTML(
-                    error.message
-                )}
+                ${escapeHTML(error.message)}
                 `;
         }
 
@@ -3685,7 +3108,7 @@ async function submitGlobalScore(
 
 
 /* =====================================================
-   BOTÓN GUARDAR
+   GUARDAR RESULTADO
 ===================================================== */
 
 document
@@ -3695,14 +3118,10 @@ document
     async function(){
 
         const input =
-            document.getElementById(
-                "playerName"
-            );
+            document.getElementById("playerName");
 
         const button =
-            document.getElementById(
-                "saveScoreBtn"
-            );
+            document.getElementById("saveScoreBtn");
 
         const name =
             input.value.trim();
@@ -3710,7 +3129,7 @@ document
         if(!name){
 
             showToast(
-                "✏️ Escribe tu nombre"
+                "✏️ Escribe un nombre"
             );
 
             input.focus();
@@ -3718,8 +3137,7 @@ document
             return;
         }
 
-        button.disabled =
-            true;
+        button.disabled = true;
 
         button.textContent =
             "⏳ GUARDANDO...";
@@ -3738,8 +3156,7 @@ document
                 name
             );
 
-            input.disabled =
-                true;
+            input.disabled = true;
 
             button.textContent =
                 "✅ GUARDADO";
@@ -3748,8 +3165,7 @@ document
 
         }else{
 
-            button.disabled =
-                false;
+            button.disabled = false;
 
             button.textContent =
                 "🚀 GUARDAR RESULTADO";
@@ -3759,7 +3175,7 @@ document
 
 
 /* =====================================================
-   CARGAR TOP GLOBAL
+   TOP GLOBAL
 ===================================================== */
 
 async function loadRanking(){
@@ -3792,25 +3208,14 @@ async function loadRanking(){
                     method:"GET",
 
                     headers:{
-                        "apikey":
-                            SUPABASE_KEY,
-
+                        "apikey":SUPABASE_KEY,
                         "Authorization":
-                            "Bearer " +
-                            SUPABASE_KEY
+                            "Bearer " + SUPABASE_KEY
                     }
                 }
             );
 
         if(!response.ok){
-
-            const errorText =
-                await response.text();
-
-            console.error(
-                "TOP ERROR:",
-                errorText
-            );
 
             status.innerHTML =
                 "❌ No se pudo cargar el TOP.";
@@ -3821,10 +3226,7 @@ async function loadRanking(){
         const rows =
             await response.json();
 
-        if(
-            !rows ||
-            rows.length === 0
-        ){
+        if(!rows || rows.length === 0){
 
             status.innerHTML =
                 "🏆 Todavía no hay jugadores.";
@@ -3842,71 +3244,41 @@ async function loadRanking(){
 
                 if(index === 0)
                     medal = "🥇";
-
                 else if(index === 1)
                     medal = "🥈";
-
                 else if(index === 2)
                     medal = "🥉";
-
                 else
-                    medal =
-                        "#" +
-                        (index + 1);
+                    medal = "#" + (index + 1);
 
                 const score =
-                    Number(
-                        row.puntuacion
-                    ) || 0;
-
-                /* =========================================
-                   EMBLEMA SEGÚN PUNTUACIÓN
-                ========================================= */
+                    Number(row.puntuacion) || 0;
 
                 let badgeIcon;
                 let badgeName;
 
                 if(score >= 100){
-
                     badgeIcon = "🏆";
-                    badgeName =
-                        "Maestro del Caribe";
-
+                    badgeName = "Maestro del Caribe";
                 }else if(score >= 90){
-
                     badgeIcon = "🥇";
-                    badgeName =
-                        "Historiador experto";
-
+                    badgeName = "Historiador experto";
                 }else if(score >= 80){
-
                     badgeIcon = "🥈";
-                    badgeName =
-                        "Explorador del Caribe";
-
+                    badgeName = "Explorador del Caribe";
                 }else if(score >= 70){
-
                     badgeIcon = "🥉";
-                    badgeName =
-                        "Conocedor del Caribe";
-
+                    badgeName = "Conocedor del Caribe";
                 }else if(score >= 60){
-
                     badgeIcon = "🎖️";
-                    badgeName =
-                        "Lector avanzado";
-
+                    badgeName = "Lector avanzado";
                 }else{
-
                     badgeIcon = "📖";
-                    badgeName =
-                        "Aprendiz";
+                    badgeName = "Aprendiz";
                 }
 
                 const div =
-                    document.createElement(
-                        "div"
-                    );
+                    document.createElement("div");
 
                 div.className =
                     "rankRow";
@@ -3918,15 +3290,12 @@ async function loadRanking(){
                     </div>
 
                     <div class="rankName">
-                        ${escapeHTML(
-                            row.nombre
-                        )}
+                        ${escapeHTML(row.nombre)}
                     </div>
 
                     <div class="rankScore">
 
-                        🎯
-                        ${score}%
+                        🎯 ${score}%
 
                         <span class="rankBadge">
 
@@ -3943,16 +3312,11 @@ async function loadRanking(){
                     </div>
 
                     <div class="rankXP">
-                        ⭐
-                        ${Number(
-                            row.xp
-                        ) || 0} XP
+                        ⭐ ${Number(row.xp) || 0} XP
                     </div>
                     `;
 
-                list.appendChild(
-                    div
-                );
+                list.appendChild(div);
             }
         );
 
@@ -4019,7 +3383,6 @@ document
 ===================================================== */
 
 let audioContext = null;
-
 let masterGain = null;
 
 function startAudio(){
@@ -4033,7 +3396,7 @@ function startAudio(){
     try{
 
         audioContext =
-            new (
+            new(
                 window.AudioContext ||
                 window.webkitAudioContext
             )();
@@ -4049,13 +3412,10 @@ function startAudio(){
         );
 
         createOcean();
-
         createTone();
 
         document
-        .getElementById(
-            "soundBtn"
-        )
+        .getElementById("soundBtn")
         .textContent =
             "🔊 Sonido ON";
 
@@ -4067,11 +3427,6 @@ function startAudio(){
         );
     }
 }
-
-
-/* =====================================================
-   SONIDO MAR
-===================================================== */
 
 function createOcean(){
 
@@ -4096,7 +3451,6 @@ function createOcean(){
         i<bufferSize;
         i++
     ){
-
         data[i] =
             Math.random() * 2 - 1;
     }
@@ -4133,11 +3487,6 @@ function createOcean(){
     source.start();
 }
 
-
-/* =====================================================
-   TONO
-===================================================== */
-
 function createTone(){
 
     if(!audioContext)
@@ -4164,11 +3513,6 @@ function createTone(){
 
     osc.start();
 }
-
-
-/* =====================================================
-   SONIDO DE PASAR PÁGINA
-===================================================== */
 
 function playPageSound(){
 
@@ -4228,7 +3572,7 @@ function playPageSound(){
 
 
 /* =====================================================
-   BOTÓN SONIDO
+   SONIDO
 ===================================================== */
 
 document
@@ -4242,9 +3586,7 @@ document
 
         localStorage.setItem(
             "caribe_audio",
-            audioEnabled
-                ? "on"
-                : "off"
+            audioEnabled ? "on" : "off"
         );
 
         if(audioEnabled){
@@ -4286,6 +3628,149 @@ document
 
 
 /* =====================================================
+   ARCHIVO SECRETO
+===================================================== */
+
+const secretOverlay =
+    document.getElementById(
+        "secretOverlay"
+    );
+
+const secretLogin =
+    document.getElementById(
+        "secretLogin"
+    );
+
+const secretContent =
+    document.getElementById(
+        "secretContent"
+    );
+
+const secretPassword =
+    document.getElementById(
+        "secretPassword"
+    );
+
+const secretEnter =
+    document.getElementById(
+        "secretEnter"
+    );
+
+const secretError =
+    document.getElementById(
+        "secretError"
+    );
+
+const secretClose =
+    document.getElementById(
+        "secretClose"
+    );
+
+
+function openSecret(){
+
+    secretOverlay.style.display =
+        "flex";
+
+    secretLogin.style.display =
+        "block";
+
+    secretContent.style.display =
+        "none";
+
+    secretPassword.value = "";
+
+    secretError.textContent = "";
+
+    setTimeout(
+        function(){
+            secretPassword.focus();
+        },
+        150
+    );
+}
+
+
+function closeSecret(){
+
+    secretOverlay.style.display =
+        "none";
+}
+
+
+function enterSecret(){
+
+    const typed =
+        secretPassword.value.trim();
+
+    secretError.textContent = "";
+
+    if(typed !== SECRET_PASSWORD){
+
+        secretError.textContent =
+            "❌ Contraseña incorrecta";
+
+        secretPassword.animate(
+            [
+                {transform:"translateX(-8px)"},
+                {transform:"translateX(8px)"},
+                {transform:"translateX(-5px)"},
+                {transform:"translateX(0)"}
+            ],
+            {duration:350}
+        );
+
+        return;
+    }
+
+    secretLogin.style.display =
+        "none";
+
+    secretContent.style.display =
+        "block";
+
+    showToast(
+        "💀 Archivo secreto desbloqueado"
+    );
+}
+
+
+secretEnter.addEventListener(
+    "click",
+    enterSecret
+);
+
+secretPassword.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            event.preventDefault();
+
+            enterSecret();
+        }
+    }
+);
+
+secretClose.addEventListener(
+    "click",
+    closeSecret
+);
+
+secretOverlay.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === secretOverlay){
+            closeSecret();
+        }
+
+    }
+);
+
+
+/* =====================================================
    RECUPERAR NOMBRE
 ===================================================== */
 
@@ -4297,9 +3782,7 @@ const previousName =
 if(previousName){
 
     document
-    .getElementById(
-        "playerName"
-    )
+    .getElementById("playerName")
     .value =
         previousName;
 }
@@ -4308,12 +3791,6 @@ if(previousName){
 /* =====================================================
    ARRANQUE
 ===================================================== */
-
-/*
-   IMPORTANTE:
-   Si ya habías entrado anteriormente,
-   se mantiene desbloqueado.
-*/
 
 if(
     localStorage.getItem(
@@ -4330,11 +3807,6 @@ if(
     renderPage();
 
 }else{
-
-    /*
-       Si no está desbloqueado,
-       mostramos la contraseña.
-    */
 
     passwordScreen.style.display =
         "flex";
